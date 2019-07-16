@@ -15,6 +15,7 @@
         <module>gateway</module>
         <module>eurekaserver</module>
         <module>eureka-server</module>
+        <module>tibmas</module>
     </modules>
     <packaging>pom</packaging>
 
