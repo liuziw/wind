@@ -1,0 +1,97 @@
+#Web服务器相关配置
+server:
+  port: 11144
+  servlet:
+    context-path: /
+
+  #数据连接配置
+spring:
+  profiles:
+    active: dev
+  application:
+    name: TIBMAS2-LOG
+  datasource:
+    druid:
+      url: jdbc:mysql://172.16.8.18:3306/tibmas?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      username: user
+      password: admin@1
+      driverClassName: com.mysql.jdbc.Driver
+      initial-size: 5
+      maxActive: 10
+      minIdle:  10
+      validation-query: SELECT 'x' from dual
+      test-while-idle: true
+      time-between-eviction-runs-millis: 10000
+      min-evictable-idle-time-millis: 300000
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,slf4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=1000
+      useGlobalDataSourceStat: true
+      # 支持火星文emoji表情
+      connectionInitSqls: set names utf8mb4;
+  #Redis连接
+  redis:
+    database: 4
+    host: 172.16.8.18
+    port: 6379
+    password: hyzs
+    jedis:
+      pool:
+        max-active: 11
+        maxIdle: 11
+        maxWait: -1
+        minIdle: 0
+
+
+  #json格式化
+  jackson:
+    date-format:  yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+  #session共享
+  session:
+    store-type: redis
+
+  #文件上传
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+  #mybatis
+mybatis:
+  configurationm:
+    apUnderscoreToCamelCase: true
+    jdbcTypeForNull: NULL
+
+  #日志
+logging:
+  level:
+    com.hyzs: DEBUG
+    org: INFO
+
+
+  #分布助手配置
+  pagehelper:
+    helper-dialect: mysql
+    reasonable: true
+    support-methods-arguments: true
+    params: count=countSql
+
+security:
+  oauth2:
+    client:
+      accessTokenUri: http://172.16.8.20:82/oauth/token
+      userAuthorizationUri: http://172.16.8.20:82/oauth/authorize
+      clientId: tibmas-web-api
+      clientSecret: 12345678
+    resource:
+      tokenInfoUri: http://172.16.8.20:82/oauth/check_token
+
+
+hyzs:
+  sso:
+    logoutUrl: http://172.16.8.20:82/logout
+  auth:
+    urls: /api/**,/swagger/**
