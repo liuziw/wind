@@ -1,0 +1,66 @@
+server:
+  port: 7089
+  servlet:
+    context-path: /
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: GATEWAY
+  redis:
+    database: 3
+    host: 172.16.8.18
+    port: 6379
+    password: hyzs
+    jedis:
+      pool:
+        maxActive: 3
+        maxIdle: 3
+        maxWait: -1
+        minIdle: 0
+  session:
+    store-type: redis
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      httpclient:
+        connect-timeout: 5000
+  #      routes:
+#        - id: user-service-route
+#          predicates:
+#            - Path=/user-service/**
+ #         uri: http://localhost:8081
+
+logging:
+  level:
+    com.hyzs: DEBUG
+
+hyzs:
+  sso:
+    accessTokenUri: http://172.16.8.20:82/oauth/token
+    userAuthorizationUri: http://172.16.8.20:82/oauth/authorize
+    clientId: task-admin
+    clientSecret: 12345678
+    logoutUrl: http://172.16.8.20:82/logout
+    tokenInfoUri: http://172.16.8.20:82/oauth/check_token
+  auth:
+    type: MINI_PROGRAM_SIGNATURE
+    excludePaths:
+    miniProgram:
+      appId: wxba6bffebe25e971d
+      appSecret: d6dbb12103dde8b79a3fe3f42e7dcaa4
+    serviceUrlMapping: {szcg-web-all : szcg-web}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.16.8.20:8761/eureka
+    enabled: true
+  instance:
+    prefer-ip-address: true

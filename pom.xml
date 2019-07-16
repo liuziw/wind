@@ -12,6 +12,7 @@
         <module>common</module>
         <module>common</module>
         <module>event-kafka</module>
+        <module>gateway</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -209,10 +210,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -222,6 +219,10 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
     </dependencies>
 
