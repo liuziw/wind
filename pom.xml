@@ -13,6 +13,8 @@
         <module>common</module>
         <module>event-kafka</module>
         <module>gateway</module>
+        <module>eurekaserver</module>
+        <module>eureka-server</module>
     </modules>
     <packaging>pom</packaging>
 
