@@ -1,0 +1,22 @@
+server:
+  port: 9006
+spring:
+  application:
+    name: EVENT_KAFKA_TEST
+  kafka:
+    bootstrap-servers: 172.16.8.19:9092
+    consumer:
+      group-id: EVENT_KAFKA_TEST_GROUP
+      key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      client-id: EVENT_KAFKA_${server.port}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.LongSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+
+hyzs:
+  event:
+    kafka:
+      consumer:
+        topicPattern: test.*
