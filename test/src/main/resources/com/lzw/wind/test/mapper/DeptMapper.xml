@@ -1,0 +1,1813 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzw.wind.test.mapper.DeptMapper">
+
+    <!--
+    /**
+     * 代码自动生成，请不要修改，切记！！！
+     */
+    -->
+
+    <sql id="selectAllPropertiesAsDO">
+            select  id id, dept_code deptCode, dept_name deptName, dept_describe deptDescribe, dept_type deptType, area_id areaId, pid pid, seq seq, is_deleted isDeleted, gmt_create gmtCreate, gmt_modified gmtModified, user_id_create userIdCreate, user_id_modified userIdModified from dept
+    </sql>
+
+    <sql id="selectByFieldNamesAsDO">
+       select <foreach collection="fieldNames" index="index" item="item"  separator=",">${item}</foreach> from dept
+    </sql>
+
+    <sql id="selectAsDO">
+        <choose>
+            <when test="fieldNames==null or fieldNames.length==0">
+                  <include refid="selectAllPropertiesAsDO"/>
+            </when>
+            <otherwise>
+                  <include refid="selectByFieldNamesAsDO"/>
+            </otherwise>
+        </choose>
+    </sql>
+
+
+    <select id="listAll" resultType="com.lzw.wind.test.dbo.DeptDO">
+        <include refid="selectAsDO" /> where is_deleted=0
+    </select>
+
+    <select id="mapAll" resultType="com.lzw.wind.test.dbo.DeptDO">
+        <include refid="selectAsDO" /> where is_deleted=0
+    </select>
+
+
+    <select id="getById" resultType="com.lzw.wind.test.dbo.DeptDO">
+        <include refid="selectAsDO" /> where id=#{id} and is_deleted=0
+    </select>
+
+
+    <select id="listByIds" resultType="com.lzw.wind.test.dbo.DeptDO">
+        <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </select>
+
+    <select id="mapByIds" resultType="com.lzw.wind.test.dbo.DeptDO">
+        <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </select>
+
+    <update id="deleteById">
+        update  dept set is_deleted=1,gmt_modified=CURRENT_TIMESTAMP where id=#{id}
+    </update>
+
+    <update id="deleteByIds">
+        update  dept set is_deleted=1,gmt_modified=CURRENT_TIMESTAMP where id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </update>
+
+
+    <update id="updateNotNullProperties">
+        update dept set
+                <if test="id != null">id=#{id},</if>
+                <if test="deptCode != null">dept_code=#{deptCode},</if>
+                <if test="deptName != null">dept_name=#{deptName},</if>
+                <if test="deptDescribe != null">dept_describe=#{deptDescribe},</if>
+                <if test="deptType != null">dept_type=#{deptType},</if>
+                <if test="areaId != null">area_id=#{areaId},</if>
+                <if test="pid != null">pid=#{pid},</if>
+                <if test="seq != null">seq=#{seq},</if>
+                <if test="userIdCreate != null">user_id_create=#{userIdCreate},</if>
+                <if test="userIdModified != null">user_id_modified=#{userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+    <update id="updateAllProperties">
+        update dept set
+                id=#{id},
+                dept_code=#{deptCode},
+                dept_name=#{deptName},
+                dept_describe=#{deptDescribe},
+                dept_type=#{deptType},
+                area_id=#{areaId},
+                pid=#{pid},
+                seq=#{seq},
+                user_id_create=#{userIdCreate},
+                user_id_modified=#{userIdModified},
+                gmt_modified=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+
+    <insert id="insertAllProperties">
+              <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+                        SELECT LAST_INSERT_ID() as id
+                      </selectKey>
+
+        insert into dept
+        (
+                id,
+                dept_code,
+                dept_name,
+                dept_describe,
+                dept_type,
+                area_id,
+                pid,
+                seq,
+                user_id_create,
+                user_id_modified,
+                is_deleted,gmt_create,gmt_modified
+        )
+        values
+        (
+                #{id},
+                #{deptCode},
+                #{deptName},
+                #{deptDescribe},
+                #{deptType},
+                #{areaId},
+                #{pid},
+                #{seq},
+                #{userIdCreate},
+                #{userIdModified},
+                0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        )
+    </insert>
+
+
+    <insert id="insertNotNullProperties">
+                      <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+                                SELECT LAST_INSERT_ID() as id
+                              </selectKey>
+        insert into dept
+        (
+                <if test="id!=null">id,</if>
+                <if test="deptCode!=null">dept_code,</if>
+                <if test="deptName!=null">dept_name,</if>
+                <if test="deptDescribe!=null">dept_describe,</if>
+                <if test="deptType!=null">dept_type,</if>
+                <if test="areaId!=null">area_id,</if>
+                <if test="pid!=null">pid,</if>
+                <if test="seq!=null">seq,</if>
+                <if test="userIdCreate!=null">user_id_create,</if>
+                <if test="userIdModified!=null">user_id_modified,</if>
+                is_deleted,gmt_create,gmt_modified
+        )
+        values
+        (
+                <if test="id!=null">#{id},</if>
+                <if test="deptCode!=null">#{deptCode},</if>
+                <if test="deptName!=null">#{deptName},</if>
+                <if test="deptDescribe!=null">#{deptDescribe},</if>
+                <if test="deptType!=null">#{deptType},</if>
+                <if test="areaId!=null">#{areaId},</if>
+                <if test="pid!=null">#{pid},</if>
+                <if test="seq!=null">#{seq},</if>
+                <if test="userIdCreate!=null">#{userIdCreate},</if>
+                <if test="userIdModified!=null">#{userIdModified},</if>
+                0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        )
+    </insert>
+
+        <insert id="insertAllPropertiesList">
+           insert into dept
+           (
+                   id,
+                   dept_code,
+                   dept_name,
+                   dept_describe,
+                   dept_type,
+                   area_id,
+                   pid,
+                   seq,
+                   user_id_create,
+                   user_id_modified,
+                   is_deleted,gmt_create,gmt_modified
+                   )
+           values
+           <foreach collection="list" item="item" index="index" separator="," >
+           (
+                   #{item.id},
+                   #{item.deptCode},
+                   #{item.deptName},
+                   #{item.deptDescribe},
+                   #{item.deptType},
+                   #{item.areaId},
+                   #{item.pid},
+                   #{item.seq},
+                   #{item.userIdCreate},
+                   #{item.userIdModified},
+                   0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+           )
+           </foreach>
+       </insert>
+
+
+
+    <select id="listByProperty" resultType="com.lzw.wind.test.dbo.DeptDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+    <select id="countByProperty" resultType="java.lang.Integer">
+        select count(1) from dept
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+    <select id="mapByProperty" resultType="com.lzw.wind.test.dbo.DeptDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+
+    <update id="updateNotNullFieldsByProperty">
+        update dept set
+                <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <update id="updateAllFieldsByProperty">
+        update dept set
+                id=#{updateDO.id},
+                dept_code=#{updateDO.deptCode},
+                dept_name=#{updateDO.deptName},
+                dept_describe=#{updateDO.deptDescribe},
+                dept_type=#{updateDO.deptType},
+                area_id=#{updateDO.areaId},
+                pid=#{updateDO.pid},
+                seq=#{updateDO.seq},
+                user_id_create=#{updateDO.userIdCreate},
+                user_id_modified=#{updateDO.userIdModified},
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <update id="deleteByProperty">
+        update dept set
+                is_delete=1,
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <select id="listByProperties" resultType="com.lzw.wind.test.dbo.DeptDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and  ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <select id="countByProperties" resultType="java.lang.Integer">
+        select count(1) from dept
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <select id="mapByProperties" resultType="com.lzw.wind.test.dbo.DeptDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and  ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <update id="updateNotNullFieldsByProperties">
+        update dept set
+                <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <update id="updateAllFieldsByProperties">
+        update dept set
+                id=#{updateDO.id}
+                dept_code=#{updateDO.deptCode}
+                dept_name=#{updateDO.deptName}
+                dept_describe=#{updateDO.deptDescribe}
+                dept_type=#{updateDO.deptType}
+                area_id=#{updateDO.areaId}
+                pid=#{updateDO.pid}
+                seq=#{updateDO.seq}
+                user_id_create=#{updateDO.userIdCreate}
+                user_id_modified=#{updateDO.userIdModified}
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <update id="deleteByProperties">
+        update dept set
+                is_deleted=1,
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <select id="_listByQueryItems" resultType="com.lzw.wind.test.dbo.DeptDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+    <select id="_mapByQueryItems" resultType="com.lzw.wind.test.dbo.DeptDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+    <select id="_countByQueryItems" resultType="java.lang.Integer">
+        select count(1) from dept
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+   <update id="_updateNotNullFieldsByQueryItems">
+         update dept set
+                <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <update id="_updateNotAllFieldsByQueryItems">
+         update dept set
+                id=#{updateDO.id}
+                dept_code=#{updateDO.deptCode}
+                dept_name=#{updateDO.deptName}
+                dept_describe=#{updateDO.deptDescribe}
+                dept_type=#{updateDO.deptType}
+                area_id=#{updateDO.areaId}
+                pid=#{updateDO.pid}
+                seq=#{updateDO.seq}
+                user_id_create=#{updateDO.userIdCreate}
+                user_id_modified=#{updateDO.userIdModified}
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <update id="_deleteByQueryItems">
+         update dept set
+                is_deleted=1,
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <select id="_listByPageQuery" resultType="com.lzw.wind.test.dbo.DeptDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                         #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+            <if test="pageQuery.sortFieldNameForDatabase!=null">
+                order by ${pageQuery.sortFieldNameForDatabase} ${pageQuery.sortType}
+            </if>
+            limit #{values.pageOffset},#{pageQuery.pageSize}
+    </select>
+
+
+    <select id="_countByPageQuery" resultType="java.lang.Integer">
+        select count(1) from dept
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                    <choose>
+                        <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                            <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                                #{inItem}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                           #{values.[${item.valueKeyName}]}
+                        </otherwise>
+                    </choose>
+                </if>
+            </foreach>
+    </select>
+
+
+
+          <select id="listById" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and id=#{id}
+          </select>
+
+          <select id="countById" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and id=#{id}
+           </select>
+
+           <select id="mapById" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and id=#{id}
+           </select>
+
+           <update id="updateNotNullFieldsById">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and id=#{id}
+          </update>
+
+          <update id="updateAllFieldsById">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and id=#{id}
+            </update>
+
+
+
+
+            <!--property in -->
+
+         <select id="listByInId" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and id in
+                  <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInId" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and id in
+                      <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInId" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and id in
+                        <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInId">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and id in
+                       <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInId">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and id in
+                       <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInId">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and id in
+                        <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByDeptCode" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and dept_code=#{deptCode}
+          </select>
+
+          <select id="countByDeptCode" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and dept_code=#{deptCode}
+           </select>
+
+           <select id="mapByDeptCode" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and dept_code=#{deptCode}
+           </select>
+
+           <update id="updateNotNullFieldsByDeptCode">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and dept_code=#{deptCode}
+          </update>
+
+          <update id="updateAllFieldsByDeptCode">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and dept_code=#{deptCode}
+            </update>
+
+
+            <update id="deleteByDeptCode">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and dept_code=#{deptCode}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInDeptCode" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and dept_code in
+                  <foreach collection="deptCodeList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInDeptCode" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and dept_code in
+                      <foreach collection="deptCodeList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInDeptCode" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and dept_code in
+                        <foreach collection="deptCodeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInDeptCode">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and dept_code in
+                       <foreach collection="deptCodeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInDeptCode">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and dept_code in
+                       <foreach collection="deptCodeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInDeptCode">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and dept_code in
+                        <foreach collection="deptCodeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByDeptName" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and dept_name=#{deptName}
+          </select>
+
+          <select id="countByDeptName" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and dept_name=#{deptName}
+           </select>
+
+           <select id="mapByDeptName" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and dept_name=#{deptName}
+           </select>
+
+           <update id="updateNotNullFieldsByDeptName">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and dept_name=#{deptName}
+          </update>
+
+          <update id="updateAllFieldsByDeptName">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and dept_name=#{deptName}
+            </update>
+
+
+            <update id="deleteByDeptName">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and dept_name=#{deptName}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInDeptName" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and dept_name in
+                  <foreach collection="deptNameList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInDeptName" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and dept_name in
+                      <foreach collection="deptNameList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInDeptName" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and dept_name in
+                        <foreach collection="deptNameList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInDeptName">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and dept_name in
+                       <foreach collection="deptNameList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInDeptName">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and dept_name in
+                       <foreach collection="deptNameList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInDeptName">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and dept_name in
+                        <foreach collection="deptNameList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByDeptDescribe" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and dept_describe=#{deptDescribe}
+          </select>
+
+          <select id="countByDeptDescribe" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and dept_describe=#{deptDescribe}
+           </select>
+
+           <select id="mapByDeptDescribe" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and dept_describe=#{deptDescribe}
+           </select>
+
+           <update id="updateNotNullFieldsByDeptDescribe">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and dept_describe=#{deptDescribe}
+          </update>
+
+          <update id="updateAllFieldsByDeptDescribe">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and dept_describe=#{deptDescribe}
+            </update>
+
+
+            <update id="deleteByDeptDescribe">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and dept_describe=#{deptDescribe}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInDeptDescribe" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and dept_describe in
+                  <foreach collection="deptDescribeList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInDeptDescribe" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and dept_describe in
+                      <foreach collection="deptDescribeList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInDeptDescribe" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and dept_describe in
+                        <foreach collection="deptDescribeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInDeptDescribe">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and dept_describe in
+                       <foreach collection="deptDescribeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInDeptDescribe">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and dept_describe in
+                       <foreach collection="deptDescribeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInDeptDescribe">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and dept_describe in
+                        <foreach collection="deptDescribeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByDeptType" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and dept_type=#{deptType}
+          </select>
+
+          <select id="countByDeptType" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and dept_type=#{deptType}
+           </select>
+
+           <select id="mapByDeptType" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and dept_type=#{deptType}
+           </select>
+
+           <update id="updateNotNullFieldsByDeptType">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and dept_type=#{deptType}
+          </update>
+
+          <update id="updateAllFieldsByDeptType">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and dept_type=#{deptType}
+            </update>
+
+
+            <update id="deleteByDeptType">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and dept_type=#{deptType}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInDeptType" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and dept_type in
+                  <foreach collection="deptTypeList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInDeptType" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and dept_type in
+                      <foreach collection="deptTypeList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInDeptType" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and dept_type in
+                        <foreach collection="deptTypeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInDeptType">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and dept_type in
+                       <foreach collection="deptTypeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInDeptType">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and dept_type in
+                       <foreach collection="deptTypeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInDeptType">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and dept_type in
+                        <foreach collection="deptTypeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByAreaId" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and area_id=#{areaId}
+          </select>
+
+          <select id="countByAreaId" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and area_id=#{areaId}
+           </select>
+
+           <select id="mapByAreaId" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and area_id=#{areaId}
+           </select>
+
+           <update id="updateNotNullFieldsByAreaId">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and area_id=#{areaId}
+          </update>
+
+          <update id="updateAllFieldsByAreaId">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and area_id=#{areaId}
+            </update>
+
+
+            <update id="deleteByAreaId">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and area_id=#{areaId}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInAreaId" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and area_id in
+                  <foreach collection="areaIdList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInAreaId" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and area_id in
+                      <foreach collection="areaIdList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInAreaId" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and area_id in
+                        <foreach collection="areaIdList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInAreaId">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and area_id in
+                       <foreach collection="areaIdList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInAreaId">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and area_id in
+                       <foreach collection="areaIdList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInAreaId">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and area_id in
+                        <foreach collection="areaIdList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByPid" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and pid=#{pid}
+          </select>
+
+          <select id="countByPid" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and pid=#{pid}
+           </select>
+
+           <select id="mapByPid" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and pid=#{pid}
+           </select>
+
+           <update id="updateNotNullFieldsByPid">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and pid=#{pid}
+          </update>
+
+          <update id="updateAllFieldsByPid">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and pid=#{pid}
+            </update>
+
+
+            <update id="deleteByPid">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and pid=#{pid}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInPid" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and pid in
+                  <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInPid" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and pid in
+                      <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInPid" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and pid in
+                        <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInPid">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and pid in
+                       <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInPid">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and pid in
+                       <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInPid">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and pid in
+                        <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listBySeq" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and seq=#{seq}
+          </select>
+
+          <select id="countBySeq" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and seq=#{seq}
+           </select>
+
+           <select id="mapBySeq" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and seq=#{seq}
+           </select>
+
+           <update id="updateNotNullFieldsBySeq">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and seq=#{seq}
+          </update>
+
+          <update id="updateAllFieldsBySeq">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and seq=#{seq}
+            </update>
+
+
+            <update id="deleteBySeq">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and seq=#{seq}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInSeq" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and seq in
+                  <foreach collection="seqList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInSeq" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and seq in
+                      <foreach collection="seqList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInSeq" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and seq in
+                        <foreach collection="seqList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInSeq">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and seq in
+                       <foreach collection="seqList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInSeq">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and seq in
+                       <foreach collection="seqList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInSeq">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and seq in
+                        <foreach collection="seqList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByUserIdCreate" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create=#{userIdCreate}
+          </select>
+
+          <select id="countByUserIdCreate" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and user_id_create=#{userIdCreate}
+           </select>
+
+           <select id="mapByUserIdCreate" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create=#{userIdCreate}
+           </select>
+
+           <update id="updateNotNullFieldsByUserIdCreate">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and user_id_create=#{userIdCreate}
+          </update>
+
+          <update id="updateAllFieldsByUserIdCreate">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_create=#{userIdCreate}
+            </update>
+
+
+            <update id="deleteByUserIdCreate">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_create=#{userIdCreate}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInUserIdCreate" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create in
+                  <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInUserIdCreate" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and user_id_create in
+                      <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInUserIdCreate" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and user_id_create in
+                        <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInUserIdCreate">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_create in
+                       <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInUserIdCreate">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_create in
+                       <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInUserIdCreate">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and user_id_create in
+                        <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByUserIdModified" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified=#{userIdModified}
+          </select>
+
+          <select id="countByUserIdModified" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and user_id_modified=#{userIdModified}
+           </select>
+
+           <select id="mapByUserIdModified" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified=#{userIdModified}
+           </select>
+
+           <update id="updateNotNullFieldsByUserIdModified">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and user_id_modified=#{userIdModified}
+          </update>
+
+          <update id="updateAllFieldsByUserIdModified">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_modified=#{userIdModified}
+            </update>
+
+
+            <update id="deleteByUserIdModified">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_modified=#{userIdModified}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInUserIdModified" resultType="com.lzw.wind.test.dbo.DeptDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified in
+                  <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInUserIdModified" resultType="java.lang.Integer">
+                select count(1) from dept
+                where is_deleted=0 and user_id_modified in
+                      <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInUserIdModified" resultType="com.lzw.wind.test.dbo.DeptDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and user_id_modified in
+                        <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInUserIdModified">
+              update dept set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.deptCode != null">dept_code=#{updateDO.deptCode},</if>
+                      <if test="updateDO.deptName != null">dept_name=#{updateDO.deptName},</if>
+                      <if test="updateDO.deptDescribe != null">dept_describe=#{updateDO.deptDescribe},</if>
+                      <if test="updateDO.deptType != null">dept_type=#{updateDO.deptType},</if>
+                      <if test="updateDO.areaId != null">area_id=#{updateDO.areaId},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_modified in
+                       <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInUserIdModified">
+                update dept set
+                        id=#{updateDO.id},
+                        dept_code=#{updateDO.deptCode},
+                        dept_name=#{updateDO.deptName},
+                        dept_describe=#{updateDO.deptDescribe},
+                        dept_type=#{updateDO.deptType},
+                        area_id=#{updateDO.areaId},
+                        pid=#{updateDO.pid},
+                        seq=#{updateDO.seq},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_modified in
+                       <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInUserIdModified">
+                update dept set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and user_id_modified in
+                        <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+
+</mapper>
+
