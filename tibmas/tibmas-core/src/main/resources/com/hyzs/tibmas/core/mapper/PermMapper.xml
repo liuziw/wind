@@ -1,0 +1,2613 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyzs.tibmas.core.mapper.PermMapper">
+
+    <!--
+    /**
+     * 代码自动生成，请不要修改，切记！！！
+     */
+    -->
+
+    <sql id="selectAllPropertiesAsDO">
+            select  id id, pid pid, perm_code permCode, perm_name permName, perm_type permType, perm_url permUrl, perm_desc permDesc, perm_icon permIcon, perm_icon_url permIconUrl, app_id appId, seq seq, enable_status enableStatus, is_deleted isDeleted, gmt_create gmtCreate, gmt_modified gmtModified, user_id_create userIdCreate, user_id_modified userIdModified from perm
+    </sql>
+
+    <sql id="selectByFieldNamesAsDO">
+       select <foreach collection="fieldNames" index="index" item="item"  separator=",">${item}</foreach> from perm
+    </sql>
+
+    <sql id="selectAsDO">
+        <choose>
+            <when test="fieldNames==null or fieldNames.length==0">
+                  <include refid="selectAllPropertiesAsDO"/>
+            </when>
+            <otherwise>
+                  <include refid="selectByFieldNamesAsDO"/>
+            </otherwise>
+        </choose>
+    </sql>
+
+
+    <select id="listAll" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+        <include refid="selectAsDO" /> where is_deleted=0
+    </select>
+
+    <select id="mapAll" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+        <include refid="selectAsDO" /> where is_deleted=0
+    </select>
+
+
+    <select id="getById" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+        <include refid="selectAsDO" /> where id=#{id} and is_deleted=0
+    </select>
+
+
+    <select id="listByIds" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+        <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </select>
+
+    <select id="mapByIds" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+        <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </select>
+
+    <update id="deleteById">
+        update  perm set is_deleted=1,gmt_modified=CURRENT_TIMESTAMP where id=#{id}
+    </update>
+
+    <update id="deleteByIds">
+        update  perm set is_deleted=1,gmt_modified=CURRENT_TIMESTAMP where id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </update>
+
+
+    <update id="updateNotNullProperties">
+        update perm set
+                <if test="id != null">id=#{id},</if>
+                <if test="pid != null">pid=#{pid},</if>
+                <if test="permCode != null">perm_code=#{permCode},</if>
+                <if test="permName != null">perm_name=#{permName},</if>
+                <if test="permType != null">perm_type=#{permType},</if>
+                <if test="permUrl != null">perm_url=#{permUrl},</if>
+                <if test="permDesc != null">perm_desc=#{permDesc},</if>
+                <if test="permIcon != null">perm_icon=#{permIcon},</if>
+                <if test="permIconUrl != null">perm_icon_url=#{permIconUrl},</if>
+                <if test="appId != null">app_id=#{appId},</if>
+                <if test="seq != null">seq=#{seq},</if>
+                <if test="enableStatus != null">enable_status=#{enableStatus},</if>
+                <if test="userIdCreate != null">user_id_create=#{userIdCreate},</if>
+                <if test="userIdModified != null">user_id_modified=#{userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+    <update id="updateAllProperties">
+        update perm set
+                id=#{id},
+                pid=#{pid},
+                perm_code=#{permCode},
+                perm_name=#{permName},
+                perm_type=#{permType},
+                perm_url=#{permUrl},
+                perm_desc=#{permDesc},
+                perm_icon=#{permIcon},
+                perm_icon_url=#{permIconUrl},
+                app_id=#{appId},
+                seq=#{seq},
+                enable_status=#{enableStatus},
+                user_id_create=#{userIdCreate},
+                user_id_modified=#{userIdModified},
+                gmt_modified=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+
+    <insert id="insertAllProperties">
+              <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+                        SELECT LAST_INSERT_ID() as id
+                      </selectKey>
+
+        insert into perm
+        (
+                id,
+                pid,
+                perm_code,
+                perm_name,
+                perm_type,
+                perm_url,
+                perm_desc,
+                perm_icon,
+                perm_icon_url,
+                app_id,
+                seq,
+                enable_status,
+                user_id_create,
+                user_id_modified,
+                is_deleted,gmt_create,gmt_modified
+        )
+        values
+        (
+                #{id},
+                #{pid},
+                #{permCode},
+                #{permName},
+                #{permType},
+                #{permUrl},
+                #{permDesc},
+                #{permIcon},
+                #{permIconUrl},
+                #{appId},
+                #{seq},
+                #{enableStatus},
+                #{userIdCreate},
+                #{userIdModified},
+                0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        )
+    </insert>
+
+
+    <insert id="insertNotNullProperties">
+                      <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+                                SELECT LAST_INSERT_ID() as id
+                              </selectKey>
+        insert into perm
+        (
+                <if test="id!=null">id,</if>
+                <if test="pid!=null">pid,</if>
+                <if test="permCode!=null">perm_code,</if>
+                <if test="permName!=null">perm_name,</if>
+                <if test="permType!=null">perm_type,</if>
+                <if test="permUrl!=null">perm_url,</if>
+                <if test="permDesc!=null">perm_desc,</if>
+                <if test="permIcon!=null">perm_icon,</if>
+                <if test="permIconUrl!=null">perm_icon_url,</if>
+                <if test="appId!=null">app_id,</if>
+                <if test="seq!=null">seq,</if>
+                <if test="enableStatus!=null">enable_status,</if>
+                <if test="userIdCreate!=null">user_id_create,</if>
+                <if test="userIdModified!=null">user_id_modified,</if>
+                is_deleted,gmt_create,gmt_modified
+        )
+        values
+        (
+                <if test="id!=null">#{id},</if>
+                <if test="pid!=null">#{pid},</if>
+                <if test="permCode!=null">#{permCode},</if>
+                <if test="permName!=null">#{permName},</if>
+                <if test="permType!=null">#{permType},</if>
+                <if test="permUrl!=null">#{permUrl},</if>
+                <if test="permDesc!=null">#{permDesc},</if>
+                <if test="permIcon!=null">#{permIcon},</if>
+                <if test="permIconUrl!=null">#{permIconUrl},</if>
+                <if test="appId!=null">#{appId},</if>
+                <if test="seq!=null">#{seq},</if>
+                <if test="enableStatus!=null">#{enableStatus},</if>
+                <if test="userIdCreate!=null">#{userIdCreate},</if>
+                <if test="userIdModified!=null">#{userIdModified},</if>
+                0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        )
+    </insert>
+
+        <insert id="insertAllPropertiesList">
+           insert into perm
+           (
+                   id,
+                   pid,
+                   perm_code,
+                   perm_name,
+                   perm_type,
+                   perm_url,
+                   perm_desc,
+                   perm_icon,
+                   perm_icon_url,
+                   app_id,
+                   seq,
+                   enable_status,
+                   user_id_create,
+                   user_id_modified,
+                   is_deleted,gmt_create,gmt_modified
+                   )
+           values
+           <foreach collection="list" item="item" index="index" separator="," >
+           (
+                   #{item.id},
+                   #{item.pid},
+                   #{item.permCode},
+                   #{item.permName},
+                   #{item.permType},
+                   #{item.permUrl},
+                   #{item.permDesc},
+                   #{item.permIcon},
+                   #{item.permIconUrl},
+                   #{item.appId},
+                   #{item.seq},
+                   #{item.enableStatus},
+                   #{item.userIdCreate},
+                   #{item.userIdModified},
+                   0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+           )
+           </foreach>
+       </insert>
+
+
+
+    <select id="listByProperty" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+    <select id="countByProperty" resultType="java.lang.Integer">
+        select count(1) from perm
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+    <select id="mapByProperty" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+
+    <update id="updateNotNullFieldsByProperty">
+        update perm set
+                <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <update id="updateAllFieldsByProperty">
+        update perm set
+                id=#{updateDO.id},
+                pid=#{updateDO.pid},
+                perm_code=#{updateDO.permCode},
+                perm_name=#{updateDO.permName},
+                perm_type=#{updateDO.permType},
+                perm_url=#{updateDO.permUrl},
+                perm_desc=#{updateDO.permDesc},
+                perm_icon=#{updateDO.permIcon},
+                perm_icon_url=#{updateDO.permIconUrl},
+                app_id=#{updateDO.appId},
+                seq=#{updateDO.seq},
+                enable_status=#{updateDO.enableStatus},
+                user_id_create=#{updateDO.userIdCreate},
+                user_id_modified=#{updateDO.userIdModified},
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <update id="deleteByProperty">
+        update perm set
+                is_delete=1,
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <select id="listByProperties" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and  ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <select id="countByProperties" resultType="java.lang.Integer">
+        select count(1) from perm
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <select id="mapByProperties" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and  ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <update id="updateNotNullFieldsByProperties">
+        update perm set
+                <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <update id="updateAllFieldsByProperties">
+        update perm set
+                id=#{updateDO.id}
+                pid=#{updateDO.pid}
+                perm_code=#{updateDO.permCode}
+                perm_name=#{updateDO.permName}
+                perm_type=#{updateDO.permType}
+                perm_url=#{updateDO.permUrl}
+                perm_desc=#{updateDO.permDesc}
+                perm_icon=#{updateDO.permIcon}
+                perm_icon_url=#{updateDO.permIconUrl}
+                app_id=#{updateDO.appId}
+                seq=#{updateDO.seq}
+                enable_status=#{updateDO.enableStatus}
+                user_id_create=#{updateDO.userIdCreate}
+                user_id_modified=#{updateDO.userIdModified}
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <update id="deleteByProperties">
+        update perm set
+                is_deleted=1,
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <select id="_listByQueryItems" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+    <select id="_mapByQueryItems" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+    <select id="_countByQueryItems" resultType="java.lang.Integer">
+        select count(1) from perm
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+   <update id="_updateNotNullFieldsByQueryItems">
+         update perm set
+                <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <update id="_updateNotAllFieldsByQueryItems">
+         update perm set
+                id=#{updateDO.id}
+                pid=#{updateDO.pid}
+                perm_code=#{updateDO.permCode}
+                perm_name=#{updateDO.permName}
+                perm_type=#{updateDO.permType}
+                perm_url=#{updateDO.permUrl}
+                perm_desc=#{updateDO.permDesc}
+                perm_icon=#{updateDO.permIcon}
+                perm_icon_url=#{updateDO.permIconUrl}
+                app_id=#{updateDO.appId}
+                seq=#{updateDO.seq}
+                enable_status=#{updateDO.enableStatus}
+                user_id_create=#{updateDO.userIdCreate}
+                user_id_modified=#{updateDO.userIdModified}
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <update id="_deleteByQueryItems">
+         update perm set
+                is_deleted=1,
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <select id="_listByPageQuery" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                         #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+            <if test="pageQuery.sortFieldNameForDatabase!=null">
+                order by ${pageQuery.sortFieldNameForDatabase} ${pageQuery.sortType}
+            </if>
+            limit #{values.pageOffset},#{pageQuery.pageSize}
+    </select>
+
+
+    <select id="_countByPageQuery" resultType="java.lang.Integer">
+        select count(1) from perm
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                    <choose>
+                        <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                            <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                                #{inItem}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                           #{values.[${item.valueKeyName}]}
+                        </otherwise>
+                    </choose>
+                </if>
+            </foreach>
+    </select>
+
+
+
+          <select id="listById" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and id=#{id}
+          </select>
+
+          <select id="countById" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and id=#{id}
+           </select>
+
+           <select id="mapById" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and id=#{id}
+           </select>
+
+           <update id="updateNotNullFieldsById">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and id=#{id}
+          </update>
+
+          <update id="updateAllFieldsById">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and id=#{id}
+            </update>
+
+
+
+
+            <!--property in -->
+
+         <select id="listByInId" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and id in
+                  <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInId" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and id in
+                      <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInId" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and id in
+                        <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInId">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and id in
+                       <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInId">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and id in
+                       <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInId">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and id in
+                        <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByPid" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and pid=#{pid}
+          </select>
+
+          <select id="countByPid" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and pid=#{pid}
+           </select>
+
+           <select id="mapByPid" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and pid=#{pid}
+           </select>
+
+           <update id="updateNotNullFieldsByPid">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and pid=#{pid}
+          </update>
+
+          <update id="updateAllFieldsByPid">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and pid=#{pid}
+            </update>
+
+
+            <update id="deleteByPid">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and pid=#{pid}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInPid" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and pid in
+                  <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInPid" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and pid in
+                      <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInPid" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and pid in
+                        <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInPid">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and pid in
+                       <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInPid">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and pid in
+                       <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInPid">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and pid in
+                        <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByPermCode" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_code=#{permCode}
+          </select>
+
+          <select id="countByPermCode" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_code=#{permCode}
+           </select>
+
+           <select id="mapByPermCode" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_code=#{permCode}
+           </select>
+
+           <update id="updateNotNullFieldsByPermCode">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and perm_code=#{permCode}
+          </update>
+
+          <update id="updateAllFieldsByPermCode">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_code=#{permCode}
+            </update>
+
+
+            <update id="deleteByPermCode">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_code=#{permCode}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInPermCode" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_code in
+                  <foreach collection="permCodeList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInPermCode" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_code in
+                      <foreach collection="permCodeList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInPermCode" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and perm_code in
+                        <foreach collection="permCodeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInPermCode">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_code in
+                       <foreach collection="permCodeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInPermCode">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_code in
+                       <foreach collection="permCodeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInPermCode">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and perm_code in
+                        <foreach collection="permCodeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByPermName" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_name=#{permName}
+          </select>
+
+          <select id="countByPermName" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_name=#{permName}
+           </select>
+
+           <select id="mapByPermName" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_name=#{permName}
+           </select>
+
+           <update id="updateNotNullFieldsByPermName">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and perm_name=#{permName}
+          </update>
+
+          <update id="updateAllFieldsByPermName">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_name=#{permName}
+            </update>
+
+
+            <update id="deleteByPermName">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_name=#{permName}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInPermName" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_name in
+                  <foreach collection="permNameList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInPermName" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_name in
+                      <foreach collection="permNameList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInPermName" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and perm_name in
+                        <foreach collection="permNameList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInPermName">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_name in
+                       <foreach collection="permNameList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInPermName">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_name in
+                       <foreach collection="permNameList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInPermName">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and perm_name in
+                        <foreach collection="permNameList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByPermType" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_type=#{permType}
+          </select>
+
+          <select id="countByPermType" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_type=#{permType}
+           </select>
+
+           <select id="mapByPermType" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_type=#{permType}
+           </select>
+
+           <update id="updateNotNullFieldsByPermType">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and perm_type=#{permType}
+          </update>
+
+          <update id="updateAllFieldsByPermType">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_type=#{permType}
+            </update>
+
+
+            <update id="deleteByPermType">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_type=#{permType}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInPermType" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_type in
+                  <foreach collection="permTypeList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInPermType" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_type in
+                      <foreach collection="permTypeList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInPermType" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and perm_type in
+                        <foreach collection="permTypeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInPermType">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_type in
+                       <foreach collection="permTypeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInPermType">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_type in
+                       <foreach collection="permTypeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInPermType">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and perm_type in
+                        <foreach collection="permTypeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByPermUrl" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_url=#{permUrl}
+          </select>
+
+          <select id="countByPermUrl" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_url=#{permUrl}
+           </select>
+
+           <select id="mapByPermUrl" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_url=#{permUrl}
+           </select>
+
+           <update id="updateNotNullFieldsByPermUrl">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and perm_url=#{permUrl}
+          </update>
+
+          <update id="updateAllFieldsByPermUrl">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_url=#{permUrl}
+            </update>
+
+
+            <update id="deleteByPermUrl">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_url=#{permUrl}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInPermUrl" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_url in
+                  <foreach collection="permUrlList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInPermUrl" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_url in
+                      <foreach collection="permUrlList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInPermUrl" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and perm_url in
+                        <foreach collection="permUrlList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInPermUrl">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_url in
+                       <foreach collection="permUrlList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInPermUrl">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_url in
+                       <foreach collection="permUrlList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInPermUrl">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and perm_url in
+                        <foreach collection="permUrlList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByPermDesc" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_desc=#{permDesc}
+          </select>
+
+          <select id="countByPermDesc" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_desc=#{permDesc}
+           </select>
+
+           <select id="mapByPermDesc" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_desc=#{permDesc}
+           </select>
+
+           <update id="updateNotNullFieldsByPermDesc">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and perm_desc=#{permDesc}
+          </update>
+
+          <update id="updateAllFieldsByPermDesc">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_desc=#{permDesc}
+            </update>
+
+
+            <update id="deleteByPermDesc">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_desc=#{permDesc}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInPermDesc" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_desc in
+                  <foreach collection="permDescList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInPermDesc" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_desc in
+                      <foreach collection="permDescList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInPermDesc" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and perm_desc in
+                        <foreach collection="permDescList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInPermDesc">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_desc in
+                       <foreach collection="permDescList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInPermDesc">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_desc in
+                       <foreach collection="permDescList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInPermDesc">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and perm_desc in
+                        <foreach collection="permDescList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByPermIcon" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_icon=#{permIcon}
+          </select>
+
+          <select id="countByPermIcon" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_icon=#{permIcon}
+           </select>
+
+           <select id="mapByPermIcon" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_icon=#{permIcon}
+           </select>
+
+           <update id="updateNotNullFieldsByPermIcon">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and perm_icon=#{permIcon}
+          </update>
+
+          <update id="updateAllFieldsByPermIcon">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_icon=#{permIcon}
+            </update>
+
+
+            <update id="deleteByPermIcon">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_icon=#{permIcon}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInPermIcon" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_icon in
+                  <foreach collection="permIconList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInPermIcon" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_icon in
+                      <foreach collection="permIconList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInPermIcon" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and perm_icon in
+                        <foreach collection="permIconList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInPermIcon">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_icon in
+                       <foreach collection="permIconList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInPermIcon">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_icon in
+                       <foreach collection="permIconList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInPermIcon">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and perm_icon in
+                        <foreach collection="permIconList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByPermIconUrl" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_icon_url=#{permIconUrl}
+          </select>
+
+          <select id="countByPermIconUrl" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_icon_url=#{permIconUrl}
+           </select>
+
+           <select id="mapByPermIconUrl" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_icon_url=#{permIconUrl}
+           </select>
+
+           <update id="updateNotNullFieldsByPermIconUrl">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and perm_icon_url=#{permIconUrl}
+          </update>
+
+          <update id="updateAllFieldsByPermIconUrl">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_icon_url=#{permIconUrl}
+            </update>
+
+
+            <update id="deleteByPermIconUrl">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and perm_icon_url=#{permIconUrl}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInPermIconUrl" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and perm_icon_url in
+                  <foreach collection="permIconUrlList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInPermIconUrl" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and perm_icon_url in
+                      <foreach collection="permIconUrlList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInPermIconUrl" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and perm_icon_url in
+                        <foreach collection="permIconUrlList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInPermIconUrl">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_icon_url in
+                       <foreach collection="permIconUrlList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInPermIconUrl">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and perm_icon_url in
+                       <foreach collection="permIconUrlList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInPermIconUrl">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and perm_icon_url in
+                        <foreach collection="permIconUrlList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByAppId" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and app_id=#{appId}
+          </select>
+
+          <select id="countByAppId" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and app_id=#{appId}
+           </select>
+
+           <select id="mapByAppId" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and app_id=#{appId}
+           </select>
+
+           <update id="updateNotNullFieldsByAppId">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and app_id=#{appId}
+          </update>
+
+          <update id="updateAllFieldsByAppId">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and app_id=#{appId}
+            </update>
+
+
+            <update id="deleteByAppId">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and app_id=#{appId}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInAppId" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and app_id in
+                  <foreach collection="appIdList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInAppId" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and app_id in
+                      <foreach collection="appIdList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInAppId" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and app_id in
+                        <foreach collection="appIdList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInAppId">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and app_id in
+                       <foreach collection="appIdList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInAppId">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and app_id in
+                       <foreach collection="appIdList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInAppId">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and app_id in
+                        <foreach collection="appIdList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listBySeq" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and seq=#{seq}
+          </select>
+
+          <select id="countBySeq" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and seq=#{seq}
+           </select>
+
+           <select id="mapBySeq" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and seq=#{seq}
+           </select>
+
+           <update id="updateNotNullFieldsBySeq">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and seq=#{seq}
+          </update>
+
+          <update id="updateAllFieldsBySeq">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and seq=#{seq}
+            </update>
+
+
+            <update id="deleteBySeq">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and seq=#{seq}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInSeq" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and seq in
+                  <foreach collection="seqList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInSeq" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and seq in
+                      <foreach collection="seqList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInSeq" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and seq in
+                        <foreach collection="seqList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInSeq">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and seq in
+                       <foreach collection="seqList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInSeq">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and seq in
+                       <foreach collection="seqList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInSeq">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and seq in
+                        <foreach collection="seqList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByEnableStatus" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and enable_status=#{enableStatus}
+          </select>
+
+          <select id="countByEnableStatus" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and enable_status=#{enableStatus}
+           </select>
+
+           <select id="mapByEnableStatus" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and enable_status=#{enableStatus}
+           </select>
+
+           <update id="updateNotNullFieldsByEnableStatus">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and enable_status=#{enableStatus}
+          </update>
+
+          <update id="updateAllFieldsByEnableStatus">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and enable_status=#{enableStatus}
+            </update>
+
+
+            <update id="deleteByEnableStatus">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and enable_status=#{enableStatus}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInEnableStatus" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and enable_status in
+                  <foreach collection="enableStatusList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInEnableStatus" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and enable_status in
+                      <foreach collection="enableStatusList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInEnableStatus" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and enable_status in
+                        <foreach collection="enableStatusList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInEnableStatus">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and enable_status in
+                       <foreach collection="enableStatusList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInEnableStatus">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and enable_status in
+                       <foreach collection="enableStatusList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInEnableStatus">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and enable_status in
+                        <foreach collection="enableStatusList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create=#{userIdCreate}
+          </select>
+
+          <select id="countByUserIdCreate" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and user_id_create=#{userIdCreate}
+           </select>
+
+           <select id="mapByUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create=#{userIdCreate}
+           </select>
+
+           <update id="updateNotNullFieldsByUserIdCreate">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and user_id_create=#{userIdCreate}
+          </update>
+
+          <update id="updateAllFieldsByUserIdCreate">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_create=#{userIdCreate}
+            </update>
+
+
+            <update id="deleteByUserIdCreate">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_create=#{userIdCreate}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create in
+                  <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInUserIdCreate" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and user_id_create in
+                      <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and user_id_create in
+                        <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInUserIdCreate">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_create in
+                       <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInUserIdCreate">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_create in
+                       <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInUserIdCreate">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and user_id_create in
+                        <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByUserIdModified" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified=#{userIdModified}
+          </select>
+
+          <select id="countByUserIdModified" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and user_id_modified=#{userIdModified}
+           </select>
+
+           <select id="mapByUserIdModified" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified=#{userIdModified}
+           </select>
+
+           <update id="updateNotNullFieldsByUserIdModified">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and user_id_modified=#{userIdModified}
+          </update>
+
+          <update id="updateAllFieldsByUserIdModified">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_modified=#{userIdModified}
+            </update>
+
+
+            <update id="deleteByUserIdModified">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_modified=#{userIdModified}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInUserIdModified" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified in
+                  <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInUserIdModified" resultType="java.lang.Integer">
+                select count(1) from perm
+                where is_deleted=0 and user_id_modified in
+                      <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInUserIdModified" resultType="com.hyzs.tibmas.core.dbo.PermDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and user_id_modified in
+                        <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInUserIdModified">
+              update perm set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.permCode != null">perm_code=#{updateDO.permCode},</if>
+                      <if test="updateDO.permName != null">perm_name=#{updateDO.permName},</if>
+                      <if test="updateDO.permType != null">perm_type=#{updateDO.permType},</if>
+                      <if test="updateDO.permUrl != null">perm_url=#{updateDO.permUrl},</if>
+                      <if test="updateDO.permDesc != null">perm_desc=#{updateDO.permDesc},</if>
+                      <if test="updateDO.permIcon != null">perm_icon=#{updateDO.permIcon},</if>
+                      <if test="updateDO.permIconUrl != null">perm_icon_url=#{updateDO.permIconUrl},</if>
+                      <if test="updateDO.appId != null">app_id=#{updateDO.appId},</if>
+                      <if test="updateDO.seq != null">seq=#{updateDO.seq},</if>
+                      <if test="updateDO.enableStatus != null">enable_status=#{updateDO.enableStatus},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_modified in
+                       <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInUserIdModified">
+                update perm set
+                        id=#{updateDO.id},
+                        pid=#{updateDO.pid},
+                        perm_code=#{updateDO.permCode},
+                        perm_name=#{updateDO.permName},
+                        perm_type=#{updateDO.permType},
+                        perm_url=#{updateDO.permUrl},
+                        perm_desc=#{updateDO.permDesc},
+                        perm_icon=#{updateDO.permIcon},
+                        perm_icon_url=#{updateDO.permIconUrl},
+                        app_id=#{updateDO.appId},
+                        seq=#{updateDO.seq},
+                        enable_status=#{updateDO.enableStatus},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_modified in
+                       <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInUserIdModified">
+                update perm set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and user_id_modified in
+                        <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+
+</mapper>
+

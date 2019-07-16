@@ -1,0 +1,1630 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyzs.tibmas.core.mapper.OpenUserMapper">
+
+    <!--
+    /**
+     * 代码自动生成，请不要修改，切记！！！
+     */
+    -->
+
+    <sql id="selectAllPropertiesAsDO">
+            select  id id, open_id openId, user_id userId, examine_status examineStatus, wx_head_img wxHeadImg, nick_name nickName, wx_phone_num wxPhoneNum, wx_gender wxGender, wx_app_id wxAppId, union_id unionId, is_deleted isDeleted, gmt_create gmtCreate, gmt_modified gmtModified from open_user
+    </sql>
+
+    <sql id="selectByFieldNamesAsDO">
+       select <foreach collection="fieldNames" index="index" item="item"  separator=",">${item}</foreach> from open_user
+    </sql>
+
+    <sql id="selectAsDO">
+        <choose>
+            <when test="fieldNames==null or fieldNames.length==0">
+                  <include refid="selectAllPropertiesAsDO"/>
+            </when>
+            <otherwise>
+                  <include refid="selectByFieldNamesAsDO"/>
+            </otherwise>
+        </choose>
+    </sql>
+
+
+    <select id="listAll" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+        <include refid="selectAsDO" /> where is_deleted=0
+    </select>
+
+    <select id="mapAll" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+        <include refid="selectAsDO" /> where is_deleted=0
+    </select>
+
+
+    <select id="getById" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+        <include refid="selectAsDO" /> where id=#{id} and is_deleted=0
+    </select>
+
+    <select id="listByIds" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+        <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </select>
+
+    <select id="mapByIds" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+        <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </select>
+
+    <update id="deleteById">
+        update  open_user set is_deleted=1,gmt_modified=CURRENT_TIMESTAMP where id=#{id}
+    </update>
+
+    <update id="deleteByIds">
+        update  open_user set is_deleted=1,gmt_modified=CURRENT_TIMESTAMP where id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </update>
+
+
+    <update id="updateNotNullProperties">
+        update open_user set
+                <if test="openId != null">open_id=#{openId},</if>
+                <if test="userId != null">user_id=#{userId},</if>
+                <if test="examineStatus != null">examine_status=#{examineStatus},</if>
+                <if test="wxHeadImg != null">wx_head_img=#{wxHeadImg},</if>
+                <if test="nickName != null">nick_name=#{nickName},</if>
+                <if test="wxPhoneNum != null">wx_phone_num=#{wxPhoneNum},</if>
+                <if test="wxGender != null">wx_gender=#{wxGender},</if>
+                <if test="wxAppId != null">wx_app_id=#{wxAppId},</if>
+                <if test="unionId != null">union_id=#{unionId},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+    <update id="updateAllProperties">
+        update open_user set
+                open_id=#{openId},
+                user_id=#{userId},
+                examine_status=#{examineStatus},
+                wx_head_img=#{wxHeadImg},
+                nick_name=#{nickName},
+                wx_phone_num=#{wxPhoneNum},
+                wx_gender=#{wxGender},
+                wx_app_id=#{wxAppId},
+                union_id=#{unionId},
+                gmt_modified=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+
+    <insert id="insertAllProperties">
+              <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+                        SELECT LAST_INSERT_ID() as id
+                      </selectKey>
+
+        insert into open_user
+        (
+                open_id,
+                user_id,
+                examine_status,
+                wx_head_img,
+                nick_name,
+                wx_phone_num,
+                wx_gender,
+                wx_app_id,
+                union_id,
+                is_deleted,gmt_create,gmt_modified
+        )
+        values
+        (
+                #{openId},
+                #{userId},
+                #{examineStatus},
+                #{wxHeadImg},
+                #{nickName},
+                #{wxPhoneNum},
+                #{wxGender},
+                #{wxAppId},
+                #{unionId},
+                0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        )
+    </insert>
+
+
+    <insert id="insertNotNullProperties">
+                      <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+                                SELECT LAST_INSERT_ID() as id
+                              </selectKey>
+        insert into open_user
+        (
+                <if test="openId!=null">open_id,</if>
+                <if test="userId!=null">user_id,</if>
+                <if test="examineStatus!=null">examine_status,</if>
+                <if test="wxHeadImg!=null">wx_head_img,</if>
+                <if test="nickName!=null">nick_name,</if>
+                <if test="wxPhoneNum!=null">wx_phone_num,</if>
+                <if test="wxGender!=null">wx_gender,</if>
+                <if test="wxAppId!=null">wx_app_id,</if>
+                <if test="unionId!=null">union_id,</if>
+                is_deleted,gmt_create,gmt_modified
+        )
+        values
+        (
+                <if test="openId!=null">#{openId},</if>
+                <if test="userId!=null">#{userId},</if>
+                <if test="examineStatus!=null">#{examineStatus},</if>
+                <if test="wxHeadImg!=null">#{wxHeadImg},</if>
+                <if test="nickName!=null">#{nickName},</if>
+                <if test="wxPhoneNum!=null">#{wxPhoneNum},</if>
+                <if test="wxGender!=null">#{wxGender},</if>
+                <if test="wxAppId!=null">#{wxAppId},</if>
+                <if test="unionId!=null">#{unionId},</if>
+                0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        )
+    </insert>
+
+        <insert id="insertAllPropertiesList">
+           insert into open_user
+           (
+                   open_id,
+                   user_id,
+                   examine_status,
+                   wx_head_img,
+                   nick_name,
+                   wx_phone_num,
+                   wx_gender,
+                   wx_app_id,
+                   union_id,
+                   is_deleted,gmt_create,gmt_modified
+                   )
+           values
+           <foreach collection="list" item="item" index="index" separator="," >
+           (
+                   #{item.openId},
+                   #{item.userId},
+                   #{item.examineStatus},
+                   #{item.wxHeadImg},
+                   #{item.nickName},
+                   #{item.wxPhoneNum},
+                   #{item.wxGender},
+                   #{item.wxAppId},
+                   #{item.unionId},
+                   0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+           )
+           </foreach>
+       </insert>
+
+
+
+    <select id="listByProperty" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+    <select id="countByProperty" resultType="java.lang.Integer">
+        select count(1) from open_user
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+    <select id="mapByProperty" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+
+    <update id="updateNotNullFieldsByProperty">
+        update open_user set
+                <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <update id="updateAllFieldsByProperty">
+        update open_user set
+                open_id=#{updateDO.openId},
+                user_id=#{updateDO.userId},
+                examine_status=#{updateDO.examineStatus},
+                wx_head_img=#{updateDO.wxHeadImg},
+                nick_name=#{updateDO.nickName},
+                wx_phone_num=#{updateDO.wxPhoneNum},
+                wx_gender=#{updateDO.wxGender},
+                wx_app_id=#{updateDO.wxAppId},
+                union_id=#{updateDO.unionId},
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <update id="deleteByProperty">
+        update open_user set
+                is_delete=1,
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <select id="listByProperties" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and  ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <select id="countByProperties" resultType="java.lang.Integer">
+        select count(1) from open_user
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <select id="mapByProperties" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and  ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <update id="updateNotNullFieldsByProperties">
+        update open_user set
+                <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <update id="updateAllFieldsByProperties">
+        update open_user set
+                open_id=#{updateDO.openId}
+                user_id=#{updateDO.userId}
+                examine_status=#{updateDO.examineStatus}
+                wx_head_img=#{updateDO.wxHeadImg}
+                nick_name=#{updateDO.nickName}
+                wx_phone_num=#{updateDO.wxPhoneNum}
+                wx_gender=#{updateDO.wxGender}
+                wx_app_id=#{updateDO.wxAppId}
+                union_id=#{updateDO.unionId}
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <update id="deleteByProperties">
+        update open_user set
+                is_deleted=1,
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <select id="_listByQueryItems" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+    <select id="_mapByQueryItems" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+    <select id="_countByQueryItems" resultType="java.lang.Integer">
+        select count(1) from open_user
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+   <update id="_updateNotNullFieldsByQueryItems">
+         update open_user set
+                <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <update id="_updateNotAllFieldsByQueryItems">
+         update open_user set
+                open_id=#{updateDO.openId}
+                user_id=#{updateDO.userId}
+                examine_status=#{updateDO.examineStatus}
+                wx_head_img=#{updateDO.wxHeadImg}
+                nick_name=#{updateDO.nickName}
+                wx_phone_num=#{updateDO.wxPhoneNum}
+                wx_gender=#{updateDO.wxGender}
+                wx_app_id=#{updateDO.wxAppId}
+                union_id=#{updateDO.unionId}
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <update id="_deleteByQueryItems">
+         update open_user set
+                is_deleted=1,
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <select id="_listByPageQuery" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                         #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+            <if test="pageQuery.sortFieldNameForDatabase!=null">
+                order by ${pageQuery.sortFieldNameForDatabase} ${pageQuery.sortType}
+            </if>
+            limit #{values.pageOffset},#{pageQuery.pageSize}
+    </select>
+
+
+    <select id="_countByPageQuery" resultType="java.lang.Integer">
+        select count(1) from open_user
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                    <choose>
+                        <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                            <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                                #{inItem}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                           #{values.[${item.valueKeyName}]}
+                        </otherwise>
+                    </choose>
+                </if>
+            </foreach>
+    </select>
+
+
+
+          <select id="listByOpenId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and open_id=#{openId}
+          </select>
+
+          <select id="countByOpenId" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and open_id=#{openId}
+           </select>
+
+           <select id="mapByOpenId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and open_id=#{openId}
+           </select>
+
+           <update id="updateNotNullFieldsByOpenId">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and open_id=#{openId}
+          </update>
+
+          <update id="updateAllFieldsByOpenId">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and open_id=#{openId}
+            </update>
+
+            <update id="deleteByOpenId">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and open_id=#{openId}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInOpenId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and open_id in
+                  <foreach collection="openIdList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInOpenId" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and open_id in
+                      <foreach collection="openIdList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInOpenId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and open_id in
+                        <foreach collection="openIdList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInOpenId">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and open_id in
+                       <foreach collection="openIdList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInOpenId">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and open_id in
+                       <foreach collection="openIdList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInOpenId">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and open_id in
+                        <foreach collection="openIdList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByUserId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id=#{userId}
+          </select>
+
+          <select id="countByUserId" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and user_id=#{userId}
+           </select>
+
+           <select id="mapByUserId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id=#{userId}
+           </select>
+
+           <update id="updateNotNullFieldsByUserId">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and user_id=#{userId}
+          </update>
+
+          <update id="updateAllFieldsByUserId">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id=#{userId}
+            </update>
+
+            <update id="deleteByUserId">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id=#{userId}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInUserId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id in
+                  <foreach collection="userIdList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInUserId" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and user_id in
+                      <foreach collection="userIdList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInUserId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and user_id in
+                        <foreach collection="userIdList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInUserId">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id in
+                       <foreach collection="userIdList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInUserId">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id in
+                       <foreach collection="userIdList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInUserId">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and user_id in
+                        <foreach collection="userIdList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByExamineStatus" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and examine_status=#{examineStatus}
+          </select>
+
+          <select id="countByExamineStatus" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and examine_status=#{examineStatus}
+           </select>
+
+           <select id="mapByExamineStatus" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and examine_status=#{examineStatus}
+           </select>
+
+           <update id="updateNotNullFieldsByExamineStatus">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and examine_status=#{examineStatus}
+          </update>
+
+          <update id="updateAllFieldsByExamineStatus">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and examine_status=#{examineStatus}
+            </update>
+
+            <update id="deleteByExamineStatus">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and examine_status=#{examineStatus}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInExamineStatus" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and examine_status in
+                  <foreach collection="examineStatusList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInExamineStatus" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and examine_status in
+                      <foreach collection="examineStatusList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInExamineStatus" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and examine_status in
+                        <foreach collection="examineStatusList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInExamineStatus">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and examine_status in
+                       <foreach collection="examineStatusList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInExamineStatus">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and examine_status in
+                       <foreach collection="examineStatusList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInExamineStatus">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and examine_status in
+                        <foreach collection="examineStatusList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByWxHeadImg" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and wx_head_img=#{wxHeadImg}
+          </select>
+
+          <select id="countByWxHeadImg" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and wx_head_img=#{wxHeadImg}
+           </select>
+
+           <select id="mapByWxHeadImg" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and wx_head_img=#{wxHeadImg}
+           </select>
+
+           <update id="updateNotNullFieldsByWxHeadImg">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and wx_head_img=#{wxHeadImg}
+          </update>
+
+          <update id="updateAllFieldsByWxHeadImg">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and wx_head_img=#{wxHeadImg}
+            </update>
+
+            <update id="deleteByWxHeadImg">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and wx_head_img=#{wxHeadImg}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInWxHeadImg" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and wx_head_img in
+                  <foreach collection="wxHeadImgList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInWxHeadImg" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and wx_head_img in
+                      <foreach collection="wxHeadImgList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInWxHeadImg" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and wx_head_img in
+                        <foreach collection="wxHeadImgList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInWxHeadImg">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and wx_head_img in
+                       <foreach collection="wxHeadImgList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInWxHeadImg">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and wx_head_img in
+                       <foreach collection="wxHeadImgList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInWxHeadImg">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and wx_head_img in
+                        <foreach collection="wxHeadImgList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByNickName" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and nick_name=#{nickName}
+          </select>
+
+          <select id="countByNickName" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and nick_name=#{nickName}
+           </select>
+
+           <select id="mapByNickName" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and nick_name=#{nickName}
+           </select>
+
+           <update id="updateNotNullFieldsByNickName">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and nick_name=#{nickName}
+          </update>
+
+          <update id="updateAllFieldsByNickName">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and nick_name=#{nickName}
+            </update>
+
+            <update id="deleteByNickName">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and nick_name=#{nickName}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInNickName" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and nick_name in
+                  <foreach collection="nickNameList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInNickName" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and nick_name in
+                      <foreach collection="nickNameList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInNickName" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and nick_name in
+                        <foreach collection="nickNameList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInNickName">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and nick_name in
+                       <foreach collection="nickNameList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInNickName">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and nick_name in
+                       <foreach collection="nickNameList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInNickName">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and nick_name in
+                        <foreach collection="nickNameList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByWxPhoneNum" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and wx_phone_num=#{wxPhoneNum}
+          </select>
+
+          <select id="countByWxPhoneNum" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and wx_phone_num=#{wxPhoneNum}
+           </select>
+
+           <select id="mapByWxPhoneNum" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and wx_phone_num=#{wxPhoneNum}
+           </select>
+
+           <update id="updateNotNullFieldsByWxPhoneNum">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and wx_phone_num=#{wxPhoneNum}
+          </update>
+
+          <update id="updateAllFieldsByWxPhoneNum">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and wx_phone_num=#{wxPhoneNum}
+            </update>
+
+            <update id="deleteByWxPhoneNum">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and wx_phone_num=#{wxPhoneNum}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInWxPhoneNum" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and wx_phone_num in
+                  <foreach collection="wxPhoneNumList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInWxPhoneNum" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and wx_phone_num in
+                      <foreach collection="wxPhoneNumList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInWxPhoneNum" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and wx_phone_num in
+                        <foreach collection="wxPhoneNumList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInWxPhoneNum">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and wx_phone_num in
+                       <foreach collection="wxPhoneNumList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInWxPhoneNum">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and wx_phone_num in
+                       <foreach collection="wxPhoneNumList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInWxPhoneNum">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and wx_phone_num in
+                        <foreach collection="wxPhoneNumList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByWxGender" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and wx_gender=#{wxGender}
+          </select>
+
+          <select id="countByWxGender" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and wx_gender=#{wxGender}
+           </select>
+
+           <select id="mapByWxGender" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and wx_gender=#{wxGender}
+           </select>
+
+           <update id="updateNotNullFieldsByWxGender">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and wx_gender=#{wxGender}
+          </update>
+
+          <update id="updateAllFieldsByWxGender">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and wx_gender=#{wxGender}
+            </update>
+
+            <update id="deleteByWxGender">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and wx_gender=#{wxGender}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInWxGender" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and wx_gender in
+                  <foreach collection="wxGenderList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInWxGender" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and wx_gender in
+                      <foreach collection="wxGenderList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInWxGender" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and wx_gender in
+                        <foreach collection="wxGenderList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInWxGender">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and wx_gender in
+                       <foreach collection="wxGenderList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInWxGender">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and wx_gender in
+                       <foreach collection="wxGenderList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInWxGender">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and wx_gender in
+                        <foreach collection="wxGenderList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByWxAppId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and wx_app_id=#{wxAppId}
+          </select>
+
+          <select id="countByWxAppId" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and wx_app_id=#{wxAppId}
+           </select>
+
+           <select id="mapByWxAppId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and wx_app_id=#{wxAppId}
+           </select>
+
+           <update id="updateNotNullFieldsByWxAppId">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and wx_app_id=#{wxAppId}
+          </update>
+
+          <update id="updateAllFieldsByWxAppId">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and wx_app_id=#{wxAppId}
+            </update>
+
+            <update id="deleteByWxAppId">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and wx_app_id=#{wxAppId}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInWxAppId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and wx_app_id in
+                  <foreach collection="wxAppIdList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInWxAppId" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and wx_app_id in
+                      <foreach collection="wxAppIdList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInWxAppId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and wx_app_id in
+                        <foreach collection="wxAppIdList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInWxAppId">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and wx_app_id in
+                       <foreach collection="wxAppIdList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInWxAppId">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and wx_app_id in
+                       <foreach collection="wxAppIdList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInWxAppId">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and wx_app_id in
+                        <foreach collection="wxAppIdList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByUnionId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and union_id=#{unionId}
+          </select>
+
+          <select id="countByUnionId" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and union_id=#{unionId}
+           </select>
+
+           <select id="mapByUnionId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and union_id=#{unionId}
+           </select>
+
+           <update id="updateNotNullFieldsByUnionId">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and union_id=#{unionId}
+          </update>
+
+          <update id="updateAllFieldsByUnionId">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and union_id=#{unionId}
+            </update>
+
+            <update id="deleteByUnionId">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and union_id=#{unionId}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInUnionId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and union_id in
+                  <foreach collection="unionIdList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInUnionId" resultType="java.lang.Integer">
+                select count(1) from open_user
+                where is_deleted=0 and union_id in
+                      <foreach collection="unionIdList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInUnionId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and union_id in
+                        <foreach collection="unionIdList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInUnionId">
+              update open_user set
+                      <if test="updateDO.openId != null">open_id=#{updateDO.openId},</if>
+                      <if test="updateDO.userId != null">user_id=#{updateDO.userId},</if>
+                      <if test="updateDO.examineStatus != null">examine_status=#{updateDO.examineStatus},</if>
+                      <if test="updateDO.wxHeadImg != null">wx_head_img=#{updateDO.wxHeadImg},</if>
+                      <if test="updateDO.nickName != null">nick_name=#{updateDO.nickName},</if>
+                      <if test="updateDO.wxPhoneNum != null">wx_phone_num=#{updateDO.wxPhoneNum},</if>
+                      <if test="updateDO.wxGender != null">wx_gender=#{updateDO.wxGender},</if>
+                      <if test="updateDO.wxAppId != null">wx_app_id=#{updateDO.wxAppId},</if>
+                      <if test="updateDO.unionId != null">union_id=#{updateDO.unionId},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and union_id in
+                       <foreach collection="unionIdList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInUnionId">
+                update open_user set
+                        open_id=#{updateDO.openId},
+                        user_id=#{updateDO.userId},
+                        examine_status=#{updateDO.examineStatus},
+                        wx_head_img=#{updateDO.wxHeadImg},
+                        nick_name=#{updateDO.nickName},
+                        wx_phone_num=#{updateDO.wxPhoneNum},
+                        wx_gender=#{updateDO.wxGender},
+                        wx_app_id=#{updateDO.wxAppId},
+                        union_id=#{updateDO.unionId},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and union_id in
+                       <foreach collection="unionIdList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInUnionId">
+                update open_user set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and union_id in
+                        <foreach collection="unionIdList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+
+</mapper>
+

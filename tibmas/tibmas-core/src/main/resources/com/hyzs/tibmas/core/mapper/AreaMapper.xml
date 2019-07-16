@@ -1,0 +1,2197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyzs.tibmas.core.mapper.AreaMapper">
+
+    <!--
+    /**
+     * 代码自动生成，请不要修改，切记！！！
+     */
+    -->
+
+    <sql id="selectAllPropertiesAsDO">
+            select  id id, code code, name name, pid pid, pcode pcode, longitude longitude, latitude latitude, level_path levelPath, level level, deep deep, gmt_create gmtCreate, gmt_modified gmtModified, is_deleted isDeleted, user_id_create userIdCreate, user_id_modified userIdModified from area
+    </sql>
+
+    <sql id="selectByFieldNamesAsDO">
+       select <foreach collection="fieldNames" index="index" item="item"  separator=",">${item}</foreach> from area
+    </sql>
+
+    <sql id="selectAsDO">
+        <choose>
+            <when test="fieldNames==null or fieldNames.length==0">
+                  <include refid="selectAllPropertiesAsDO"/>
+            </when>
+            <otherwise>
+                  <include refid="selectByFieldNamesAsDO"/>
+            </otherwise>
+        </choose>
+    </sql>
+
+
+    <select id="listAll" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+        <include refid="selectAsDO" /> where is_deleted=0
+    </select>
+
+    <select id="mapAll" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+        <include refid="selectAsDO" /> where is_deleted=0
+    </select>
+
+
+    <select id="getById" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+        <include refid="selectAsDO" /> where id=#{id} and is_deleted=0
+    </select>
+
+
+    <select id="listByIds" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+        <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </select>
+
+    <select id="mapByIds" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+        <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </select>
+
+    <update id="deleteById">
+        update  area set is_deleted=1,gmt_modified=CURRENT_TIMESTAMP where id=#{id}
+    </update>
+
+    <update id="deleteByIds">
+        update  area set is_deleted=1,gmt_modified=CURRENT_TIMESTAMP where id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </update>
+
+
+    <update id="updateNotNullProperties">
+        update area set
+                <if test="id != null">id=#{id},</if>
+                <if test="code != null">code=#{code},</if>
+                <if test="name != null">name=#{name},</if>
+                <if test="pid != null">pid=#{pid},</if>
+                <if test="pcode != null">pcode=#{pcode},</if>
+                <if test="longitude != null">longitude=#{longitude},</if>
+                <if test="latitude != null">latitude=#{latitude},</if>
+                <if test="levelPath != null">level_path=#{levelPath},</if>
+                <if test="level != null">level=#{level},</if>
+                <if test="deep != null">deep=#{deep},</if>
+                <if test="userIdCreate != null">user_id_create=#{userIdCreate},</if>
+                <if test="userIdModified != null">user_id_modified=#{userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+    <update id="updateAllProperties">
+        update area set
+                id=#{id},
+                code=#{code},
+                name=#{name},
+                pid=#{pid},
+                pcode=#{pcode},
+                longitude=#{longitude},
+                latitude=#{latitude},
+                level_path=#{levelPath},
+                level=#{level},
+                deep=#{deep},
+                user_id_create=#{userIdCreate},
+                user_id_modified=#{userIdModified},
+                gmt_modified=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+
+    <insert id="insertAllProperties">
+              <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+                        SELECT LAST_INSERT_ID() as id
+                      </selectKey>
+
+        insert into area
+        (
+                id,
+                code,
+                name,
+                pid,
+                pcode,
+                longitude,
+                latitude,
+                level_path,
+                level,
+                deep,
+                user_id_create,
+                user_id_modified,
+                is_deleted,gmt_create,gmt_modified
+        )
+        values
+        (
+                #{id},
+                #{code},
+                #{name},
+                #{pid},
+                #{pcode},
+                #{longitude},
+                #{latitude},
+                #{levelPath},
+                #{level},
+                #{deep},
+                #{userIdCreate},
+                #{userIdModified},
+                0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        )
+    </insert>
+
+
+    <insert id="insertNotNullProperties">
+                      <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+                                SELECT LAST_INSERT_ID() as id
+                              </selectKey>
+        insert into area
+        (
+                <if test="id!=null">id,</if>
+                <if test="code!=null">code,</if>
+                <if test="name!=null">name,</if>
+                <if test="pid!=null">pid,</if>
+                <if test="pcode!=null">pcode,</if>
+                <if test="longitude!=null">longitude,</if>
+                <if test="latitude!=null">latitude,</if>
+                <if test="levelPath!=null">level_path,</if>
+                <if test="level!=null">level,</if>
+                <if test="deep!=null">deep,</if>
+                <if test="userIdCreate!=null">user_id_create,</if>
+                <if test="userIdModified!=null">user_id_modified,</if>
+                is_deleted,gmt_create,gmt_modified
+        )
+        values
+        (
+                <if test="id!=null">#{id},</if>
+                <if test="code!=null">#{code},</if>
+                <if test="name!=null">#{name},</if>
+                <if test="pid!=null">#{pid},</if>
+                <if test="pcode!=null">#{pcode},</if>
+                <if test="longitude!=null">#{longitude},</if>
+                <if test="latitude!=null">#{latitude},</if>
+                <if test="levelPath!=null">#{levelPath},</if>
+                <if test="level!=null">#{level},</if>
+                <if test="deep!=null">#{deep},</if>
+                <if test="userIdCreate!=null">#{userIdCreate},</if>
+                <if test="userIdModified!=null">#{userIdModified},</if>
+                0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        )
+    </insert>
+
+        <insert id="insertAllPropertiesList">
+           insert into area
+           (
+                   id,
+                   code,
+                   name,
+                   pid,
+                   pcode,
+                   longitude,
+                   latitude,
+                   level_path,
+                   level,
+                   deep,
+                   user_id_create,
+                   user_id_modified,
+                   is_deleted,gmt_create,gmt_modified
+                   )
+           values
+           <foreach collection="list" item="item" index="index" separator="," >
+           (
+                   #{item.id},
+                   #{item.code},
+                   #{item.name},
+                   #{item.pid},
+                   #{item.pcode},
+                   #{item.longitude},
+                   #{item.latitude},
+                   #{item.levelPath},
+                   #{item.level},
+                   #{item.deep},
+                   #{item.userIdCreate},
+                   #{item.userIdModified},
+                   0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+           )
+           </foreach>
+       </insert>
+
+
+
+    <select id="listByProperty" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+    <select id="countByProperty" resultType="java.lang.Integer">
+        select count(1) from area
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+    <select id="mapByProperty" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+
+    <update id="updateNotNullFieldsByProperty">
+        update area set
+                <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <update id="updateAllFieldsByProperty">
+        update area set
+                id=#{updateDO.id},
+                code=#{updateDO.code},
+                name=#{updateDO.name},
+                pid=#{updateDO.pid},
+                pcode=#{updateDO.pcode},
+                longitude=#{updateDO.longitude},
+                latitude=#{updateDO.latitude},
+                level_path=#{updateDO.levelPath},
+                level=#{updateDO.level},
+                deep=#{updateDO.deep},
+                user_id_create=#{updateDO.userIdCreate},
+                user_id_modified=#{updateDO.userIdModified},
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <update id="deleteByProperty">
+        update area set
+                is_delete=1,
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <select id="listByProperties" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and  ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <select id="countByProperties" resultType="java.lang.Integer">
+        select count(1) from area
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <select id="mapByProperties" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and  ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <update id="updateNotNullFieldsByProperties">
+        update area set
+                <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <update id="updateAllFieldsByProperties">
+        update area set
+                id=#{updateDO.id}
+                code=#{updateDO.code}
+                name=#{updateDO.name}
+                pid=#{updateDO.pid}
+                pcode=#{updateDO.pcode}
+                longitude=#{updateDO.longitude}
+                latitude=#{updateDO.latitude}
+                level_path=#{updateDO.levelPath}
+                level=#{updateDO.level}
+                deep=#{updateDO.deep}
+                user_id_create=#{updateDO.userIdCreate}
+                user_id_modified=#{updateDO.userIdModified}
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <update id="deleteByProperties">
+        update area set
+                is_deleted=1,
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <select id="_listByQueryItems" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+    <select id="_mapByQueryItems" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+    <select id="_countByQueryItems" resultType="java.lang.Integer">
+        select count(1) from area
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+   <update id="_updateNotNullFieldsByQueryItems">
+         update area set
+                <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <update id="_updateNotAllFieldsByQueryItems">
+         update area set
+                id=#{updateDO.id}
+                code=#{updateDO.code}
+                name=#{updateDO.name}
+                pid=#{updateDO.pid}
+                pcode=#{updateDO.pcode}
+                longitude=#{updateDO.longitude}
+                latitude=#{updateDO.latitude}
+                level_path=#{updateDO.levelPath}
+                level=#{updateDO.level}
+                deep=#{updateDO.deep}
+                user_id_create=#{updateDO.userIdCreate}
+                user_id_modified=#{updateDO.userIdModified}
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <update id="_deleteByQueryItems">
+         update area set
+                is_deleted=1,
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <select id="_listByPageQuery" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                         #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+            <if test="pageQuery.sortFieldNameForDatabase!=null">
+                order by ${pageQuery.sortFieldNameForDatabase} ${pageQuery.sortType}
+            </if>
+            limit #{values.pageOffset},#{pageQuery.pageSize}
+    </select>
+
+
+    <select id="_countByPageQuery" resultType="java.lang.Integer">
+        select count(1) from area
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                    <choose>
+                        <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                            <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                                #{inItem}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                           #{values.[${item.valueKeyName}]}
+                        </otherwise>
+                    </choose>
+                </if>
+            </foreach>
+    </select>
+
+
+
+          <select id="listById" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and id=#{id}
+          </select>
+
+          <select id="countById" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and id=#{id}
+           </select>
+
+           <select id="mapById" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and id=#{id}
+           </select>
+
+           <update id="updateNotNullFieldsById">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and id=#{id}
+          </update>
+
+          <update id="updateAllFieldsById">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and id=#{id}
+            </update>
+
+
+
+
+            <!--property in -->
+
+         <select id="listByInId" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and id in
+                  <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInId" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and id in
+                      <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInId" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and id in
+                        <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInId">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and id in
+                       <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInId">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and id in
+                       <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInId">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and id in
+                        <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByCode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and code=#{code}
+          </select>
+
+          <select id="countByCode" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and code=#{code}
+           </select>
+
+           <select id="mapByCode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and code=#{code}
+           </select>
+
+           <update id="updateNotNullFieldsByCode">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and code=#{code}
+          </update>
+
+          <update id="updateAllFieldsByCode">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and code=#{code}
+            </update>
+
+
+            <update id="deleteByCode">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and code=#{code}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInCode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and code in
+                  <foreach collection="codeList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInCode" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and code in
+                      <foreach collection="codeList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInCode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and code in
+                        <foreach collection="codeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInCode">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and code in
+                       <foreach collection="codeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInCode">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and code in
+                       <foreach collection="codeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInCode">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and code in
+                        <foreach collection="codeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByName" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and name=#{name}
+          </select>
+
+          <select id="countByName" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and name=#{name}
+           </select>
+
+           <select id="mapByName" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and name=#{name}
+           </select>
+
+           <update id="updateNotNullFieldsByName">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and name=#{name}
+          </update>
+
+          <update id="updateAllFieldsByName">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and name=#{name}
+            </update>
+
+
+            <update id="deleteByName">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and name=#{name}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInName" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and name in
+                  <foreach collection="nameList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInName" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and name in
+                      <foreach collection="nameList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInName" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and name in
+                        <foreach collection="nameList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInName">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and name in
+                       <foreach collection="nameList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInName">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and name in
+                       <foreach collection="nameList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInName">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and name in
+                        <foreach collection="nameList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByPid" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and pid=#{pid}
+          </select>
+
+          <select id="countByPid" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and pid=#{pid}
+           </select>
+
+           <select id="mapByPid" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and pid=#{pid}
+           </select>
+
+           <update id="updateNotNullFieldsByPid">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and pid=#{pid}
+          </update>
+
+          <update id="updateAllFieldsByPid">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and pid=#{pid}
+            </update>
+
+
+            <update id="deleteByPid">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and pid=#{pid}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInPid" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and pid in
+                  <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInPid" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and pid in
+                      <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInPid" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and pid in
+                        <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInPid">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and pid in
+                       <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInPid">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and pid in
+                       <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInPid">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and pid in
+                        <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByPcode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and pcode=#{pcode}
+          </select>
+
+          <select id="countByPcode" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and pcode=#{pcode}
+           </select>
+
+           <select id="mapByPcode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and pcode=#{pcode}
+           </select>
+
+           <update id="updateNotNullFieldsByPcode">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and pcode=#{pcode}
+          </update>
+
+          <update id="updateAllFieldsByPcode">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and pcode=#{pcode}
+            </update>
+
+
+            <update id="deleteByPcode">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and pcode=#{pcode}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInPcode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and pcode in
+                  <foreach collection="pcodeList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInPcode" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and pcode in
+                      <foreach collection="pcodeList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInPcode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and pcode in
+                        <foreach collection="pcodeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInPcode">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and pcode in
+                       <foreach collection="pcodeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInPcode">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and pcode in
+                       <foreach collection="pcodeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInPcode">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and pcode in
+                        <foreach collection="pcodeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByLongitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and longitude=#{longitude}
+          </select>
+
+          <select id="countByLongitude" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and longitude=#{longitude}
+           </select>
+
+           <select id="mapByLongitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and longitude=#{longitude}
+           </select>
+
+           <update id="updateNotNullFieldsByLongitude">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and longitude=#{longitude}
+          </update>
+
+          <update id="updateAllFieldsByLongitude">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and longitude=#{longitude}
+            </update>
+
+
+            <update id="deleteByLongitude">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and longitude=#{longitude}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInLongitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and longitude in
+                  <foreach collection="longitudeList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInLongitude" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and longitude in
+                      <foreach collection="longitudeList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInLongitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and longitude in
+                        <foreach collection="longitudeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInLongitude">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and longitude in
+                       <foreach collection="longitudeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInLongitude">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and longitude in
+                       <foreach collection="longitudeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInLongitude">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and longitude in
+                        <foreach collection="longitudeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByLatitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and latitude=#{latitude}
+          </select>
+
+          <select id="countByLatitude" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and latitude=#{latitude}
+           </select>
+
+           <select id="mapByLatitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and latitude=#{latitude}
+           </select>
+
+           <update id="updateNotNullFieldsByLatitude">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and latitude=#{latitude}
+          </update>
+
+          <update id="updateAllFieldsByLatitude">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and latitude=#{latitude}
+            </update>
+
+
+            <update id="deleteByLatitude">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and latitude=#{latitude}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInLatitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and latitude in
+                  <foreach collection="latitudeList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInLatitude" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and latitude in
+                      <foreach collection="latitudeList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInLatitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and latitude in
+                        <foreach collection="latitudeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInLatitude">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and latitude in
+                       <foreach collection="latitudeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInLatitude">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and latitude in
+                       <foreach collection="latitudeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInLatitude">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and latitude in
+                        <foreach collection="latitudeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByLevelPath" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and level_path=#{levelPath}
+          </select>
+
+          <select id="countByLevelPath" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and level_path=#{levelPath}
+           </select>
+
+           <select id="mapByLevelPath" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and level_path=#{levelPath}
+           </select>
+
+           <update id="updateNotNullFieldsByLevelPath">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and level_path=#{levelPath}
+          </update>
+
+          <update id="updateAllFieldsByLevelPath">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and level_path=#{levelPath}
+            </update>
+
+
+            <update id="deleteByLevelPath">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and level_path=#{levelPath}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInLevelPath" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and level_path in
+                  <foreach collection="levelPathList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInLevelPath" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and level_path in
+                      <foreach collection="levelPathList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInLevelPath" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and level_path in
+                        <foreach collection="levelPathList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInLevelPath">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and level_path in
+                       <foreach collection="levelPathList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInLevelPath">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and level_path in
+                       <foreach collection="levelPathList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInLevelPath">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and level_path in
+                        <foreach collection="levelPathList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByLevel" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and level=#{level}
+          </select>
+
+          <select id="countByLevel" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and level=#{level}
+           </select>
+
+           <select id="mapByLevel" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and level=#{level}
+           </select>
+
+           <update id="updateNotNullFieldsByLevel">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and level=#{level}
+          </update>
+
+          <update id="updateAllFieldsByLevel">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and level=#{level}
+            </update>
+
+
+            <update id="deleteByLevel">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and level=#{level}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInLevel" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and level in
+                  <foreach collection="levelList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInLevel" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and level in
+                      <foreach collection="levelList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInLevel" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and level in
+                        <foreach collection="levelList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInLevel">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and level in
+                       <foreach collection="levelList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInLevel">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and level in
+                       <foreach collection="levelList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInLevel">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and level in
+                        <foreach collection="levelList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByDeep" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and deep=#{deep}
+          </select>
+
+          <select id="countByDeep" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and deep=#{deep}
+           </select>
+
+           <select id="mapByDeep" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and deep=#{deep}
+           </select>
+
+           <update id="updateNotNullFieldsByDeep">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and deep=#{deep}
+          </update>
+
+          <update id="updateAllFieldsByDeep">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and deep=#{deep}
+            </update>
+
+
+            <update id="deleteByDeep">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and deep=#{deep}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInDeep" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and deep in
+                  <foreach collection="deepList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInDeep" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and deep in
+                      <foreach collection="deepList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInDeep" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and deep in
+                        <foreach collection="deepList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInDeep">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and deep in
+                       <foreach collection="deepList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInDeep">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and deep in
+                       <foreach collection="deepList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInDeep">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and deep in
+                        <foreach collection="deepList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create=#{userIdCreate}
+          </select>
+
+          <select id="countByUserIdCreate" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and user_id_create=#{userIdCreate}
+           </select>
+
+           <select id="mapByUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create=#{userIdCreate}
+           </select>
+
+           <update id="updateNotNullFieldsByUserIdCreate">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and user_id_create=#{userIdCreate}
+          </update>
+
+          <update id="updateAllFieldsByUserIdCreate">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_create=#{userIdCreate}
+            </update>
+
+
+            <update id="deleteByUserIdCreate">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_create=#{userIdCreate}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create in
+                  <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInUserIdCreate" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and user_id_create in
+                      <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and user_id_create in
+                        <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInUserIdCreate">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_create in
+                       <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInUserIdCreate">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_create in
+                       <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInUserIdCreate">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and user_id_create in
+                        <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByUserIdModified" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified=#{userIdModified}
+          </select>
+
+          <select id="countByUserIdModified" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and user_id_modified=#{userIdModified}
+           </select>
+
+           <select id="mapByUserIdModified" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified=#{userIdModified}
+           </select>
+
+           <update id="updateNotNullFieldsByUserIdModified">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and user_id_modified=#{userIdModified}
+          </update>
+
+          <update id="updateAllFieldsByUserIdModified">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_modified=#{userIdModified}
+            </update>
+
+
+            <update id="deleteByUserIdModified">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_modified=#{userIdModified}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInUserIdModified" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified in
+                  <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInUserIdModified" resultType="java.lang.Integer">
+                select count(1) from area
+                where is_deleted=0 and user_id_modified in
+                      <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInUserIdModified" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and user_id_modified in
+                        <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInUserIdModified">
+              update area set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.code != null">code=#{updateDO.code},</if>
+                      <if test="updateDO.name != null">name=#{updateDO.name},</if>
+                      <if test="updateDO.pid != null">pid=#{updateDO.pid},</if>
+                      <if test="updateDO.pcode != null">pcode=#{updateDO.pcode},</if>
+                      <if test="updateDO.longitude != null">longitude=#{updateDO.longitude},</if>
+                      <if test="updateDO.latitude != null">latitude=#{updateDO.latitude},</if>
+                      <if test="updateDO.levelPath != null">level_path=#{updateDO.levelPath},</if>
+                      <if test="updateDO.level != null">level=#{updateDO.level},</if>
+                      <if test="updateDO.deep != null">deep=#{updateDO.deep},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_modified in
+                       <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInUserIdModified">
+                update area set
+                        id=#{updateDO.id},
+                        code=#{updateDO.code},
+                        name=#{updateDO.name},
+                        pid=#{updateDO.pid},
+                        pcode=#{updateDO.pcode},
+                        longitude=#{updateDO.longitude},
+                        latitude=#{updateDO.latitude},
+                        level_path=#{updateDO.levelPath},
+                        level=#{updateDO.level},
+                        deep=#{updateDO.deep},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_modified in
+                       <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInUserIdModified">
+                update area set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and user_id_modified in
+                        <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+
+</mapper>
+

@@ -1,0 +1,1813 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyzs.tibmas.core.mapper.AppMapper">
+
+    <!--
+    /**
+     * 代码自动生成，请不要修改，切记！！！
+     */
+    -->
+
+    <sql id="selectAllPropertiesAsDO">
+            select  id id, app_code appCode, app_name appName, app_icon appIcon, app_desc appDesc, app_url appUrl, access_key accessKey, access_key_plain accessKeyPlain, is_deleted isDeleted, gmt_create gmtCreate, gmt_modified gmtModified, user_id_create userIdCreate, user_id_modified userIdModified from app
+    </sql>
+
+    <sql id="selectByFieldNamesAsDO">
+       select <foreach collection="fieldNames" index="index" item="item"  separator=",">${item}</foreach> from app
+    </sql>
+
+    <sql id="selectAsDO">
+        <choose>
+            <when test="fieldNames==null or fieldNames.length==0">
+                  <include refid="selectAllPropertiesAsDO"/>
+            </when>
+            <otherwise>
+                  <include refid="selectByFieldNamesAsDO"/>
+            </otherwise>
+        </choose>
+    </sql>
+
+
+    <select id="listAll" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+        <include refid="selectAsDO" /> where is_deleted=0
+    </select>
+
+    <select id="mapAll" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+        <include refid="selectAsDO" /> where is_deleted=0
+    </select>
+
+
+    <select id="getById" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+        <include refid="selectAsDO" /> where id=#{id} and is_deleted=0
+    </select>
+
+
+    <select id="listByIds" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+        <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </select>
+
+    <select id="mapByIds" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+        <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </select>
+
+    <update id="deleteById">
+        update  app set is_deleted=1,gmt_modified=CURRENT_TIMESTAMP where id=#{id}
+    </update>
+
+    <update id="deleteByIds">
+        update  app set is_deleted=1,gmt_modified=CURRENT_TIMESTAMP where id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </update>
+
+
+    <update id="updateNotNullProperties">
+        update app set
+                <if test="id != null">id=#{id},</if>
+                <if test="appCode != null">app_code=#{appCode},</if>
+                <if test="appName != null">app_name=#{appName},</if>
+                <if test="appIcon != null">app_icon=#{appIcon},</if>
+                <if test="appDesc != null">app_desc=#{appDesc},</if>
+                <if test="appUrl != null">app_url=#{appUrl},</if>
+                <if test="accessKey != null">access_key=#{accessKey},</if>
+                <if test="accessKeyPlain != null">access_key_plain=#{accessKeyPlain},</if>
+                <if test="userIdCreate != null">user_id_create=#{userIdCreate},</if>
+                <if test="userIdModified != null">user_id_modified=#{userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+    <update id="updateAllProperties">
+        update app set
+                id=#{id},
+                app_code=#{appCode},
+                app_name=#{appName},
+                app_icon=#{appIcon},
+                app_desc=#{appDesc},
+                app_url=#{appUrl},
+                access_key=#{accessKey},
+                access_key_plain=#{accessKeyPlain},
+                user_id_create=#{userIdCreate},
+                user_id_modified=#{userIdModified},
+                gmt_modified=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+
+    <insert id="insertAllProperties">
+              <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+                        SELECT LAST_INSERT_ID() as id
+                      </selectKey>
+
+        insert into app
+        (
+                id,
+                app_code,
+                app_name,
+                app_icon,
+                app_desc,
+                app_url,
+                access_key,
+                access_key_plain,
+                user_id_create,
+                user_id_modified,
+                is_deleted,gmt_create,gmt_modified
+        )
+        values
+        (
+                #{id},
+                #{appCode},
+                #{appName},
+                #{appIcon},
+                #{appDesc},
+                #{appUrl},
+                #{accessKey},
+                #{accessKeyPlain},
+                #{userIdCreate},
+                #{userIdModified},
+                0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        )
+    </insert>
+
+
+    <insert id="insertNotNullProperties">
+                      <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+                                SELECT LAST_INSERT_ID() as id
+                              </selectKey>
+        insert into app
+        (
+                <if test="id!=null">id,</if>
+                <if test="appCode!=null">app_code,</if>
+                <if test="appName!=null">app_name,</if>
+                <if test="appIcon!=null">app_icon,</if>
+                <if test="appDesc!=null">app_desc,</if>
+                <if test="appUrl!=null">app_url,</if>
+                <if test="accessKey!=null">access_key,</if>
+                <if test="accessKeyPlain!=null">access_key_plain,</if>
+                <if test="userIdCreate!=null">user_id_create,</if>
+                <if test="userIdModified!=null">user_id_modified,</if>
+                is_deleted,gmt_create,gmt_modified
+        )
+        values
+        (
+                <if test="id!=null">#{id},</if>
+                <if test="appCode!=null">#{appCode},</if>
+                <if test="appName!=null">#{appName},</if>
+                <if test="appIcon!=null">#{appIcon},</if>
+                <if test="appDesc!=null">#{appDesc},</if>
+                <if test="appUrl!=null">#{appUrl},</if>
+                <if test="accessKey!=null">#{accessKey},</if>
+                <if test="accessKeyPlain!=null">#{accessKeyPlain},</if>
+                <if test="userIdCreate!=null">#{userIdCreate},</if>
+                <if test="userIdModified!=null">#{userIdModified},</if>
+                0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        )
+    </insert>
+
+        <insert id="insertAllPropertiesList">
+           insert into app
+           (
+                   id,
+                   app_code,
+                   app_name,
+                   app_icon,
+                   app_desc,
+                   app_url,
+                   access_key,
+                   access_key_plain,
+                   user_id_create,
+                   user_id_modified,
+                   is_deleted,gmt_create,gmt_modified
+                   )
+           values
+           <foreach collection="list" item="item" index="index" separator="," >
+           (
+                   #{item.id},
+                   #{item.appCode},
+                   #{item.appName},
+                   #{item.appIcon},
+                   #{item.appDesc},
+                   #{item.appUrl},
+                   #{item.accessKey},
+                   #{item.accessKeyPlain},
+                   #{item.userIdCreate},
+                   #{item.userIdModified},
+                   0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+           )
+           </foreach>
+       </insert>
+
+
+
+    <select id="listByProperty" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+    <select id="countByProperty" resultType="java.lang.Integer">
+        select count(1) from app
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+    <select id="mapByProperty" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+
+    <update id="updateNotNullFieldsByProperty">
+        update app set
+                <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <update id="updateAllFieldsByProperty">
+        update app set
+                id=#{updateDO.id},
+                app_code=#{updateDO.appCode},
+                app_name=#{updateDO.appName},
+                app_icon=#{updateDO.appIcon},
+                app_desc=#{updateDO.appDesc},
+                app_url=#{updateDO.appUrl},
+                access_key=#{updateDO.accessKey},
+                access_key_plain=#{updateDO.accessKeyPlain},
+                user_id_create=#{updateDO.userIdCreate},
+                user_id_modified=#{updateDO.userIdModified},
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <update id="deleteByProperty">
+        update app set
+                is_delete=1,
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <select id="listByProperties" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and  ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <select id="countByProperties" resultType="java.lang.Integer">
+        select count(1) from app
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <select id="mapByProperties" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and  ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <update id="updateNotNullFieldsByProperties">
+        update app set
+                <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <update id="updateAllFieldsByProperties">
+        update app set
+                id=#{updateDO.id}
+                app_code=#{updateDO.appCode}
+                app_name=#{updateDO.appName}
+                app_icon=#{updateDO.appIcon}
+                app_desc=#{updateDO.appDesc}
+                app_url=#{updateDO.appUrl}
+                access_key=#{updateDO.accessKey}
+                access_key_plain=#{updateDO.accessKeyPlain}
+                user_id_create=#{updateDO.userIdCreate}
+                user_id_modified=#{updateDO.userIdModified}
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <update id="deleteByProperties">
+        update app set
+                is_deleted=1,
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <select id="_listByQueryItems" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+    <select id="_mapByQueryItems" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+    <select id="_countByQueryItems" resultType="java.lang.Integer">
+        select count(1) from app
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+   <update id="_updateNotNullFieldsByQueryItems">
+         update app set
+                <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <update id="_updateNotAllFieldsByQueryItems">
+         update app set
+                id=#{updateDO.id}
+                app_code=#{updateDO.appCode}
+                app_name=#{updateDO.appName}
+                app_icon=#{updateDO.appIcon}
+                app_desc=#{updateDO.appDesc}
+                app_url=#{updateDO.appUrl}
+                access_key=#{updateDO.accessKey}
+                access_key_plain=#{updateDO.accessKeyPlain}
+                user_id_create=#{updateDO.userIdCreate}
+                user_id_modified=#{updateDO.userIdModified}
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <update id="_deleteByQueryItems">
+         update app set
+                is_deleted=1,
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <select id="_listByPageQuery" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                         #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+            <if test="pageQuery.sortFieldNameForDatabase!=null">
+                order by ${pageQuery.sortFieldNameForDatabase} ${pageQuery.sortType}
+            </if>
+            limit #{values.pageOffset},#{pageQuery.pageSize}
+    </select>
+
+
+    <select id="_countByPageQuery" resultType="java.lang.Integer">
+        select count(1) from app
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                    <choose>
+                        <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                            <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                                #{inItem}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                           #{values.[${item.valueKeyName}]}
+                        </otherwise>
+                    </choose>
+                </if>
+            </foreach>
+    </select>
+
+
+
+          <select id="listById" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and id=#{id}
+          </select>
+
+          <select id="countById" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and id=#{id}
+           </select>
+
+           <select id="mapById" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and id=#{id}
+           </select>
+
+           <update id="updateNotNullFieldsById">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and id=#{id}
+          </update>
+
+          <update id="updateAllFieldsById">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and id=#{id}
+            </update>
+
+
+
+
+            <!--property in -->
+
+         <select id="listByInId" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and id in
+                  <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInId" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and id in
+                      <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInId" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and id in
+                        <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInId">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and id in
+                       <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInId">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and id in
+                       <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInId">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and id in
+                        <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByAppCode" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and app_code=#{appCode}
+          </select>
+
+          <select id="countByAppCode" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and app_code=#{appCode}
+           </select>
+
+           <select id="mapByAppCode" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and app_code=#{appCode}
+           </select>
+
+           <update id="updateNotNullFieldsByAppCode">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and app_code=#{appCode}
+          </update>
+
+          <update id="updateAllFieldsByAppCode">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and app_code=#{appCode}
+            </update>
+
+
+            <update id="deleteByAppCode">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and app_code=#{appCode}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInAppCode" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and app_code in
+                  <foreach collection="appCodeList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInAppCode" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and app_code in
+                      <foreach collection="appCodeList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInAppCode" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and app_code in
+                        <foreach collection="appCodeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInAppCode">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and app_code in
+                       <foreach collection="appCodeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInAppCode">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and app_code in
+                       <foreach collection="appCodeList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInAppCode">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and app_code in
+                        <foreach collection="appCodeList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByAppName" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and app_name=#{appName}
+          </select>
+
+          <select id="countByAppName" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and app_name=#{appName}
+           </select>
+
+           <select id="mapByAppName" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and app_name=#{appName}
+           </select>
+
+           <update id="updateNotNullFieldsByAppName">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and app_name=#{appName}
+          </update>
+
+          <update id="updateAllFieldsByAppName">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and app_name=#{appName}
+            </update>
+
+
+            <update id="deleteByAppName">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and app_name=#{appName}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInAppName" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and app_name in
+                  <foreach collection="appNameList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInAppName" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and app_name in
+                      <foreach collection="appNameList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInAppName" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and app_name in
+                        <foreach collection="appNameList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInAppName">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and app_name in
+                       <foreach collection="appNameList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInAppName">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and app_name in
+                       <foreach collection="appNameList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInAppName">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and app_name in
+                        <foreach collection="appNameList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByAppIcon" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and app_icon=#{appIcon}
+          </select>
+
+          <select id="countByAppIcon" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and app_icon=#{appIcon}
+           </select>
+
+           <select id="mapByAppIcon" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and app_icon=#{appIcon}
+           </select>
+
+           <update id="updateNotNullFieldsByAppIcon">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and app_icon=#{appIcon}
+          </update>
+
+          <update id="updateAllFieldsByAppIcon">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and app_icon=#{appIcon}
+            </update>
+
+
+            <update id="deleteByAppIcon">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and app_icon=#{appIcon}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInAppIcon" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and app_icon in
+                  <foreach collection="appIconList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInAppIcon" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and app_icon in
+                      <foreach collection="appIconList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInAppIcon" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and app_icon in
+                        <foreach collection="appIconList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInAppIcon">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and app_icon in
+                       <foreach collection="appIconList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInAppIcon">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and app_icon in
+                       <foreach collection="appIconList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInAppIcon">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and app_icon in
+                        <foreach collection="appIconList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByAppDesc" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and app_desc=#{appDesc}
+          </select>
+
+          <select id="countByAppDesc" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and app_desc=#{appDesc}
+           </select>
+
+           <select id="mapByAppDesc" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and app_desc=#{appDesc}
+           </select>
+
+           <update id="updateNotNullFieldsByAppDesc">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and app_desc=#{appDesc}
+          </update>
+
+          <update id="updateAllFieldsByAppDesc">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and app_desc=#{appDesc}
+            </update>
+
+
+            <update id="deleteByAppDesc">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and app_desc=#{appDesc}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInAppDesc" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and app_desc in
+                  <foreach collection="appDescList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInAppDesc" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and app_desc in
+                      <foreach collection="appDescList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInAppDesc" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and app_desc in
+                        <foreach collection="appDescList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInAppDesc">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and app_desc in
+                       <foreach collection="appDescList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInAppDesc">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and app_desc in
+                       <foreach collection="appDescList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInAppDesc">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and app_desc in
+                        <foreach collection="appDescList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByAppUrl" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and app_url=#{appUrl}
+          </select>
+
+          <select id="countByAppUrl" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and app_url=#{appUrl}
+           </select>
+
+           <select id="mapByAppUrl" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and app_url=#{appUrl}
+           </select>
+
+           <update id="updateNotNullFieldsByAppUrl">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and app_url=#{appUrl}
+          </update>
+
+          <update id="updateAllFieldsByAppUrl">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and app_url=#{appUrl}
+            </update>
+
+
+            <update id="deleteByAppUrl">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and app_url=#{appUrl}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInAppUrl" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and app_url in
+                  <foreach collection="appUrlList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInAppUrl" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and app_url in
+                      <foreach collection="appUrlList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInAppUrl" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and app_url in
+                        <foreach collection="appUrlList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInAppUrl">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and app_url in
+                       <foreach collection="appUrlList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInAppUrl">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and app_url in
+                       <foreach collection="appUrlList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInAppUrl">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and app_url in
+                        <foreach collection="appUrlList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByAccessKey" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and access_key=#{accessKey}
+          </select>
+
+          <select id="countByAccessKey" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and access_key=#{accessKey}
+           </select>
+
+           <select id="mapByAccessKey" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and access_key=#{accessKey}
+           </select>
+
+           <update id="updateNotNullFieldsByAccessKey">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and access_key=#{accessKey}
+          </update>
+
+          <update id="updateAllFieldsByAccessKey">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and access_key=#{accessKey}
+            </update>
+
+
+            <update id="deleteByAccessKey">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and access_key=#{accessKey}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInAccessKey" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and access_key in
+                  <foreach collection="accessKeyList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInAccessKey" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and access_key in
+                      <foreach collection="accessKeyList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInAccessKey" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and access_key in
+                        <foreach collection="accessKeyList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInAccessKey">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and access_key in
+                       <foreach collection="accessKeyList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInAccessKey">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and access_key in
+                       <foreach collection="accessKeyList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInAccessKey">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and access_key in
+                        <foreach collection="accessKeyList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByAccessKeyPlain" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and access_key_plain=#{accessKeyPlain}
+          </select>
+
+          <select id="countByAccessKeyPlain" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and access_key_plain=#{accessKeyPlain}
+           </select>
+
+           <select id="mapByAccessKeyPlain" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and access_key_plain=#{accessKeyPlain}
+           </select>
+
+           <update id="updateNotNullFieldsByAccessKeyPlain">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and access_key_plain=#{accessKeyPlain}
+          </update>
+
+          <update id="updateAllFieldsByAccessKeyPlain">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and access_key_plain=#{accessKeyPlain}
+            </update>
+
+
+            <update id="deleteByAccessKeyPlain">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and access_key_plain=#{accessKeyPlain}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInAccessKeyPlain" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and access_key_plain in
+                  <foreach collection="accessKeyPlainList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInAccessKeyPlain" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and access_key_plain in
+                      <foreach collection="accessKeyPlainList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInAccessKeyPlain" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and access_key_plain in
+                        <foreach collection="accessKeyPlainList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInAccessKeyPlain">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and access_key_plain in
+                       <foreach collection="accessKeyPlainList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInAccessKeyPlain">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and access_key_plain in
+                       <foreach collection="accessKeyPlainList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInAccessKeyPlain">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and access_key_plain in
+                        <foreach collection="accessKeyPlainList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create=#{userIdCreate}
+          </select>
+
+          <select id="countByUserIdCreate" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and user_id_create=#{userIdCreate}
+           </select>
+
+           <select id="mapByUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create=#{userIdCreate}
+           </select>
+
+           <update id="updateNotNullFieldsByUserIdCreate">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and user_id_create=#{userIdCreate}
+          </update>
+
+          <update id="updateAllFieldsByUserIdCreate">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_create=#{userIdCreate}
+            </update>
+
+
+            <update id="deleteByUserIdCreate">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_create=#{userIdCreate}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create in
+                  <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInUserIdCreate" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and user_id_create in
+                      <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and user_id_create in
+                        <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInUserIdCreate">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_create in
+                       <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInUserIdCreate">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_create in
+                       <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInUserIdCreate">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and user_id_create in
+                        <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByUserIdModified" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified=#{userIdModified}
+          </select>
+
+          <select id="countByUserIdModified" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and user_id_modified=#{userIdModified}
+           </select>
+
+           <select id="mapByUserIdModified" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified=#{userIdModified}
+           </select>
+
+           <update id="updateNotNullFieldsByUserIdModified">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and user_id_modified=#{userIdModified}
+          </update>
+
+          <update id="updateAllFieldsByUserIdModified">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_modified=#{userIdModified}
+            </update>
+
+
+            <update id="deleteByUserIdModified">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_modified=#{userIdModified}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInUserIdModified" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified in
+                  <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInUserIdModified" resultType="java.lang.Integer">
+                select count(1) from app
+                where is_deleted=0 and user_id_modified in
+                      <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInUserIdModified" resultType="com.hyzs.tibmas.core.dbo.AppDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and user_id_modified in
+                        <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInUserIdModified">
+              update app set
+                      <if test="updateDO.id != null">id=#{updateDO.id},</if>
+                      <if test="updateDO.appCode != null">app_code=#{updateDO.appCode},</if>
+                      <if test="updateDO.appName != null">app_name=#{updateDO.appName},</if>
+                      <if test="updateDO.appIcon != null">app_icon=#{updateDO.appIcon},</if>
+                      <if test="updateDO.appDesc != null">app_desc=#{updateDO.appDesc},</if>
+                      <if test="updateDO.appUrl != null">app_url=#{updateDO.appUrl},</if>
+                      <if test="updateDO.accessKey != null">access_key=#{updateDO.accessKey},</if>
+                      <if test="updateDO.accessKeyPlain != null">access_key_plain=#{updateDO.accessKeyPlain},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_modified in
+                       <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInUserIdModified">
+                update app set
+                        id=#{updateDO.id},
+                        app_code=#{updateDO.appCode},
+                        app_name=#{updateDO.appName},
+                        app_icon=#{updateDO.appIcon},
+                        app_desc=#{updateDO.appDesc},
+                        app_url=#{updateDO.appUrl},
+                        access_key=#{updateDO.accessKey},
+                        access_key_plain=#{updateDO.accessKeyPlain},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_modified in
+                       <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInUserIdModified">
+                update app set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and user_id_modified in
+                        <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+
+</mapper>
+

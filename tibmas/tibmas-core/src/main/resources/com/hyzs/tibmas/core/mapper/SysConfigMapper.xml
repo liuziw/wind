@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyzs.tibmas.core.mapper.SysConfigMapper">
+
+    <!--
+    /**
+     * 代码自动生成，请不要修改，切记！！！
+     */
+    -->
+
+    <sql id="selectAllPropertiesAsDO">
+            select  id id, config_key configKey, config_value configValue, remark remark, gmt_create gmtCreate, user_id_create userIdCreate, gmt_modified gmtModified, user_id_modified userIdModified, is_deleted isDeleted from sys_config
+    </sql>
+
+    <sql id="selectByFieldNamesAsDO">
+       select <foreach collection="fieldNames" index="index" item="item"  separator=",">${item}</foreach> from sys_config
+    </sql>
+
+    <sql id="selectAsDO">
+        <choose>
+            <when test="fieldNames==null or fieldNames.length==0">
+                  <include refid="selectAllPropertiesAsDO"/>
+            </when>
+            <otherwise>
+                  <include refid="selectByFieldNamesAsDO"/>
+            </otherwise>
+        </choose>
+    </sql>
+
+
+    <select id="listAll" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+        <include refid="selectAsDO" /> where is_deleted=0
+    </select>
+
+    <select id="mapAll" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+        <include refid="selectAsDO" /> where is_deleted=0
+    </select>
+
+
+    <select id="getById" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+        <include refid="selectAsDO" /> where id=#{id} and is_deleted=0
+    </select>
+
+    <select id="listByIds" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+        <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </select>
+
+    <select id="mapByIds" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+        <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </select>
+
+    <update id="deleteById">
+        update  sys_config set is_deleted=1,gmt_modified=CURRENT_TIMESTAMP where id=#{id}
+    </update>
+
+    <update id="deleteByIds">
+        update  sys_config set is_deleted=1,gmt_modified=CURRENT_TIMESTAMP where id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
+    </update>
+
+
+    <update id="updateNotNullProperties">
+        update sys_config set
+                <if test="configKey != null">config_key=#{configKey},</if>
+                <if test="configValue != null">config_value=#{configValue},</if>
+                <if test="remark != null">remark=#{remark},</if>
+                <if test="userIdCreate != null">user_id_create=#{userIdCreate},</if>
+                <if test="userIdModified != null">user_id_modified=#{userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+    <update id="updateAllProperties">
+        update sys_config set
+                config_key=#{configKey},
+                config_value=#{configValue},
+                remark=#{remark},
+                user_id_create=#{userIdCreate},
+                user_id_modified=#{userIdModified},
+                gmt_modified=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+
+    <insert id="insertAllProperties">
+              <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+                        SELECT LAST_INSERT_ID() as id
+                      </selectKey>
+
+        insert into sys_config
+        (
+                config_key,
+                config_value,
+                remark,
+                user_id_create,
+                user_id_modified,
+                is_deleted,gmt_create,gmt_modified
+        )
+        values
+        (
+                #{configKey},
+                #{configValue},
+                #{remark},
+                #{userIdCreate},
+                #{userIdModified},
+                0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        )
+    </insert>
+
+
+    <insert id="insertNotNullProperties">
+                      <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+                                SELECT LAST_INSERT_ID() as id
+                              </selectKey>
+        insert into sys_config
+        (
+                <if test="configKey!=null">config_key,</if>
+                <if test="configValue!=null">config_value,</if>
+                <if test="remark!=null">remark,</if>
+                <if test="userIdCreate!=null">user_id_create,</if>
+                <if test="userIdModified!=null">user_id_modified,</if>
+                is_deleted,gmt_create,gmt_modified
+        )
+        values
+        (
+                <if test="configKey!=null">#{configKey},</if>
+                <if test="configValue!=null">#{configValue},</if>
+                <if test="remark!=null">#{remark},</if>
+                <if test="userIdCreate!=null">#{userIdCreate},</if>
+                <if test="userIdModified!=null">#{userIdModified},</if>
+                0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+        )
+    </insert>
+
+        <insert id="insertAllPropertiesList">
+           insert into sys_config
+           (
+                   config_key,
+                   config_value,
+                   remark,
+                   user_id_create,
+                   user_id_modified,
+                   is_deleted,gmt_create,gmt_modified
+                   )
+           values
+           <foreach collection="list" item="item" index="index" separator="," >
+           (
+                   #{item.configKey},
+                   #{item.configValue},
+                   #{item.remark},
+                   #{item.userIdCreate},
+                   #{item.userIdModified},
+                   0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP
+           )
+           </foreach>
+       </insert>
+
+
+
+    <select id="listByProperty" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+    <select id="countByProperty" resultType="java.lang.Integer">
+        select count(1) from sys_config
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+    <select id="mapByProperty" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0 and ${propertyName}=#{value}
+    </select>
+
+
+    <update id="updateNotNullFieldsByProperty">
+        update sys_config set
+                <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <update id="updateAllFieldsByProperty">
+        update sys_config set
+                config_key=#{updateDO.configKey},
+                config_value=#{updateDO.configValue},
+                remark=#{updateDO.remark},
+                user_id_create=#{updateDO.userIdCreate},
+                user_id_modified=#{updateDO.userIdModified},
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <update id="deleteByProperty">
+        update sys_config set
+                is_delete=1,
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0 and ${propertyName}=#{value}
+    </update>
+
+    <select id="listByProperties" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and  ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <select id="countByProperties" resultType="java.lang.Integer">
+        select count(1) from sys_config
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <select id="mapByProperties" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="propertyNames" item="propertyName" index="index">
+              and  ${propertyName}=#{values.[${index}]}
+            </foreach>
+    </select>
+
+    <update id="updateNotNullFieldsByProperties">
+        update sys_config set
+                <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <update id="updateAllFieldsByProperties">
+        update sys_config set
+                config_key=#{updateDO.configKey}
+                config_value=#{updateDO.configValue}
+                remark=#{updateDO.remark}
+                user_id_create=#{updateDO.userIdCreate}
+                user_id_modified=#{updateDO.userIdModified}
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <update id="deleteByProperties">
+        update sys_config set
+                is_deleted=1,
+                gmt_modified=CURRENT_TIMESTAMP
+         where is_deleted=0
+         <foreach collection="propertyNames" item="propertyName" index="index">
+           and  ${propertyName}=#{values.[${index}]}
+         </foreach>
+    </update>
+
+    <select id="_listByQueryItems" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+    <select id="_mapByQueryItems" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+    <select id="_countByQueryItems" resultType="java.lang.Integer">
+        select count(1) from sys_config
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </select>
+
+   <update id="_updateNotNullFieldsByQueryItems">
+         update sys_config set
+                <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <update id="_updateNotAllFieldsByQueryItems">
+         update sys_config set
+                config_key=#{updateDO.configKey}
+                config_value=#{updateDO.configValue}
+                remark=#{updateDO.remark}
+                user_id_create=#{updateDO.userIdCreate}
+                user_id_modified=#{updateDO.userIdModified}
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <update id="_deleteByQueryItems">
+         update sys_config set
+                is_deleted=1,
+                gmt_modified=CURRENT_TIMESTAMP
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                          #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+    </update>
+
+    <select id="_listByPageQuery" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+        <include refid="selectAsDO" />
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                  <choose>
+                      <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                          <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                              #{inItem}
+                          </foreach>
+                      </when>
+                      <otherwise>
+                         #{values.[${item.valueKeyName}]}
+                      </otherwise>
+                  </choose>
+              </if>
+            </foreach>
+            <if test="pageQuery.sortFieldNameForDatabase!=null">
+                order by ${pageQuery.sortFieldNameForDatabase} ${pageQuery.sortType}
+            </if>
+            limit #{values.pageOffset},#{pageQuery.pageSize}
+    </select>
+
+
+    <select id="_countByPageQuery" resultType="java.lang.Integer">
+        select count(1) from sys_config
+            where is_deleted=0
+            <foreach collection="items" item="item" index="index">
+              and  ${item.fieldName} ${item.type.optr}
+              <if test="item.type.hasValue">
+                    <choose>
+                        <when test="item.type.optr=='in' || item.type.optr=='not in'">
+                            <foreach collection="values[item.valueKeyName]" item="inItem" close=")" open="(" separator=",">
+                                #{inItem}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                           #{values.[${item.valueKeyName}]}
+                        </otherwise>
+                    </choose>
+                </if>
+            </foreach>
+    </select>
+
+
+
+          <select id="listByConfigKey" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and config_key=#{configKey}
+          </select>
+
+          <select id="countByConfigKey" resultType="java.lang.Integer">
+                select count(1) from sys_config
+                where is_deleted=0 and config_key=#{configKey}
+           </select>
+
+           <select id="mapByConfigKey" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and config_key=#{configKey}
+           </select>
+
+           <update id="updateNotNullFieldsByConfigKey">
+              update sys_config set
+                      <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                      <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                      <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and config_key=#{configKey}
+          </update>
+
+          <update id="updateAllFieldsByConfigKey">
+                update sys_config set
+                        config_key=#{updateDO.configKey},
+                        config_value=#{updateDO.configValue},
+                        remark=#{updateDO.remark},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and config_key=#{configKey}
+            </update>
+
+            <update id="deleteByConfigKey">
+                update sys_config set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and config_key=#{configKey}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInConfigKey" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and config_key in
+                  <foreach collection="configKeyList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInConfigKey" resultType="java.lang.Integer">
+                select count(1) from sys_config
+                where is_deleted=0 and config_key in
+                      <foreach collection="configKeyList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInConfigKey" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and config_key in
+                        <foreach collection="configKeyList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInConfigKey">
+              update sys_config set
+                      <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                      <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                      <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and config_key in
+                       <foreach collection="configKeyList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInConfigKey">
+                update sys_config set
+                        config_key=#{updateDO.configKey},
+                        config_value=#{updateDO.configValue},
+                        remark=#{updateDO.remark},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and config_key in
+                       <foreach collection="configKeyList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInConfigKey">
+                update sys_config set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and config_key in
+                        <foreach collection="configKeyList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByConfigValue" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and config_value=#{configValue}
+          </select>
+
+          <select id="countByConfigValue" resultType="java.lang.Integer">
+                select count(1) from sys_config
+                where is_deleted=0 and config_value=#{configValue}
+           </select>
+
+           <select id="mapByConfigValue" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and config_value=#{configValue}
+           </select>
+
+           <update id="updateNotNullFieldsByConfigValue">
+              update sys_config set
+                      <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                      <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                      <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and config_value=#{configValue}
+          </update>
+
+          <update id="updateAllFieldsByConfigValue">
+                update sys_config set
+                        config_key=#{updateDO.configKey},
+                        config_value=#{updateDO.configValue},
+                        remark=#{updateDO.remark},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and config_value=#{configValue}
+            </update>
+
+            <update id="deleteByConfigValue">
+                update sys_config set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and config_value=#{configValue}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInConfigValue" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and config_value in
+                  <foreach collection="configValueList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInConfigValue" resultType="java.lang.Integer">
+                select count(1) from sys_config
+                where is_deleted=0 and config_value in
+                      <foreach collection="configValueList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInConfigValue" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and config_value in
+                        <foreach collection="configValueList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInConfigValue">
+              update sys_config set
+                      <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                      <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                      <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and config_value in
+                       <foreach collection="configValueList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInConfigValue">
+                update sys_config set
+                        config_key=#{updateDO.configKey},
+                        config_value=#{updateDO.configValue},
+                        remark=#{updateDO.remark},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and config_value in
+                       <foreach collection="configValueList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInConfigValue">
+                update sys_config set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and config_value in
+                        <foreach collection="configValueList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByRemark" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and remark=#{remark}
+          </select>
+
+          <select id="countByRemark" resultType="java.lang.Integer">
+                select count(1) from sys_config
+                where is_deleted=0 and remark=#{remark}
+           </select>
+
+           <select id="mapByRemark" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and remark=#{remark}
+           </select>
+
+           <update id="updateNotNullFieldsByRemark">
+              update sys_config set
+                      <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                      <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                      <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and remark=#{remark}
+          </update>
+
+          <update id="updateAllFieldsByRemark">
+                update sys_config set
+                        config_key=#{updateDO.configKey},
+                        config_value=#{updateDO.configValue},
+                        remark=#{updateDO.remark},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and remark=#{remark}
+            </update>
+
+            <update id="deleteByRemark">
+                update sys_config set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and remark=#{remark}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInRemark" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and remark in
+                  <foreach collection="remarkList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInRemark" resultType="java.lang.Integer">
+                select count(1) from sys_config
+                where is_deleted=0 and remark in
+                      <foreach collection="remarkList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInRemark" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and remark in
+                        <foreach collection="remarkList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInRemark">
+              update sys_config set
+                      <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                      <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                      <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and remark in
+                       <foreach collection="remarkList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInRemark">
+                update sys_config set
+                        config_key=#{updateDO.configKey},
+                        config_value=#{updateDO.configValue},
+                        remark=#{updateDO.remark},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and remark in
+                       <foreach collection="remarkList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInRemark">
+                update sys_config set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and remark in
+                        <foreach collection="remarkList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create=#{userIdCreate}
+          </select>
+
+          <select id="countByUserIdCreate" resultType="java.lang.Integer">
+                select count(1) from sys_config
+                where is_deleted=0 and user_id_create=#{userIdCreate}
+           </select>
+
+           <select id="mapByUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create=#{userIdCreate}
+           </select>
+
+           <update id="updateNotNullFieldsByUserIdCreate">
+              update sys_config set
+                      <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                      <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                      <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and user_id_create=#{userIdCreate}
+          </update>
+
+          <update id="updateAllFieldsByUserIdCreate">
+                update sys_config set
+                        config_key=#{updateDO.configKey},
+                        config_value=#{updateDO.configValue},
+                        remark=#{updateDO.remark},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_create=#{userIdCreate}
+            </update>
+
+            <update id="deleteByUserIdCreate">
+                update sys_config set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_create=#{userIdCreate}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_create in
+                  <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInUserIdCreate" resultType="java.lang.Integer">
+                select count(1) from sys_config
+                where is_deleted=0 and user_id_create in
+                      <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and user_id_create in
+                        <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInUserIdCreate">
+              update sys_config set
+                      <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                      <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                      <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_create in
+                       <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInUserIdCreate">
+                update sys_config set
+                        config_key=#{updateDO.configKey},
+                        config_value=#{updateDO.configValue},
+                        remark=#{updateDO.remark},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_create in
+                       <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInUserIdCreate">
+                update sys_config set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and user_id_create in
+                        <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+          <select id="listByUserIdModified" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified=#{userIdModified}
+          </select>
+
+          <select id="countByUserIdModified" resultType="java.lang.Integer">
+                select count(1) from sys_config
+                where is_deleted=0 and user_id_modified=#{userIdModified}
+           </select>
+
+           <select id="mapByUserIdModified" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+                <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified=#{userIdModified}
+           </select>
+
+           <update id="updateNotNullFieldsByUserIdModified">
+              update sys_config set
+                      <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                      <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                      <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+               where is_deleted=0 and user_id_modified=#{userIdModified}
+          </update>
+
+          <update id="updateAllFieldsByUserIdModified">
+                update sys_config set
+                        config_key=#{updateDO.configKey},
+                        config_value=#{updateDO.configValue},
+                        remark=#{updateDO.remark},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_modified=#{userIdModified}
+            </update>
+
+            <update id="deleteByUserIdModified">
+                update sys_config set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                 where is_deleted=0 and user_id_modified=#{userIdModified}
+            </update>
+
+
+
+            <!--property in -->
+
+         <select id="listByInUserIdModified" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+              <include refid="selectAsDO" />
+                  where is_deleted=0 and user_id_modified in
+                  <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                      #{inItem}
+                  </foreach>
+          </select>
+
+          <select id="countByInUserIdModified" resultType="java.lang.Integer">
+                select count(1) from sys_config
+                where is_deleted=0 and user_id_modified in
+                      <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                          #{inItem}
+                      </foreach>
+           </select>
+
+           <select id="mapByInUserIdModified" resultType="com.hyzs.tibmas.core.dbo.SysConfigDO">
+                <include refid="selectAsDO" />
+                    where is_deleted=0 and user_id_modified in
+                        <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+           </select>
+
+           <update id="updateNotNullFieldsByInUserIdModified">
+              update sys_config set
+                      <if test="updateDO.configKey != null">config_key=#{updateDO.configKey},</if>
+                      <if test="updateDO.configValue != null">config_value=#{updateDO.configValue},</if>
+                      <if test="updateDO.remark != null">remark=#{updateDO.remark},</if>
+                      <if test="updateDO.userIdCreate != null">user_id_create=#{updateDO.userIdCreate},</if>
+                      <if test="updateDO.userIdModified != null">user_id_modified=#{updateDO.userIdModified},</if>
+                      gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_modified in
+                       <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+          </update>
+
+          <update id="updateAllFieldsByInUserIdModified">
+                update sys_config set
+                        config_key=#{updateDO.configKey},
+                        config_value=#{updateDO.configValue},
+                        remark=#{updateDO.remark},
+                        user_id_create=#{updateDO.userIdCreate},
+                        user_id_modified=#{updateDO.userIdModified},
+                        gmt_modified=CURRENT_TIMESTAMP
+                   where is_deleted=0 and user_id_modified in
+                       <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                           #{inItem}
+                       </foreach>
+            </update>
+
+            <update id="deleteByInUserIdModified">
+                update sys_config set
+                        is_deleted=1,
+                        gmt_modified=CURRENT_TIMESTAMP
+                    where is_deleted=0 and user_id_modified in
+                        <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
+                            #{inItem}
+                        </foreach>
+            </update>
+
+</mapper>
+
