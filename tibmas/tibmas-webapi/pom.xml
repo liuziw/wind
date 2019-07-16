@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tibmas-oauth-server</artifactId>
+    <artifactId>tibmas-webapi</artifactId>
 
     <dependencies>
         <dependency>
@@ -17,18 +17,13 @@
             <artifactId>spring-cloud-starter-eureka-server</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.lzw</groupId>
             <artifactId>tibmas-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
     <build>
-        <finalName>tibmas-oauth-server</finalName>
+        <finalName>tibmas-webapi</finalName>
         <directory>target</directory>
         <plugins>
             <plugin>
@@ -36,7 +31,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot-version}</version>
                 <configuration>
-                    <mainClass>com.hyzs.TibmasOauthServerApplication</mainClass>
+                    <mainClass>com.hyzs.TibmasWebApiApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -48,4 +43,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
