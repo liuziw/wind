@@ -14,6 +14,7 @@
     <modules>
         <module>tibmas-core</module>
         <module>tibmas-log</module>
+        <module>tibmas-oauth-server</module>
     </modules>
 
 
