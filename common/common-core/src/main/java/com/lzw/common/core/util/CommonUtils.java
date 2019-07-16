@@ -29,6 +29,7 @@ import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -1170,6 +1171,30 @@ public abstract class CommonUtils {
             }
         }
         return null;
+    }
+
+    /**
+     * 分组执行任务
+     * @param listTask 需要执行的任务列表
+     * @param consumer 执行任务具体实现
+     * @param groupSize 分组的size
+     */
+    public static void groupTask(List<?> listTask, Consumer<List<?>> consumer, int groupSize){
+        if(CollectionUtils.isEmpty(listTask)){
+            return;
+        }
+        int group = listTask.size()/groupSize;
+        for(int i=0;i<=group;i++){
+            List<?> list;
+            if(i < group){
+                list = listTask.subList(i*groupSize,(i+1)*groupSize);
+            }else {
+                list = listTask.subList(i*groupSize,listTask.size());
+            }
+            if(!CollectionUtils.isEmpty(list)){
+                ThreadPoolUtils.runAsync(()-> consumer.accept(list));
+            }
+        }
     }
 
 
