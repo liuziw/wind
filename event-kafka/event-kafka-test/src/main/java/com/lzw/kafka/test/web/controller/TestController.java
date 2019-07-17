@@ -1,7 +1,7 @@
 package com.lzw.kafka.test.web.controller;
 
-import com.hyzs.event.kafka.comsumer.event.KafkaConsumerEvent;
-import com.hyzs.event.kafka.producer.event.KafkaProducerEvent;
+import com.lzw.kafka.comsumer.event.KafkaConsumerEvent;
+import com.lzw.kafka.producer.event.KafkaProducerEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.event.EventListener;

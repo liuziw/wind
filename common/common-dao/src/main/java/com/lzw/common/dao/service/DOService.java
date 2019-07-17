@@ -1,7 +1,8 @@
 package com.lzw.common.dao.service;
 
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.dao.dto.PageQueryItemDTO;
+
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.dao.dto.PageQueryItemDTO;
 
 public interface DOService<D,K> {
 

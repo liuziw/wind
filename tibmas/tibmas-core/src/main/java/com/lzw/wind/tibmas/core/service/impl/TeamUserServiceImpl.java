@@ -2,20 +2,20 @@ package com.lzw.wind.tibmas.core.service.impl;
 
 
 import com.google.common.collect.Lists;
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.core.exception.CommonErrorCode;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.dao.enums.IsDeletedEnum;
-import com.hyzs.gz.common.dao.util.DaoUtils;
-import com.hyzs.tibmas.core.bo.ListTeamInfoByUserIdBO;
-import com.hyzs.tibmas.core.daomanager.*;
-import com.hyzs.tibmas.core.dbo.*;
-import com.hyzs.tibmas.core.dto.*;
-import com.hyzs.tibmas.core.service.TeamUserService;
-import com.hyzs.tibmas.core.vo.TeamUserVO;
-import com.hyzs.tibmas.core.vo.UserBasicInfoVO;
-import com.hyzs.tibmas.core.vo.UserInfoVo;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.core.exception.CommonErrorCode;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.dao.enums.IsDeletedEnum;
+import com.lzw.common.dao.util.DaoUtils;
+import com.lzw.wind.tibmas.core.bo.ListTeamInfoByUserIdBO;
+import com.lzw.wind.tibmas.core.daomanager.*;
+import com.lzw.wind.tibmas.core.dbo.*;
+import com.lzw.wind.tibmas.core.dto.*;
+import com.lzw.wind.tibmas.core.service.TeamUserService;
+import com.lzw.wind.tibmas.core.vo.TeamUserVO;
+import com.lzw.wind.tibmas.core.vo.UserBasicInfoVO;
+import com.lzw.wind.tibmas.core.vo.UserInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

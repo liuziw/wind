@@ -1,7 +1,7 @@
 package com.lzw.common.websocket.config;
 
-import com.hyzs.gz.common.core.exception.CommonErrorCode;
-import com.hyzs.gz.common.core.exception.CommonException;
+import com.lzw.common.core.exception.CommonErrorCode;
+import com.lzw.common.core.exception.CommonException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.socket.*;

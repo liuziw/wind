@@ -1,7 +1,7 @@
 package com.lzw.wind.tibmas.core.mapper;
 
-import com.hyzs.gz.common.dao.mapper.CommonMapper;
-import com.hyzs.tibmas.core.dbo.UserExpandDO;
+import com.lzw.common.dao.mapper.CommonMapper;
+import com.lzw.wind.tibmas.core.dbo.UserExpandDO;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

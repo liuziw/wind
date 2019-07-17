@@ -1,13 +1,13 @@
 package com.lzw.wind.tibmas.core.service;
 
-import com.hyzs.gz.common.dao.dto.IdDTO;
-import com.hyzs.tibmas.core.bo.AreaBO;
-import com.hyzs.tibmas.core.bo.AreaDetailsBO;
-import com.hyzs.tibmas.core.dbo.AreaDO;
-import com.hyzs.tibmas.core.dto.AreaTreeDTO;
-import com.hyzs.tibmas.core.dto.ListQueryAreaDTO;
-import com.hyzs.tibmas.core.vo.AreaTreeTableVO;
-import com.hyzs.tibmas.core.vo.AreaTreeVO;
+import com.lzw.common.dao.dto.IdDTO;
+import com.lzw.wind.tibmas.core.bo.AreaBO;
+import com.lzw.wind.tibmas.core.bo.AreaDetailsBO;
+import com.lzw.wind.tibmas.core.dbo.AreaDO;
+import com.lzw.wind.tibmas.core.dto.AreaTreeDTO;
+import com.lzw.wind.tibmas.core.dto.ListQueryAreaDTO;
+import com.lzw.wind.tibmas.core.vo.AreaTreeTableVO;
+import com.lzw.wind.tibmas.core.vo.AreaTreeVO;
 
 import java.util.List;
 

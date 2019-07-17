@@ -1,14 +1,14 @@
 package com.lzw.wind.tibmas.core.service;
 
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.tibmas.core.bo.AppBO;
-import com.hyzs.tibmas.core.dbo.AppDO;
-import com.hyzs.tibmas.core.dto.AddAppDTO;
-import com.hyzs.tibmas.core.dto.ListQueryAppDTO;
-import com.hyzs.tibmas.core.dto.UpdateAppDTO;
-import com.hyzs.tibmas.core.vo.ClientVO;
-import com.hyzs.tibmas.core.vo.SelectTreeVO;
-import com.hyzs.tibmas.core.vo.SelectVO;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.wind.tibmas.core.bo.AppBO;
+import com.lzw.wind.tibmas.core.dbo.AppDO;
+import com.lzw.wind.tibmas.core.dto.AddAppDTO;
+import com.lzw.wind.tibmas.core.dto.ListQueryAppDTO;
+import com.lzw.wind.tibmas.core.dto.UpdateAppDTO;
+import com.lzw.wind.tibmas.core.vo.ClientVO;
+import com.lzw.wind.tibmas.core.vo.SelectTreeVO;
+import com.lzw.wind.tibmas.core.vo.SelectVO;
 
 import java.util.List;
 

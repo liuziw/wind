@@ -1,8 +1,8 @@
 package com.lzw.wind.tibmas.server.impl;
 
 import com.google.common.collect.Lists;
-import com.hyzs.tibmas.core.daomanager.AppDaoManager;
-import com.hyzs.tibmas.core.dbo.AppDO;
+import com.lzw.wind.tibmas.core.daomanager.AppDaoManager;
+import com.lzw.wind.tibmas.core.dbo.AppDO;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;

@@ -1,9 +1,9 @@
 package com.lzw.wind.tibmas.core.daomanager.immutable.impl;
 
-import com.hyzs.gz.common.dao.daomanager.impl.CommonDaoManagerImpl;
-import com.hyzs.tibmas.core.daomanager.immutable.ImmutableDeptRoleDaoManager;
-import com.hyzs.tibmas.core.dbo.DeptRoleDO;
-import com.hyzs.tibmas.core.mapper.DeptRoleMapper;
+import com.lzw.common.dao.daomanager.impl.CommonDaoManagerImpl;
+import com.lzw.wind.tibmas.core.daomanager.immutable.ImmutableDeptRoleDaoManager;
+import com.lzw.wind.tibmas.core.dbo.DeptRoleDO;
+import com.lzw.wind.tibmas.core.mapper.DeptRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;

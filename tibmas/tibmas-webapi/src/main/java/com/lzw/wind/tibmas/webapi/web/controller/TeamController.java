@@ -1,16 +1,15 @@
 package com.lzw.wind.tibmas.webapi.web.controller;
 
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.core.vo.ResponseVO;
-import com.hyzs.gz.common.core.web.controller.BaseController;
-import com.hyzs.tibmas.core.bo.TeamDetailsBO;
-import com.hyzs.tibmas.core.dto.*;
-import com.hyzs.tibmas.core.service.TeamService;
-import com.hyzs.tibmas.core.vo.HandleVO;
-import com.hyzs.tibmas.core.vo.LeaderVO;
-import com.hyzs.tibmas.core.vo.TeamVO;
-import com.hyzs.tibmas2reids.core.manager.Tibmas2RedisManager;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.core.vo.ResponseVO;
+import com.lzw.common.core.web.controller.BaseController;
+import com.lzw.wind.tibmas.core.bo.TeamDetailsBO;
+import com.lzw.wind.tibmas.core.dto.*;
+import com.lzw.wind.tibmas.core.service.TeamService;
+import com.lzw.wind.tibmas.core.vo.HandleVO;
+import com.lzw.wind.tibmas.core.vo.LeaderVO;
+import com.lzw.wind.tibmas.core.vo.TeamVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +26,6 @@ public class TeamController extends BaseController {
 
     @Autowired
     private TeamService teamService;
-
-    @Autowired
-    private Tibmas2RedisManager tibmas2RedisManager;
 
     @ApiOperation("新建团队")
     @RequestMapping(value = "addTeam", method = RequestMethod.POST)

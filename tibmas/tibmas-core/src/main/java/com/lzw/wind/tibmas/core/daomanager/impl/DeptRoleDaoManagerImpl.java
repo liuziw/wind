@@ -1,8 +1,8 @@
 package com.lzw.wind.tibmas.core.daomanager.impl;
 
-import com.hyzs.tibmas.core.dao.DeptRoleDao;
-import com.hyzs.tibmas.core.daomanager.DeptRoleDaoManager;
-import com.hyzs.tibmas.core.daomanager.immutable.impl.ImmutableDeptRoleDaoManagerImpl;
+import com.lzw.wind.tibmas.core.dao.DeptRoleDao;
+import com.lzw.wind.tibmas.core.daomanager.DeptRoleDaoManager;
+import com.lzw.wind.tibmas.core.daomanager.immutable.impl.ImmutableDeptRoleDaoManagerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

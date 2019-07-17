@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class SsoWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
-    @Value("${hyzs.sso.logoutUrl}")
+    @Value("${wind.sso.logoutUrl}")
     private String ssoLoutUrl;
 
     @Override

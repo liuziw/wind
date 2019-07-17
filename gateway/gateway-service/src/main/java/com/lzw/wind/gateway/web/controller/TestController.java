@@ -1,6 +1,6 @@
 package com.lzw.wind.gateway.web.controller;
 
-import com.hyzs.gateway.util.GatewayUtils;
+import com.lzw.wind.gateway.util.GatewayUtils;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;

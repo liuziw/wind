@@ -1,6 +1,6 @@
 package com.lzw.wind.gateway.manager.impl;
 
-import com.hyzs.gateway.manager.StateCodeCreator;
+import com.lzw.wind.gateway.manager.StateCodeCreator;
 import org.apache.commons.lang3.RandomUtils;
 import org.springframework.stereotype.Component;
 

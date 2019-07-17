@@ -2,7 +2,7 @@ package com.lzw.common.dao.dto;
 
 
 
-import com.hyzs.gz.common.dao.util.DaoUtils;
+import com.lzw.common.dao.util.DaoUtils;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.StringUtils;
 

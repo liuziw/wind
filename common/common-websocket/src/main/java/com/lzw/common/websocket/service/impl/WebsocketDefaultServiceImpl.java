@@ -1,13 +1,13 @@
 package com.lzw.common.websocket.service.impl;
 
 import com.google.gson.GsonBuilder;
-import com.hyzs.gz.common.core.exception.CommonErrorCode;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.websocket.core.config.WebSocketMessageHandler;
-import com.hyzs.websocket.core.dto.MessageDTO;
-import com.hyzs.websocket.core.dto.MessageToAllDTO;
-import com.hyzs.websocket.core.dto.MessageToUsersDTO;
-import com.hyzs.websocket.core.service.WebsocketService;
+import com.lzw.common.core.exception.CommonErrorCode;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.websocket.config.WebSocketMessageHandler;
+import com.lzw.common.websocket.dto.MessageDTO;
+import com.lzw.common.websocket.dto.MessageToAllDTO;
+import com.lzw.common.websocket.dto.MessageToUsersDTO;
+import com.lzw.common.websocket.service.WebsocketService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import java.util.Date;
  * @date 2018/8/20 19:57
  */
 @Service
-//@ConditionalOnProperty(value = "hyzs.websocket.kafka.enabled",havingValue = "false",matchIfMissing = true)
+//@ConditionalOnProperty(value = "lzw.wind.websocket.kafka.enabled",havingValue = "false",matchIfMissing = true)
 @ConditionalOnMissingBean(name = "websocketService")
 @Slf4j
 public class WebsocketDefaultServiceImpl implements WebsocketService {

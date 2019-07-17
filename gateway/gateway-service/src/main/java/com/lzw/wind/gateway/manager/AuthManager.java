@@ -1,6 +1,6 @@
 package com.lzw.wind.gateway.manager;
 
-import com.hyzs.gateway.enums.AuthInfoEnum;
+import com.lzw.wind.gateway.enums.AuthInfoEnum;
 import org.springframework.web.server.ServerWebExchange;
 
 /**

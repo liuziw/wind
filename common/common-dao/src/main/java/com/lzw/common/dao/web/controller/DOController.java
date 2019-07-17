@@ -1,13 +1,14 @@
 package com.lzw.common.dao.web.controller;
 
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.core.vo.ResponseVO;
-import com.hyzs.gz.common.core.web.controller.BaseController;
-import com.hyzs.gz.common.dao.dto.IdDTO;
-import com.hyzs.gz.common.dao.dto.PageQueryItemDTO;
-import com.hyzs.gz.common.dao.service.DOService;
+
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.core.vo.ResponseVO;
+import com.lzw.common.core.web.controller.BaseController;
+import com.lzw.common.dao.dto.IdDTO;
+import com.lzw.common.dao.dto.PageQueryItemDTO;
+import com.lzw.common.dao.service.DOService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,7 @@ public class DOController<D,K> extends BaseController {
 
     @RequestMapping(value = "/pageQuery",method = RequestMethod.POST)
     @ApiOperation("查询")
-    public ResponseVO<PageBO<D>> pageQuery(@RequestBody  PageQueryItemDTO pageQueryItemDTO) {
+    public ResponseVO<PageBO<D>> pageQuery(@RequestBody PageQueryItemDTO pageQueryItemDTO) {
         return CommonUtils.okResponseVO(this.doService.pageQuery(pageQueryItemDTO));
     }
 

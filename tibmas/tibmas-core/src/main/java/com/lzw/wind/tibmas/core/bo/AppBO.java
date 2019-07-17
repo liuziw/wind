@@ -1,6 +1,6 @@
 package com.lzw.wind.tibmas.core.bo;
 
-import com.hyzs.tibmas.core.dbo.AppDO;
+import com.lzw.wind.tibmas.core.dbo.AppDO;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 

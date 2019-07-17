@@ -1,7 +1,7 @@
 package com.lzw.wind.tibmas.config;
 
-import com.hyzs.tibmas.core.daomanager.AppDaoManager;
-import com.hyzs.tibmas.server.impl.TibmasClientDetailServiceImpl;
+import com.lzw.wind.tibmas.core.daomanager.AppDaoManager;
+import com.lzw.wind.tibmas.server.impl.TibmasClientDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

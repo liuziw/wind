@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hyzs.tibmas.core.mapper.AreaMapper">
+<mapper namespace="com.lzw.wind.tibmas.core.mapper.AreaMapper">
 
     <!--
     /**
@@ -28,25 +28,25 @@
     </sql>
 
 
-    <select id="listAll" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+    <select id="listAll" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
         <include refid="selectAsDO" /> where is_deleted=0
     </select>
 
-    <select id="mapAll" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+    <select id="mapAll" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
         <include refid="selectAsDO" /> where is_deleted=0
     </select>
 
 
-    <select id="getById" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+    <select id="getById" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
         <include refid="selectAsDO" /> where id=#{id} and is_deleted=0
     </select>
 
 
-    <select id="listByIds" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+    <select id="listByIds" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
         <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
     </select>
 
-    <select id="mapByIds" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+    <select id="mapByIds" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
         <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
     </select>
 
@@ -213,7 +213,7 @@
 
 
 
-    <select id="listByProperty" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+    <select id="listByProperty" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
         <include refid="selectAsDO" />
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
@@ -223,7 +223,7 @@
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
 
-    <select id="mapByProperty" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+    <select id="mapByProperty" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
         <include refid="selectAsDO" />
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
@@ -272,7 +272,7 @@
          where is_deleted=0 and ${propertyName}=#{value}
     </update>
 
-    <select id="listByProperties" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+    <select id="listByProperties" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="propertyNames" item="propertyName" index="index">
@@ -288,7 +288,7 @@
             </foreach>
     </select>
 
-    <select id="mapByProperties" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+    <select id="mapByProperties" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="propertyNames" item="propertyName" index="index">
@@ -348,7 +348,7 @@
          </foreach>
     </update>
 
-    <select id="_listByQueryItems" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+    <select id="_listByQueryItems" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -368,7 +368,7 @@
             </foreach>
     </select>
 
-    <select id="_mapByQueryItems" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+    <select id="_mapByQueryItems" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -496,7 +496,7 @@
             </foreach>
     </update>
 
-    <select id="_listByPageQuery" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+    <select id="_listByPageQuery" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -543,7 +543,7 @@
 
 
 
-          <select id="listById" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+          <select id="listById" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and id=#{id}
           </select>
@@ -553,7 +553,7 @@
                 where is_deleted=0 and id=#{id}
            </select>
 
-           <select id="mapById" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapById" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and id=#{id}
            </select>
@@ -599,7 +599,7 @@
 
             <!--property in -->
 
-         <select id="listByInId" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+         <select id="listByInId" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and id in
                   <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
@@ -615,7 +615,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInId" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByInId" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and id in
                         <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
@@ -674,7 +674,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByCode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+          <select id="listByCode" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and code=#{code}
           </select>
@@ -684,7 +684,7 @@
                 where is_deleted=0 and code=#{code}
            </select>
 
-           <select id="mapByCode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByCode" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and code=#{code}
            </select>
@@ -737,7 +737,7 @@
 
             <!--property in -->
 
-         <select id="listByInCode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+         <select id="listByInCode" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and code in
                   <foreach collection="codeList" item="inItem" close=")" open="(" separator=",">
@@ -753,7 +753,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInCode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByInCode" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and code in
                         <foreach collection="codeList" item="inItem" close=")" open="(" separator=",">
@@ -812,7 +812,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByName" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+          <select id="listByName" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and name=#{name}
           </select>
@@ -822,7 +822,7 @@
                 where is_deleted=0 and name=#{name}
            </select>
 
-           <select id="mapByName" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByName" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and name=#{name}
            </select>
@@ -875,7 +875,7 @@
 
             <!--property in -->
 
-         <select id="listByInName" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+         <select id="listByInName" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and name in
                   <foreach collection="nameList" item="inItem" close=")" open="(" separator=",">
@@ -891,7 +891,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInName" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByInName" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and name in
                         <foreach collection="nameList" item="inItem" close=")" open="(" separator=",">
@@ -950,7 +950,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByPid" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+          <select id="listByPid" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and pid=#{pid}
           </select>
@@ -960,7 +960,7 @@
                 where is_deleted=0 and pid=#{pid}
            </select>
 
-           <select id="mapByPid" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByPid" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and pid=#{pid}
            </select>
@@ -1013,7 +1013,7 @@
 
             <!--property in -->
 
-         <select id="listByInPid" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+         <select id="listByInPid" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and pid in
                   <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
@@ -1029,7 +1029,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInPid" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByInPid" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and pid in
                         <foreach collection="pidList" item="inItem" close=")" open="(" separator=",">
@@ -1088,7 +1088,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByPcode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+          <select id="listByPcode" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and pcode=#{pcode}
           </select>
@@ -1098,7 +1098,7 @@
                 where is_deleted=0 and pcode=#{pcode}
            </select>
 
-           <select id="mapByPcode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByPcode" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and pcode=#{pcode}
            </select>
@@ -1151,7 +1151,7 @@
 
             <!--property in -->
 
-         <select id="listByInPcode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+         <select id="listByInPcode" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and pcode in
                   <foreach collection="pcodeList" item="inItem" close=")" open="(" separator=",">
@@ -1167,7 +1167,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInPcode" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByInPcode" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and pcode in
                         <foreach collection="pcodeList" item="inItem" close=")" open="(" separator=",">
@@ -1226,7 +1226,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByLongitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+          <select id="listByLongitude" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and longitude=#{longitude}
           </select>
@@ -1236,7 +1236,7 @@
                 where is_deleted=0 and longitude=#{longitude}
            </select>
 
-           <select id="mapByLongitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByLongitude" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and longitude=#{longitude}
            </select>
@@ -1289,7 +1289,7 @@
 
             <!--property in -->
 
-         <select id="listByInLongitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+         <select id="listByInLongitude" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and longitude in
                   <foreach collection="longitudeList" item="inItem" close=")" open="(" separator=",">
@@ -1305,7 +1305,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInLongitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByInLongitude" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and longitude in
                         <foreach collection="longitudeList" item="inItem" close=")" open="(" separator=",">
@@ -1364,7 +1364,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByLatitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+          <select id="listByLatitude" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and latitude=#{latitude}
           </select>
@@ -1374,7 +1374,7 @@
                 where is_deleted=0 and latitude=#{latitude}
            </select>
 
-           <select id="mapByLatitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByLatitude" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and latitude=#{latitude}
            </select>
@@ -1427,7 +1427,7 @@
 
             <!--property in -->
 
-         <select id="listByInLatitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+         <select id="listByInLatitude" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and latitude in
                   <foreach collection="latitudeList" item="inItem" close=")" open="(" separator=",">
@@ -1443,7 +1443,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInLatitude" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByInLatitude" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and latitude in
                         <foreach collection="latitudeList" item="inItem" close=")" open="(" separator=",">
@@ -1502,7 +1502,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByLevelPath" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+          <select id="listByLevelPath" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and level_path=#{levelPath}
           </select>
@@ -1512,7 +1512,7 @@
                 where is_deleted=0 and level_path=#{levelPath}
            </select>
 
-           <select id="mapByLevelPath" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByLevelPath" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and level_path=#{levelPath}
            </select>
@@ -1565,7 +1565,7 @@
 
             <!--property in -->
 
-         <select id="listByInLevelPath" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+         <select id="listByInLevelPath" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and level_path in
                   <foreach collection="levelPathList" item="inItem" close=")" open="(" separator=",">
@@ -1581,7 +1581,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInLevelPath" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByInLevelPath" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and level_path in
                         <foreach collection="levelPathList" item="inItem" close=")" open="(" separator=",">
@@ -1640,7 +1640,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByLevel" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+          <select id="listByLevel" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and level=#{level}
           </select>
@@ -1650,7 +1650,7 @@
                 where is_deleted=0 and level=#{level}
            </select>
 
-           <select id="mapByLevel" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByLevel" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and level=#{level}
            </select>
@@ -1703,7 +1703,7 @@
 
             <!--property in -->
 
-         <select id="listByInLevel" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+         <select id="listByInLevel" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and level in
                   <foreach collection="levelList" item="inItem" close=")" open="(" separator=",">
@@ -1719,7 +1719,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInLevel" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByInLevel" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and level in
                         <foreach collection="levelList" item="inItem" close=")" open="(" separator=",">
@@ -1778,7 +1778,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByDeep" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+          <select id="listByDeep" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and deep=#{deep}
           </select>
@@ -1788,7 +1788,7 @@
                 where is_deleted=0 and deep=#{deep}
            </select>
 
-           <select id="mapByDeep" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByDeep" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and deep=#{deep}
            </select>
@@ -1841,7 +1841,7 @@
 
             <!--property in -->
 
-         <select id="listByInDeep" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+         <select id="listByInDeep" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and deep in
                   <foreach collection="deepList" item="inItem" close=")" open="(" separator=",">
@@ -1857,7 +1857,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInDeep" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByInDeep" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and deep in
                         <foreach collection="deepList" item="inItem" close=")" open="(" separator=",">
@@ -1916,7 +1916,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+          <select id="listByUserIdCreate" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_create=#{userIdCreate}
           </select>
@@ -1926,7 +1926,7 @@
                 where is_deleted=0 and user_id_create=#{userIdCreate}
            </select>
 
-           <select id="mapByUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByUserIdCreate" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_create=#{userIdCreate}
            </select>
@@ -1979,7 +1979,7 @@
 
             <!--property in -->
 
-         <select id="listByInUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+         <select id="listByInUserIdCreate" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_create in
                   <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
@@ -1995,7 +1995,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByInUserIdCreate" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and user_id_create in
                         <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
@@ -2054,7 +2054,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByUserIdModified" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+          <select id="listByUserIdModified" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_modified=#{userIdModified}
           </select>
@@ -2064,7 +2064,7 @@
                 where is_deleted=0 and user_id_modified=#{userIdModified}
            </select>
 
-           <select id="mapByUserIdModified" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByUserIdModified" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_modified=#{userIdModified}
            </select>
@@ -2117,7 +2117,7 @@
 
             <!--property in -->
 
-         <select id="listByInUserIdModified" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+         <select id="listByInUserIdModified" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_modified in
                   <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
@@ -2133,7 +2133,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInUserIdModified" resultType="com.hyzs.tibmas.core.dbo.AreaDO">
+           <select id="mapByInUserIdModified" resultType="com.lzw.wind.tibmas.core.dbo.AreaDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and user_id_modified in
                         <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">

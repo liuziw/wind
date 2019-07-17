@@ -1,8 +1,8 @@
 package com.lzw.wind.tibmas.core.daomanager.impl;
 
-import com.hyzs.tibmas.core.dao.TeamDao;
-import com.hyzs.tibmas.core.daomanager.TeamDaoManager;
-import com.hyzs.tibmas.core.daomanager.immutable.impl.ImmutableTeamDaoManagerImpl;
+import com.lzw.wind.tibmas.core.dao.TeamDao;
+import com.lzw.wind.tibmas.core.daomanager.TeamDaoManager;
+import com.lzw.wind.tibmas.core.daomanager.immutable.impl.ImmutableTeamDaoManagerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

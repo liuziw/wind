@@ -1,20 +1,20 @@
 package com.lzw.wind.tibmas.core.service.impl;
 
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.core.exception.CommonErrorCode;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.dao.dto.QueryItemDTO;
-import com.hyzs.gz.common.dao.util.DaoUtils;
-import com.hyzs.tibmas.core.bo.TeamDetailsBO;
-import com.hyzs.tibmas.core.daomanager.*;
-import com.hyzs.tibmas.core.dbo.*;
-import com.hyzs.tibmas.core.dto.*;
-import com.hyzs.tibmas.core.enums.RoleTypeEnum;
-import com.hyzs.tibmas.core.service.TeamService;
-import com.hyzs.tibmas.core.vo.HandleVO;
-import com.hyzs.tibmas.core.vo.LeaderVO;
-import com.hyzs.tibmas.core.vo.TeamVO;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.core.exception.CommonErrorCode;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.dao.dto.QueryItemDTO;
+import com.lzw.common.dao.util.DaoUtils;
+import com.lzw.wind.tibmas.core.bo.TeamDetailsBO;
+import com.lzw.wind.tibmas.core.daomanager.*;
+import com.lzw.wind.tibmas.core.dbo.*;
+import com.lzw.wind.tibmas.core.dto.*;
+import com.lzw.wind.tibmas.core.enums.RoleTypeEnum;
+import com.lzw.wind.tibmas.core.service.TeamService;
+import com.lzw.wind.tibmas.core.vo.HandleVO;
+import com.lzw.wind.tibmas.core.vo.LeaderVO;
+import com.lzw.wind.tibmas.core.vo.TeamVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

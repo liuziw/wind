@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hyzs.tibmas.core.mapper.UserRoleMapper">
+<mapper namespace="com.lzw.wind.tibmas.core.mapper.UserRoleMapper">
 
     <!--
     /**
@@ -28,24 +28,24 @@
     </sql>
 
 
-    <select id="listAll" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+    <select id="listAll" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
         <include refid="selectAsDO" /> where is_deleted=0
     </select>
 
-    <select id="mapAll" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+    <select id="mapAll" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
         <include refid="selectAsDO" /> where is_deleted=0
     </select>
 
 
-    <select id="getById" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+    <select id="getById" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
         <include refid="selectAsDO" /> where id=#{id} and is_deleted=0
     </select>
 
-    <select id="listByIds" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+    <select id="listByIds" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
         <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
     </select>
 
-    <select id="mapByIds" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+    <select id="mapByIds" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
         <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
     </select>
 
@@ -164,7 +164,7 @@
 
 
 
-    <select id="listByProperty" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+    <select id="listByProperty" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
         <include refid="selectAsDO" />
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
@@ -174,7 +174,7 @@
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
 
-    <select id="mapByProperty" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+    <select id="mapByProperty" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
         <include refid="selectAsDO" />
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
@@ -211,7 +211,7 @@
          where is_deleted=0 and ${propertyName}=#{value}
     </update>
 
-    <select id="listByProperties" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+    <select id="listByProperties" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="propertyNames" item="propertyName" index="index">
@@ -227,7 +227,7 @@
             </foreach>
     </select>
 
-    <select id="mapByProperties" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+    <select id="mapByProperties" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="propertyNames" item="propertyName" index="index">
@@ -275,7 +275,7 @@
          </foreach>
     </update>
 
-    <select id="_listByQueryItems" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+    <select id="_listByQueryItems" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -295,7 +295,7 @@
             </foreach>
     </select>
 
-    <select id="_mapByQueryItems" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+    <select id="_mapByQueryItems" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -411,7 +411,7 @@
             </foreach>
     </update>
 
-    <select id="_listByPageQuery" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+    <select id="_listByPageQuery" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -458,7 +458,7 @@
 
 
 
-          <select id="listByUserId" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+          <select id="listByUserId" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id=#{userId}
           </select>
@@ -468,7 +468,7 @@
                 where is_deleted=0 and user_id=#{userId}
            </select>
 
-           <select id="mapByUserId" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+           <select id="mapByUserId" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and user_id=#{userId}
            </select>
@@ -508,7 +508,7 @@
 
             <!--property in -->
 
-         <select id="listByInUserId" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+         <select id="listByInUserId" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id in
                   <foreach collection="userIdList" item="inItem" close=")" open="(" separator=",">
@@ -524,7 +524,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInUserId" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+           <select id="mapByInUserId" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and user_id in
                         <foreach collection="userIdList" item="inItem" close=")" open="(" separator=",">
@@ -571,7 +571,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByRoleId" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+          <select id="listByRoleId" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and role_id=#{roleId}
           </select>
@@ -581,7 +581,7 @@
                 where is_deleted=0 and role_id=#{roleId}
            </select>
 
-           <select id="mapByRoleId" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+           <select id="mapByRoleId" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and role_id=#{roleId}
            </select>
@@ -621,7 +621,7 @@
 
             <!--property in -->
 
-         <select id="listByInRoleId" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+         <select id="listByInRoleId" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and role_id in
                   <foreach collection="roleIdList" item="inItem" close=")" open="(" separator=",">
@@ -637,7 +637,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInRoleId" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+           <select id="mapByInRoleId" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and role_id in
                         <foreach collection="roleIdList" item="inItem" close=")" open="(" separator=",">
@@ -684,7 +684,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByStartTime" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+          <select id="listByStartTime" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and start_time=#{startTime}
           </select>
@@ -694,7 +694,7 @@
                 where is_deleted=0 and start_time=#{startTime}
            </select>
 
-           <select id="mapByStartTime" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+           <select id="mapByStartTime" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and start_time=#{startTime}
            </select>
@@ -734,7 +734,7 @@
 
             <!--property in -->
 
-         <select id="listByInStartTime" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+         <select id="listByInStartTime" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and start_time in
                   <foreach collection="startTimeList" item="inItem" close=")" open="(" separator=",">
@@ -750,7 +750,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInStartTime" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+           <select id="mapByInStartTime" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and start_time in
                         <foreach collection="startTimeList" item="inItem" close=")" open="(" separator=",">
@@ -797,7 +797,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByEndTime" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+          <select id="listByEndTime" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and end_time=#{endTime}
           </select>
@@ -807,7 +807,7 @@
                 where is_deleted=0 and end_time=#{endTime}
            </select>
 
-           <select id="mapByEndTime" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+           <select id="mapByEndTime" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and end_time=#{endTime}
            </select>
@@ -847,7 +847,7 @@
 
             <!--property in -->
 
-         <select id="listByInEndTime" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+         <select id="listByInEndTime" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and end_time in
                   <foreach collection="endTimeList" item="inItem" close=")" open="(" separator=",">
@@ -863,7 +863,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInEndTime" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+           <select id="mapByInEndTime" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and end_time in
                         <foreach collection="endTimeList" item="inItem" close=")" open="(" separator=",">
@@ -910,7 +910,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+          <select id="listByUserIdCreate" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_create=#{userIdCreate}
           </select>
@@ -920,7 +920,7 @@
                 where is_deleted=0 and user_id_create=#{userIdCreate}
            </select>
 
-           <select id="mapByUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+           <select id="mapByUserIdCreate" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_create=#{userIdCreate}
            </select>
@@ -960,7 +960,7 @@
 
             <!--property in -->
 
-         <select id="listByInUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+         <select id="listByInUserIdCreate" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_create in
                   <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
@@ -976,7 +976,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInUserIdCreate" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+           <select id="mapByInUserIdCreate" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and user_id_create in
                         <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
@@ -1023,7 +1023,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByUserIdModified" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+          <select id="listByUserIdModified" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_modified=#{userIdModified}
           </select>
@@ -1033,7 +1033,7 @@
                 where is_deleted=0 and user_id_modified=#{userIdModified}
            </select>
 
-           <select id="mapByUserIdModified" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+           <select id="mapByUserIdModified" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_modified=#{userIdModified}
            </select>
@@ -1073,7 +1073,7 @@
 
             <!--property in -->
 
-         <select id="listByInUserIdModified" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+         <select id="listByInUserIdModified" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_modified in
                   <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
@@ -1089,7 +1089,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInUserIdModified" resultType="com.hyzs.tibmas.core.dbo.UserRoleDO">
+           <select id="mapByInUserIdModified" resultType="com.lzw.wind.tibmas.core.dbo.UserRoleDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and user_id_modified in
                         <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hyzs.tibmas.core.mapper.TeamMapper">
+<mapper namespace="com.lzw.wind.tibmas.core.mapper.TeamMapper">
 
     <!--
     /**
@@ -28,25 +28,25 @@
     </sql>
 
 
-    <select id="listAll" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+    <select id="listAll" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
         <include refid="selectAsDO" /> where is_deleted=0
     </select>
 
-    <select id="mapAll" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+    <select id="mapAll" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
         <include refid="selectAsDO" /> where is_deleted=0
     </select>
 
 
-    <select id="getById" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+    <select id="getById" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
         <include refid="selectAsDO" /> where id=#{id} and is_deleted=0
     </select>
 
 
-    <select id="listByIds" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+    <select id="listByIds" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
         <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
     </select>
 
-    <select id="mapByIds" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+    <select id="mapByIds" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
         <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
     </select>
 
@@ -173,7 +173,7 @@
 
 
 
-    <select id="listByProperty" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+    <select id="listByProperty" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
         <include refid="selectAsDO" />
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
@@ -183,7 +183,7 @@
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
 
-    <select id="mapByProperty" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+    <select id="mapByProperty" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
         <include refid="selectAsDO" />
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
@@ -222,7 +222,7 @@
          where is_deleted=0 and ${propertyName}=#{value}
     </update>
 
-    <select id="listByProperties" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+    <select id="listByProperties" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="propertyNames" item="propertyName" index="index">
@@ -238,7 +238,7 @@
             </foreach>
     </select>
 
-    <select id="mapByProperties" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+    <select id="mapByProperties" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="propertyNames" item="propertyName" index="index">
@@ -288,7 +288,7 @@
          </foreach>
     </update>
 
-    <select id="_listByQueryItems" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+    <select id="_listByQueryItems" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -308,7 +308,7 @@
             </foreach>
     </select>
 
-    <select id="_mapByQueryItems" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+    <select id="_mapByQueryItems" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -426,7 +426,7 @@
             </foreach>
     </update>
 
-    <select id="_listByPageQuery" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+    <select id="_listByPageQuery" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -473,7 +473,7 @@
 
 
 
-          <select id="listById" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+          <select id="listById" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and id=#{id}
           </select>
@@ -483,7 +483,7 @@
                 where is_deleted=0 and id=#{id}
            </select>
 
-           <select id="mapById" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapById" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and id=#{id}
            </select>
@@ -519,7 +519,7 @@
 
             <!--property in -->
 
-         <select id="listByInId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+         <select id="listByInId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and id in
                   <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
@@ -535,7 +535,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByInId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and id in
                         <foreach collection="idList" item="inItem" close=")" open="(" separator=",">
@@ -584,7 +584,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByTeamName" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+          <select id="listByTeamName" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and team_name=#{teamName}
           </select>
@@ -594,7 +594,7 @@
                 where is_deleted=0 and team_name=#{teamName}
            </select>
 
-           <select id="mapByTeamName" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByTeamName" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and team_name=#{teamName}
            </select>
@@ -637,7 +637,7 @@
 
             <!--property in -->
 
-         <select id="listByInTeamName" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+         <select id="listByInTeamName" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and team_name in
                   <foreach collection="teamNameList" item="inItem" close=")" open="(" separator=",">
@@ -653,7 +653,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInTeamName" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByInTeamName" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and team_name in
                         <foreach collection="teamNameList" item="inItem" close=")" open="(" separator=",">
@@ -702,7 +702,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByTeamDesc" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+          <select id="listByTeamDesc" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and team_desc=#{teamDesc}
           </select>
@@ -712,7 +712,7 @@
                 where is_deleted=0 and team_desc=#{teamDesc}
            </select>
 
-           <select id="mapByTeamDesc" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByTeamDesc" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and team_desc=#{teamDesc}
            </select>
@@ -755,7 +755,7 @@
 
             <!--property in -->
 
-         <select id="listByInTeamDesc" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+         <select id="listByInTeamDesc" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and team_desc in
                   <foreach collection="teamDescList" item="inItem" close=")" open="(" separator=",">
@@ -771,7 +771,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInTeamDesc" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByInTeamDesc" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and team_desc in
                         <foreach collection="teamDescList" item="inItem" close=")" open="(" separator=",">
@@ -820,7 +820,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByTeamTypeCode" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+          <select id="listByTeamTypeCode" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and team_type_code=#{teamTypeCode}
           </select>
@@ -830,7 +830,7 @@
                 where is_deleted=0 and team_type_code=#{teamTypeCode}
            </select>
 
-           <select id="mapByTeamTypeCode" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByTeamTypeCode" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and team_type_code=#{teamTypeCode}
            </select>
@@ -873,7 +873,7 @@
 
             <!--property in -->
 
-         <select id="listByInTeamTypeCode" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+         <select id="listByInTeamTypeCode" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and team_type_code in
                   <foreach collection="teamTypeCodeList" item="inItem" close=")" open="(" separator=",">
@@ -889,7 +889,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInTeamTypeCode" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByInTeamTypeCode" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and team_type_code in
                         <foreach collection="teamTypeCodeList" item="inItem" close=")" open="(" separator=",">
@@ -938,7 +938,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByTeamLeaderId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+          <select id="listByTeamLeaderId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and team_leader_id=#{teamLeaderId}
           </select>
@@ -948,7 +948,7 @@
                 where is_deleted=0 and team_leader_id=#{teamLeaderId}
            </select>
 
-           <select id="mapByTeamLeaderId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByTeamLeaderId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and team_leader_id=#{teamLeaderId}
            </select>
@@ -991,7 +991,7 @@
 
             <!--property in -->
 
-         <select id="listByInTeamLeaderId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+         <select id="listByInTeamLeaderId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and team_leader_id in
                   <foreach collection="teamLeaderIdList" item="inItem" close=")" open="(" separator=",">
@@ -1007,7 +1007,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInTeamLeaderId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByInTeamLeaderId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and team_leader_id in
                         <foreach collection="teamLeaderIdList" item="inItem" close=")" open="(" separator=",">
@@ -1056,7 +1056,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByTeamDeptId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+          <select id="listByTeamDeptId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and team_dept_id=#{teamDeptId}
           </select>
@@ -1066,7 +1066,7 @@
                 where is_deleted=0 and team_dept_id=#{teamDeptId}
            </select>
 
-           <select id="mapByTeamDeptId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByTeamDeptId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and team_dept_id=#{teamDeptId}
            </select>
@@ -1109,7 +1109,7 @@
 
             <!--property in -->
 
-         <select id="listByInTeamDeptId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+         <select id="listByInTeamDeptId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and team_dept_id in
                   <foreach collection="teamDeptIdList" item="inItem" close=")" open="(" separator=",">
@@ -1125,7 +1125,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInTeamDeptId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByInTeamDeptId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and team_dept_id in
                         <foreach collection="teamDeptIdList" item="inItem" close=")" open="(" separator=",">
@@ -1174,7 +1174,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByTeamHandleId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+          <select id="listByTeamHandleId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and team_handle_id=#{teamHandleId}
           </select>
@@ -1184,7 +1184,7 @@
                 where is_deleted=0 and team_handle_id=#{teamHandleId}
            </select>
 
-           <select id="mapByTeamHandleId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByTeamHandleId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and team_handle_id=#{teamHandleId}
            </select>
@@ -1227,7 +1227,7 @@
 
             <!--property in -->
 
-         <select id="listByInTeamHandleId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+         <select id="listByInTeamHandleId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and team_handle_id in
                   <foreach collection="teamHandleIdList" item="inItem" close=")" open="(" separator=",">
@@ -1243,7 +1243,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInTeamHandleId" resultType="com.hyzs.tibmas.core.dbo.TeamDO">
+           <select id="mapByInTeamHandleId" resultType="com.lzw.wind.tibmas.core.dbo.TeamDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and team_handle_id in
                         <foreach collection="teamHandleIdList" item="inItem" close=")" open="(" separator=",">

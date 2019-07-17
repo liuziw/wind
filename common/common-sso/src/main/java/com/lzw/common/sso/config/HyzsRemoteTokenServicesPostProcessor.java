@@ -28,7 +28,7 @@ public class HyzsRemoteTokenServicesPostProcessor implements BeanPostProcessor{
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if(bean instanceof RemoteTokenServices){
-            log.warn("HyzsRemoteTokenServices init...");
+            log.warn("lzw.windRemoteTokenServices init...");
             HyzsRemoteTokenServices services = new HyzsRemoteTokenServices();
             services.setCheckTokenEndpointUrl(this.resource.getTokenInfoUri());
             services.setClientId(this.resource.getClientId());

@@ -1,20 +1,20 @@
 package com.lzw.wind.tibmas.oauth.service.impl;
 
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.tibmas.core.bo.ListPermInfoByUserIdAndAppIdBO;
-import com.hyzs.tibmas.core.bo.ListTeamInfoByUserIdBO;
-import com.hyzs.tibmas.core.daomanager.AppDaoManager;
-import com.hyzs.tibmas.core.daomanager.AreaDaoManager;
-import com.hyzs.tibmas.core.daomanager.DeptDaoManager;
-import com.hyzs.tibmas.core.daomanager.UserDaoManager;
-import com.hyzs.tibmas.core.dbo.AppDO;
-import com.hyzs.tibmas.core.dbo.AreaDO;
-import com.hyzs.tibmas.core.dbo.DeptDO;
-import com.hyzs.tibmas.core.dbo.UserDO;
-import com.hyzs.tibmas.core.manager.TibmasManager;
-import com.hyzs.tibmas.core.service.TeamUserService;
-import com.hyzs.tibmas.oauth.bo.*;
-import com.hyzs.tibmas.oauth.service.CheckTokenService;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.wind.tibmas.core.bo.ListPermInfoByUserIdAndAppIdBO;
+import com.lzw.wind.tibmas.core.bo.ListTeamInfoByUserIdBO;
+import com.lzw.wind.tibmas.core.daomanager.AppDaoManager;
+import com.lzw.wind.tibmas.core.daomanager.AreaDaoManager;
+import com.lzw.wind.tibmas.core.daomanager.DeptDaoManager;
+import com.lzw.wind.tibmas.core.daomanager.UserDaoManager;
+import com.lzw.wind.tibmas.core.dbo.AppDO;
+import com.lzw.wind.tibmas.core.dbo.AreaDO;
+import com.lzw.wind.tibmas.core.dbo.DeptDO;
+import com.lzw.wind.tibmas.core.dbo.UserDO;
+import com.lzw.wind.tibmas.core.manager.TibmasManager;
+import com.lzw.wind.tibmas.core.service.TeamUserService;
+import com.lzw.wind.tibmas.oauth.bo.*;
+import com.lzw.wind.tibmas.oauth.service.CheckTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -73,10 +73,6 @@ public class CheckTokenServiceImpl implements CheckTokenService {
         AppDO appDO = this.appDaoManager.getById(appId);
         checkTokenUserInfoBO.setAppInfo(CommonUtils.newInstance(appDO,CheckTokenAppBO.class));
 
-
-
-        //TODO 这里有代码有很多重复的，下一步需要看看怎么抽取
-        this.tibmasManager.push2Redis(userId);
 
         return checkTokenUserInfoBO;
     }

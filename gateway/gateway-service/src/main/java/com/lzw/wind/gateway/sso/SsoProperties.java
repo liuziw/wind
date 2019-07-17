@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "hyzs.sso", ignoreUnknownFields = true)
+@ConfigurationProperties(prefix = "wind.sso", ignoreUnknownFields = true)
 public class SsoProperties {
 
     private String accessTokenUri;

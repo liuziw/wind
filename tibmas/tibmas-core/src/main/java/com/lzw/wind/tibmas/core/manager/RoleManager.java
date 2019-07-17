@@ -1,9 +1,9 @@
 package com.lzw.wind.tibmas.core.manager;
 
-import com.hyzs.tibmas.core.bo.RoleBO;
-import com.hyzs.tibmas.core.dbo.RoleDO;
-import com.hyzs.tibmas.core.dbo.RolePermDO;
-import com.hyzs.tibmas.core.vo.AppRoleVO;
+import com.lzw.wind.tibmas.core.bo.RoleBO;
+import com.lzw.wind.tibmas.core.dbo.RoleDO;
+import com.lzw.wind.tibmas.core.dbo.RolePermDO;
+import com.lzw.wind.tibmas.core.vo.AppRoleVO;
 
 import java.util.Collection;
 import java.util.List;

@@ -1,9 +1,9 @@
 package com.lzw.common.dao.daomanager;
 
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.dao.dto.PageQueryDTO;
-import com.hyzs.gz.common.dao.dto.PageQueryItemDTO;
-import com.hyzs.gz.common.dao.dto.QueryItemDTO;
+
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.dao.dto.PageQueryItemDTO;
+import com.lzw.common.dao.dto.QueryItemDTO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.util.CollectionUtils;
 
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 
 /**
- * 封装了{@link com.hyzs.gz.common.dao.mapper.CommonMapper}的所有方法，供Service层调用
+ * 封装了{@link com.lzw.common.dao.mapper.CommonMapper}的所有方法，供Service层调用
  * @param <D>
  * @param <K>
  */
@@ -308,8 +308,6 @@ public interface CommonDaoManager<D,K> {
 
     /**
      * 内部方法，根据QueryItem查询,分页
-     * 该方法不再使用:liyinshan 20190419
-     * 替代方法:{@link com.hyzs.gz.common.dao.util.DaoUtils#listDOByPage(Supplier, PageQueryDTO)}
      * @param pageQueryItemDTO
      * @return
      */

@@ -1,8 +1,8 @@
 package com.lzw.wind.gateway.filter;
 
-import com.hyzs.gateway.enums.AuthInfoEnum;
-import com.hyzs.gateway.manager.AuthManager;
-import com.hyzs.gateway.util.GatewayUtils;
+import com.lzw.wind.gateway.enums.AuthInfoEnum;
+import com.lzw.wind.gateway.manager.AuthManager;
+import com.lzw.wind.gateway.util.GatewayUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -25,8 +25,8 @@ import javax.annotation.PostConstruct;
  * 鉴权的过滤器
  * <PRE>
  *     这个过滤器的相关配置见:{@linkplain AuthProperties}类，鉴权类型主要有三种:
- *      1.{@linkplain com.hyzs.gateway.filter.AuthProperties.AuthTypeEnum#NONE}不做鉴权处理，任何请求直接放过
- *      2.{@linkplain com.hyzs.gateway.filter.AuthProperties.AuthTypeEnum#LOGIN}统一鉴权登录验证,过程如下
+ *      1.{@linkplain com.lzw.wind.gateway.filter.AuthProperties.AuthTypeEnum#NONE}不做鉴权处理，任何请求直接放过
+ *      2.{@linkplain com.lzw.wind.gateway.filter.AuthProperties.AuthTypeEnum#LOGIN}统一鉴权登录验证,过程如下
  *           2.1:判断session是否有用户信息
  *           2.2:验证请求头X-Token的值是否与session中用户信息一致
  *           2.3:验证请求头X-Auth-Info的值合法性
@@ -36,9 +36,9 @@ import javax.annotation.PostConstruct;
  *                        第三部分:签名信息，该值的算法如下，(第一部分值+第二部分key的偶数位字符)再用Base64加密
  *           2.4:对文件上传的特殊处理
  *              1.只校验X-Token的值，可以是cookie、request的请求参数及httpheader中的信息
- *      3.{@linkplain com.hyzs.gateway.filter.AuthProperties.AuthTypeEnum#APP_SIGNATURE}APP接口的签名验证
+ *      3.{@linkplain com.lzw.wind.gateway.filter.AuthProperties.AuthTypeEnum#APP_SIGNATURE}APP接口的签名验证
  *          该部分的算法待完善
- *      4.{@linkplain com.hyzs.gateway.filter.AuthProperties.AuthTypeEnum#MINI_PROGRAM_SIGNATURE}小程序接口的签名验证
+ *      4.{@linkplain com.lzw.wind.gateway.filter.AuthProperties.AuthTypeEnum#MINI_PROGRAM_SIGNATURE}小程序接口的签名验证
  *          该部分的算法待完善
  *
  * </PRE>

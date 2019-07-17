@@ -1,12 +1,12 @@
 package com.lzw.wind.tibmas.log.service.impl;
 
-import com.hyzs.gz.common.core.exception.CommonErrorCode;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.tibmas.log.daomanager.OptrLogDaoManager;
-import com.hyzs.tibmas.log.dbo.OptrLogDO;
-import com.hyzs.tibmas.log.dto.InsertOptrLogDTO;
-import com.hyzs.tibmas.log.service.OptrLogService;
+import com.lzw.common.core.exception.CommonErrorCode;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.wind.tibmas.log.daomanager.OptrLogDaoManager;
+import com.lzw.wind.tibmas.log.dbo.OptrLogDO;
+import com.lzw.wind.tibmas.log.dto.InsertOptrLogDTO;
+import com.lzw.wind.tibmas.log.service.OptrLogService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

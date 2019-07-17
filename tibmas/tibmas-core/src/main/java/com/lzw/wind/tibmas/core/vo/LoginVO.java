@@ -1,6 +1,6 @@
 package com.lzw.wind.tibmas.core.vo;
 
-import com.hyzs.tibmas.core.bo.Oauth2UserBO;
+import com.lzw.wind.tibmas.core.bo.Oauth2UserBO;
 import lombok.Data;
 
 /**

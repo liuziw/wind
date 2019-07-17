@@ -1,6 +1,6 @@
 package com.lzw.wind.tibmas.log.config;
 
-import com.hyzs.common.sso.SsoWebSecurityConfigurerAdapter;
+import com.lzw.common.sso.SsoWebSecurityConfigurerAdapter;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

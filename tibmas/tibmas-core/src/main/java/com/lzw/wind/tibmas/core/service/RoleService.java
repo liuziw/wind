@@ -1,11 +1,11 @@
 package com.lzw.wind.tibmas.core.service;
 
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.tibmas.core.bo.RoleBO;
-import com.hyzs.tibmas.core.bo.RoleDetailsBO;
-import com.hyzs.tibmas.core.bo.TibmasRoleBO;
-import com.hyzs.tibmas.core.dto.*;
-import com.hyzs.tibmas.core.vo.PageListRoleInfoForComponentVO;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.wind.tibmas.core.bo.RoleBO;
+import com.lzw.wind.tibmas.core.bo.RoleDetailsBO;
+import com.lzw.wind.tibmas.core.bo.TibmasRoleBO;
+import com.lzw.wind.tibmas.core.dto.*;
+import com.lzw.wind.tibmas.core.vo.PageListRoleInfoForComponentVO;
 
 import java.util.List;
 

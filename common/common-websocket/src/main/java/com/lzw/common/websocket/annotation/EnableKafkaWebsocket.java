@@ -1,6 +1,6 @@
 package com.lzw.common.websocket.annotation;
 
-import com.hyzs.websocket.core.service.impl.WebsocketKafkaServiceImpl;
+import com.lzw.common.websocket.service.impl.WebsocketKafkaServiceImpl;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;

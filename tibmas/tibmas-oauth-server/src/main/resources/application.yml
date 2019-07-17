@@ -36,7 +36,7 @@ spring:
     database: 1
     host: 172.16.8.18
     port: 6379
-    password: hyzs
+    password: wind
     jedis:
       pool:
         max-active: 11
@@ -69,7 +69,7 @@ mybatis:
   #日志
 logging:
   level:
-    com.hyzs: DEBUG
+    com.wind: DEBUG
     org: INFO
 
 

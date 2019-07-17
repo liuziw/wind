@@ -1,6 +1,6 @@
 package com.lzw.common.encrypt.annotation;
 
-import com.hyzs.common.encrypt.mvcConverter.EncryptableMappingJackson2HttpMessageConverter;
+import com.lzw.common.encrypt.mvcConverter.EncryptableMappingJackson2HttpMessageConverter;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;

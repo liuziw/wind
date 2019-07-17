@@ -12,7 +12,7 @@ spring:
     database: 3
     host: 172.16.8.18
     port: 6379
-    password: hyzs
+    password: wind
     jedis:
       pool:
         maxActive: 3
@@ -40,9 +40,9 @@ spring:
 
 logging:
   level:
-    com.hyzs: DEBUG
+    com.wind: DEBUG
 
-hyzs:
+wind:
   sso:
     accessTokenUri: http://172.16.8.20:82/oauth/token
     userAuthorizationUri: http://172.16.8.20:82/oauth/authorize

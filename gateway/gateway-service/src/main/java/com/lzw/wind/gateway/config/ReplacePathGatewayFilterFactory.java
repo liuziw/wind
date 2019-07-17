@@ -1,6 +1,6 @@
 package com.lzw.wind.gateway.config;
 
-import com.hyzs.gateway.filter.AuthProperties;
+import com.lzw.wind.gateway.filter.AuthProperties;
 import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

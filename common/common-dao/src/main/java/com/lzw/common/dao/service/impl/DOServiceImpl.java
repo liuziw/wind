@@ -1,14 +1,14 @@
 package com.lzw.common.dao.service.impl;
 
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.dao.daomanager.CommonDaoManager;
-import com.hyzs.gz.common.dao.dto.PageQueryItemDTO;
-import com.hyzs.gz.common.dao.manager.DOChecker;
-import com.hyzs.gz.common.dao.service.DOService;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.dao.daomanager.CommonDaoManager;
+import com.lzw.common.dao.dto.PageQueryItemDTO;
+import com.lzw.common.dao.manager.DOChecker;
+import com.lzw.common.dao.service.DOService;
 import org.springframework.transaction.annotation.Transactional;
 
-public abstract class DOServiceImpl<D,K> implements DOService<D,K>{
+public abstract class DOServiceImpl<D,K> implements DOService<D,K> {
 
     private CommonDaoManager<D,K> commonDaoManager;
 

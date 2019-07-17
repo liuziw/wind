@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hyzs.tibmas.log.mapper.OptrLogMapper">
+<mapper namespace="com.lzw.wind.tibmas.log.mapper.OptrLogMapper">
 
     <!--
     /**
@@ -28,24 +28,24 @@
     </sql>
 
 
-    <select id="listAll" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+    <select id="listAll" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
         <include refid="selectAsDO" /> where is_deleted=0
     </select>
 
-    <select id="mapAll" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+    <select id="mapAll" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
         <include refid="selectAsDO" /> where is_deleted=0
     </select>
 
 
-    <select id="getById" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+    <select id="getById" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
         <include refid="selectAsDO" /> where id=#{id} and is_deleted=0
     </select>
 
-    <select id="listByIds" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+    <select id="listByIds" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
         <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
     </select>
 
-    <select id="mapByIds" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+    <select id="mapByIds" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
         <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
     </select>
 
@@ -196,7 +196,7 @@
 
 
 
-    <select id="listByProperty" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+    <select id="listByProperty" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
         <include refid="selectAsDO" />
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
@@ -206,7 +206,7 @@
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
 
-    <select id="mapByProperty" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+    <select id="mapByProperty" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
         <include refid="selectAsDO" />
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
@@ -251,7 +251,7 @@
          where is_deleted=0 and ${propertyName}=#{value}
     </update>
 
-    <select id="listByProperties" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+    <select id="listByProperties" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="propertyNames" item="propertyName" index="index">
@@ -267,7 +267,7 @@
             </foreach>
     </select>
 
-    <select id="mapByProperties" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+    <select id="mapByProperties" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="propertyNames" item="propertyName" index="index">
@@ -323,7 +323,7 @@
          </foreach>
     </update>
 
-    <select id="_listByQueryItems" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+    <select id="_listByQueryItems" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -343,7 +343,7 @@
             </foreach>
     </select>
 
-    <select id="_mapByQueryItems" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+    <select id="_mapByQueryItems" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -467,7 +467,7 @@
             </foreach>
     </update>
 
-    <select id="_listByPageQuery" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+    <select id="_listByPageQuery" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -514,7 +514,7 @@
 
 
 
-          <select id="listByUserId" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+          <select id="listByUserId" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id=#{userId}
           </select>
@@ -524,7 +524,7 @@
                 where is_deleted=0 and user_id=#{userId}
            </select>
 
-           <select id="mapByUserId" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByUserId" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and user_id=#{userId}
            </select>
@@ -572,7 +572,7 @@
 
             <!--property in -->
 
-         <select id="listByInUserId" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+         <select id="listByInUserId" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id in
                   <foreach collection="userIdList" item="inItem" close=")" open="(" separator=",">
@@ -588,7 +588,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInUserId" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByInUserId" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and user_id in
                         <foreach collection="userIdList" item="inItem" close=")" open="(" separator=",">
@@ -643,7 +643,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByDeptId" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+          <select id="listByDeptId" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and dept_id=#{deptId}
           </select>
@@ -653,7 +653,7 @@
                 where is_deleted=0 and dept_id=#{deptId}
            </select>
 
-           <select id="mapByDeptId" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByDeptId" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and dept_id=#{deptId}
            </select>
@@ -701,7 +701,7 @@
 
             <!--property in -->
 
-         <select id="listByInDeptId" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+         <select id="listByInDeptId" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and dept_id in
                   <foreach collection="deptIdList" item="inItem" close=")" open="(" separator=",">
@@ -717,7 +717,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInDeptId" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByInDeptId" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and dept_id in
                         <foreach collection="deptIdList" item="inItem" close=")" open="(" separator=",">
@@ -772,7 +772,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByAppId" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+          <select id="listByAppId" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and app_id=#{appId}
           </select>
@@ -782,7 +782,7 @@
                 where is_deleted=0 and app_id=#{appId}
            </select>
 
-           <select id="mapByAppId" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByAppId" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and app_id=#{appId}
            </select>
@@ -830,7 +830,7 @@
 
             <!--property in -->
 
-         <select id="listByInAppId" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+         <select id="listByInAppId" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and app_id in
                   <foreach collection="appIdList" item="inItem" close=")" open="(" separator=",">
@@ -846,7 +846,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInAppId" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByInAppId" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and app_id in
                         <foreach collection="appIdList" item="inItem" close=")" open="(" separator=",">
@@ -901,7 +901,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByMainModel" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+          <select id="listByMainModel" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and main_model=#{mainModel}
           </select>
@@ -911,7 +911,7 @@
                 where is_deleted=0 and main_model=#{mainModel}
            </select>
 
-           <select id="mapByMainModel" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByMainModel" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and main_model=#{mainModel}
            </select>
@@ -959,7 +959,7 @@
 
             <!--property in -->
 
-         <select id="listByInMainModel" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+         <select id="listByInMainModel" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and main_model in
                   <foreach collection="mainModelList" item="inItem" close=")" open="(" separator=",">
@@ -975,7 +975,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInMainModel" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByInMainModel" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and main_model in
                         <foreach collection="mainModelList" item="inItem" close=")" open="(" separator=",">
@@ -1030,7 +1030,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listBySubModel" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+          <select id="listBySubModel" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and sub_model=#{subModel}
           </select>
@@ -1040,7 +1040,7 @@
                 where is_deleted=0 and sub_model=#{subModel}
            </select>
 
-           <select id="mapBySubModel" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapBySubModel" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and sub_model=#{subModel}
            </select>
@@ -1088,7 +1088,7 @@
 
             <!--property in -->
 
-         <select id="listByInSubModel" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+         <select id="listByInSubModel" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and sub_model in
                   <foreach collection="subModelList" item="inItem" close=")" open="(" separator=",">
@@ -1104,7 +1104,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInSubModel" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByInSubModel" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and sub_model in
                         <foreach collection="subModelList" item="inItem" close=")" open="(" separator=",">
@@ -1159,7 +1159,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByOptrTarget" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+          <select id="listByOptrTarget" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and optr_target=#{optrTarget}
           </select>
@@ -1169,7 +1169,7 @@
                 where is_deleted=0 and optr_target=#{optrTarget}
            </select>
 
-           <select id="mapByOptrTarget" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByOptrTarget" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and optr_target=#{optrTarget}
            </select>
@@ -1217,7 +1217,7 @@
 
             <!--property in -->
 
-         <select id="listByInOptrTarget" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+         <select id="listByInOptrTarget" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and optr_target in
                   <foreach collection="optrTargetList" item="inItem" close=")" open="(" separator=",">
@@ -1233,7 +1233,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInOptrTarget" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByInOptrTarget" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and optr_target in
                         <foreach collection="optrTargetList" item="inItem" close=")" open="(" separator=",">
@@ -1288,7 +1288,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByOptrDesc" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+          <select id="listByOptrDesc" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and optr_desc=#{optrDesc}
           </select>
@@ -1298,7 +1298,7 @@
                 where is_deleted=0 and optr_desc=#{optrDesc}
            </select>
 
-           <select id="mapByOptrDesc" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByOptrDesc" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and optr_desc=#{optrDesc}
            </select>
@@ -1346,7 +1346,7 @@
 
             <!--property in -->
 
-         <select id="listByInOptrDesc" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+         <select id="listByInOptrDesc" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and optr_desc in
                   <foreach collection="optrDescList" item="inItem" close=")" open="(" separator=",">
@@ -1362,7 +1362,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInOptrDesc" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByInOptrDesc" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and optr_desc in
                         <foreach collection="optrDescList" item="inItem" close=")" open="(" separator=",">
@@ -1417,7 +1417,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByOptrTime" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+          <select id="listByOptrTime" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and optr_time=#{optrTime}
           </select>
@@ -1427,7 +1427,7 @@
                 where is_deleted=0 and optr_time=#{optrTime}
            </select>
 
-           <select id="mapByOptrTime" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByOptrTime" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and optr_time=#{optrTime}
            </select>
@@ -1475,7 +1475,7 @@
 
             <!--property in -->
 
-         <select id="listByInOptrTime" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+         <select id="listByInOptrTime" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and optr_time in
                   <foreach collection="optrTimeList" item="inItem" close=")" open="(" separator=",">
@@ -1491,7 +1491,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInOptrTime" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByInOptrTime" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and optr_time in
                         <foreach collection="optrTimeList" item="inItem" close=")" open="(" separator=",">
@@ -1546,7 +1546,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByUserIdCreate" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+          <select id="listByUserIdCreate" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_create=#{userIdCreate}
           </select>
@@ -1556,7 +1556,7 @@
                 where is_deleted=0 and user_id_create=#{userIdCreate}
            </select>
 
-           <select id="mapByUserIdCreate" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByUserIdCreate" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_create=#{userIdCreate}
            </select>
@@ -1604,7 +1604,7 @@
 
             <!--property in -->
 
-         <select id="listByInUserIdCreate" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+         <select id="listByInUserIdCreate" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_create in
                   <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
@@ -1620,7 +1620,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInUserIdCreate" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByInUserIdCreate" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and user_id_create in
                         <foreach collection="userIdCreateList" item="inItem" close=")" open="(" separator=",">
@@ -1675,7 +1675,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByUserIdModified" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+          <select id="listByUserIdModified" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_modified=#{userIdModified}
           </select>
@@ -1685,7 +1685,7 @@
                 where is_deleted=0 and user_id_modified=#{userIdModified}
            </select>
 
-           <select id="mapByUserIdModified" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByUserIdModified" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_modified=#{userIdModified}
            </select>
@@ -1733,7 +1733,7 @@
 
             <!--property in -->
 
-         <select id="listByInUserIdModified" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+         <select id="listByInUserIdModified" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id_modified in
                   <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">
@@ -1749,7 +1749,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInUserIdModified" resultType="com.hyzs.tibmas.log.dbo.OptrLogDO">
+           <select id="mapByInUserIdModified" resultType="com.lzw.wind.tibmas.log.dbo.OptrLogDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and user_id_modified in
                         <foreach collection="userIdModifiedList" item="inItem" close=")" open="(" separator=",">

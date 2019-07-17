@@ -2,7 +2,7 @@ package com.lzw.kafka.producer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hyzs.event.kafka.producer.event.KafkaProducerEvent;
+import com.lzw.kafka.producer.event.KafkaProducerEvent;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

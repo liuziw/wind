@@ -1,7 +1,7 @@
 package com.lzw.wind.tibmas.core.daomanager.immutable;
 
-import com.hyzs.gz.common.dao.daomanager.CommonDaoManager;
-import com.hyzs.tibmas.core.dbo.UserExpandDO;
+import com.lzw.common.dao.daomanager.CommonDaoManager;
+import com.lzw.wind.tibmas.core.dbo.UserExpandDO;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;

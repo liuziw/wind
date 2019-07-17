@@ -1,8 +1,8 @@
 package com.lzw.wind.tibmas.core.manager;
 
 
-import com.hyzs.tibmas.core.dbo.PermDO;
-import com.hyzs.tibmas.core.vo.PermTreeVO;
+import com.lzw.wind.tibmas.core.dbo.PermDO;
+import com.lzw.wind.tibmas.core.vo.PermTreeVO;
 
 import java.util.List;
 

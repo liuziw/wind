@@ -1,9 +1,9 @@
 package com.lzw.wind.tibmas.core.bo;
 
 
-import com.hyzs.tibmas.core.dbo.PermDO;
-import com.hyzs.tibmas.core.dbo.RoleDO;
-import com.hyzs.tibmas.core.vo.PermTreeVO;
+import com.lzw.wind.tibmas.core.dbo.PermDO;
+import com.lzw.wind.tibmas.core.dbo.RoleDO;
+import com.lzw.wind.tibmas.core.vo.PermTreeVO;
 import lombok.Data;
 
 import java.util.List;

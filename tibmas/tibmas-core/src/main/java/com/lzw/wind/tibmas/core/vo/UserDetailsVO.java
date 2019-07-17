@@ -1,7 +1,10 @@
 package com.lzw.wind.tibmas.core.vo;
 
-import com.hyzs.tibmas.core.bo.*;
-import com.hyzs.tibmas.core.dbo.PermDO;
+import com.lzw.wind.tibmas.core.bo.DeptBO;
+import com.lzw.wind.tibmas.core.bo.RoleBO;
+import com.lzw.wind.tibmas.core.bo.TeamBO;
+import com.lzw.wind.tibmas.core.bo.UserBO;
+import com.lzw.wind.tibmas.core.dbo.PermDO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

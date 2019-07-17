@@ -1,27 +1,27 @@
 package com.lzw.wind.tibmas.core.service.impl;
 
 import com.google.common.collect.Lists;
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.core.exception.CommonErrorCode;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.dao.dto.IdDTO;
-import com.hyzs.gz.common.dao.dto.QueryItemDTO;
-import com.hyzs.gz.common.dao.util.DaoUtils;
-import com.hyzs.tibmas.core.bo.*;
-import com.hyzs.tibmas.core.daomanager.*;
-import com.hyzs.tibmas.core.dbo.*;
-import com.hyzs.tibmas.core.dto.*;
-import com.hyzs.tibmas.core.enums.DeptTypeEnum;
-import com.hyzs.tibmas.core.enums.ExamineStatusEnum;
-import com.hyzs.tibmas.core.enums.PermTypeEnum;
-import com.hyzs.tibmas.core.manager.*;
-import com.hyzs.tibmas.core.service.TeamAndUserService;
-import com.hyzs.tibmas.core.service.TeamUserService;
-import com.hyzs.tibmas.core.service.UserService;
-import com.hyzs.tibmas.core.service.feign.UserServiceFeign;
-import com.hyzs.tibmas.core.util.EncryptUtils;
-import com.hyzs.tibmas.core.vo.*;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.core.exception.CommonErrorCode;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.dao.dto.IdDTO;
+import com.lzw.common.dao.dto.QueryItemDTO;
+import com.lzw.common.dao.util.DaoUtils;
+import com.lzw.wind.tibmas.core.bo.*;
+import com.lzw.wind.tibmas.core.daomanager.*;
+import com.lzw.wind.tibmas.core.dbo.*;
+import com.lzw.wind.tibmas.core.dto.*;
+import com.lzw.wind.tibmas.core.enums.DeptTypeEnum;
+import com.lzw.wind.tibmas.core.enums.ExamineStatusEnum;
+import com.lzw.wind.tibmas.core.enums.PermTypeEnum;
+import com.lzw.wind.tibmas.core.manager.*;
+import com.lzw.wind.tibmas.core.service.TeamAndUserService;
+import com.lzw.wind.tibmas.core.service.TeamUserService;
+import com.lzw.wind.tibmas.core.service.UserService;
+import com.lzw.wind.tibmas.core.service.feign.UserServiceFeign;
+import com.lzw.wind.tibmas.core.util.EncryptUtils;
+import com.lzw.wind.tibmas.core.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -179,8 +179,6 @@ public class UserServiceImpl implements UserService {
         if(userDO != null){
             userDetailsVO = this.getUserByUserId(userDO.getId());
 
-            //刷新用户信息到redis
-            this.tibmasManager.push2Redis(userDO.getId());
         }else if(userRegisterDO != null) {
             userDetailsVO = this.getUserByUserRegisterId(userRegisterDO.getId());
         }

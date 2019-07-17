@@ -1,6 +1,6 @@
 package com.lzw.common.excel.manager;
 
-import com.hyzs.gz.common.core.exception.CommonException;
+import com.lzw.common.core.exception.CommonException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Component;

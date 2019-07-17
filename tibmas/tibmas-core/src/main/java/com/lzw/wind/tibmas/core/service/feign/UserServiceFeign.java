@@ -1,7 +1,7 @@
 package com.lzw.wind.tibmas.core.service.feign;
 
-import com.hyzs.gz.common.core.vo.ResponseVO;
-import com.hyzs.tibmas.core.dto.StartIstByDefKeyDTO;
+import com.lzw.common.core.vo.ResponseVO;
+import com.lzw.wind.tibmas.core.dto.StartIstByDefKeyDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

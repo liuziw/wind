@@ -1,8 +1,8 @@
 package com.lzw.wind.tibmas.core.manager;
 
-import com.hyzs.tibmas.core.dbo.DeptDO;
-import com.hyzs.tibmas.core.dbo.RoleDO;
-import com.hyzs.tibmas.core.dbo.UserDO;
+import com.lzw.wind.tibmas.core.dbo.DeptDO;
+import com.lzw.wind.tibmas.core.dbo.RoleDO;
+import com.lzw.wind.tibmas.core.dbo.UserDO;
 
 /**
  * @author liuzw

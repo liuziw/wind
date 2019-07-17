@@ -3,10 +3,10 @@ package com.lzw.common.dao.util;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.dao.dto.PageQueryDTO;
-import com.hyzs.gz.common.dao.dto.QueryItemDTO;
-import com.hyzs.gz.common.dao.enums.QueryTypeEnum2;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.dao.dto.PageQueryDTO;
+import com.lzw.common.dao.dto.QueryItemDTO;
+import com.lzw.common.dao.enums.QueryTypeEnum2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 
@@ -98,7 +98,7 @@ public abstract class DaoUtils {
      * @param value
      * @return
      */
-    public static QueryItemDTO buildQueryItem(String fieldName, QueryTypeEnum2 queryType,Object value){
+    public static QueryItemDTO buildQueryItem(String fieldName, QueryTypeEnum2 queryType, Object value){
         return new QueryItemDTO(fieldName,queryType,value);
     }
 

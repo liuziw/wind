@@ -1,8 +1,8 @@
 package com.lzw.wind.tibmas.manage.impl;
 
 import com.alibaba.druid.util.StringUtils;
-import com.hyzs.tibmas.core.util.EncryptUtils;
-import com.hyzs.tibmas.manage.PasswordManager;
+import com.lzw.wind.tibmas.core.util.EncryptUtils;
+import com.lzw.wind.tibmas.manage.PasswordManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 

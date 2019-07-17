@@ -1,9 +1,9 @@
 package com.lzw.wind.tibmas.core.daomanager.immutable.impl;
 
-import com.hyzs.gz.common.dao.daomanager.impl.CommonDaoManagerImpl;
-import com.hyzs.tibmas.core.daomanager.immutable.ImmutableTeamDaoManager;
-import com.hyzs.tibmas.core.dbo.TeamDO;
-import com.hyzs.tibmas.core.mapper.TeamMapper;
+import com.lzw.common.dao.daomanager.impl.CommonDaoManagerImpl;
+import com.lzw.wind.tibmas.core.daomanager.immutable.ImmutableTeamDaoManager;
+import com.lzw.wind.tibmas.core.dbo.TeamDO;
+import com.lzw.wind.tibmas.core.mapper.TeamMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 

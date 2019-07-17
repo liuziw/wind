@@ -1,6 +1,6 @@
 package com.lzw.wind.tibmas.log.service;
 
-import com.hyzs.tibmas.log.dto.InsertOptrLogDTO;
+import com.lzw.wind.tibmas.log.dto.InsertOptrLogDTO;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package com.lzw.wind.tibmas.core.daomanager.immutable.impl;
 
-import com.hyzs.gz.common.dao.daomanager.impl.CommonDaoManagerImpl;
-import com.hyzs.tibmas.core.daomanager.immutable.ImmutableUserExpandDaoManager;
-import com.hyzs.tibmas.core.dbo.UserExpandDO;
-import com.hyzs.tibmas.core.mapper.UserExpandMapper;
+import com.lzw.common.dao.daomanager.impl.CommonDaoManagerImpl;
+import com.lzw.wind.tibmas.core.daomanager.immutable.ImmutableUserExpandDaoManager;
+import com.lzw.wind.tibmas.core.dbo.UserExpandDO;
+import com.lzw.wind.tibmas.core.mapper.UserExpandMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;

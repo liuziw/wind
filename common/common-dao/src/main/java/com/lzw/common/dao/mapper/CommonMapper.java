@@ -1,8 +1,8 @@
 package com.lzw.common.dao.mapper;
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.dao.dto.PageQueryDTO;
-import com.hyzs.gz.common.dao.dto.PageQueryItemDTO;
-import com.hyzs.gz.common.dao.dto.QueryItemDTO;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.dao.dto.PageQueryDTO;
+import com.lzw.common.dao.dto.PageQueryItemDTO;
+import com.lzw.common.dao.dto.QueryItemDTO;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.util.CollectionUtils;

@@ -1,8 +1,8 @@
 package com.lzw.wind.tibmas.core.daomanager.impl;
 
-import com.hyzs.tibmas.core.dao.SecretQuestionDao;
-import com.hyzs.tibmas.core.daomanager.SecretQuestionDaoManager;
-import com.hyzs.tibmas.core.daomanager.immutable.impl.ImmutableSecretQuestionDaoManagerImpl;
+import com.lzw.wind.tibmas.core.dao.SecretQuestionDao;
+import com.lzw.wind.tibmas.core.daomanager.SecretQuestionDaoManager;
+import com.lzw.wind.tibmas.core.daomanager.immutable.impl.ImmutableSecretQuestionDaoManagerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

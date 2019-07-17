@@ -35,7 +35,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot-version}</version>
                 <configuration>
-                    <mainClass>com.hyzs.EurekaServerApplication</mainClass>
+                    <mainClass>lzw.EurekaServerApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

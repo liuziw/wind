@@ -1,11 +1,11 @@
 package com.lzw.wind.tibmas.core.service;
 
-import com.hyzs.tibmas.core.dto.CommonIdDTO;
-import com.hyzs.tibmas.core.dto.CommonOperationDTO;
-import com.hyzs.tibmas.core.dto.DeleteUsersFromTeamDTO;
-import com.hyzs.tibmas.core.dto.TeamAndUserDTO;
-import com.hyzs.tibmas.core.vo.TeamUserVO;
-import com.hyzs.tibmas.core.vo.UserVO;
+import com.lzw.wind.tibmas.core.dto.CommonIdDTO;
+import com.lzw.wind.tibmas.core.dto.CommonOperationDTO;
+import com.lzw.wind.tibmas.core.dto.DeleteUsersFromTeamDTO;
+import com.lzw.wind.tibmas.core.dto.TeamAndUserDTO;
+import com.lzw.wind.tibmas.core.vo.TeamUserVO;
+import com.lzw.wind.tibmas.core.vo.UserVO;
 
 import java.util.List;
 

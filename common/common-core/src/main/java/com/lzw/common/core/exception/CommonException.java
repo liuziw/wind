@@ -2,7 +2,7 @@ package com.lzw.common.core.exception;
 
 /**
  *
- * 通用异常，一般情况下在各分层都有可以抛出该异常，该异常在被{@link com.hyzs.gz.common.core.web.controller.BaseController}处理
+ * 通用异常，一般情况下在各分层都有可以抛出该异常，该异常在被{@link lzw.gz.common.core.web.controller.BaseController}处理
  *
  * User: liys
  * Date: 2017-11-14

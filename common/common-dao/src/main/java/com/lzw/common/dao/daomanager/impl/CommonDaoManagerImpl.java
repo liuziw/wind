@@ -1,15 +1,15 @@
 package com.lzw.common.dao.daomanager.impl;
 
 import com.google.common.collect.Lists;
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.core.exception.CommonErrorCode;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.dao.daomanager.CommonDaoManager;
-import com.hyzs.gz.common.dao.dto.PageQueryItemDTO;
-import com.hyzs.gz.common.dao.dto.QueryItemDTO;
-import com.hyzs.gz.common.dao.manager.DOChecker;
-import com.hyzs.gz.common.dao.mapper.CommonMapper;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.core.exception.CommonErrorCode;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.dao.daomanager.CommonDaoManager;
+import com.lzw.common.dao.dto.PageQueryItemDTO;
+import com.lzw.common.dao.dto.QueryItemDTO;
+import com.lzw.common.dao.manager.DOChecker;
+import com.lzw.common.dao.mapper.CommonMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,10 +1,10 @@
 package com.lzw.wind.tibmas.config;
 
-import com.hyzs.tibmas.core.dbo.AppDO;
-import com.hyzs.tibmas.core.dbo.DeptDO;
-import com.hyzs.tibmas.core.dbo.PermDO;
-import com.hyzs.tibmas.core.dbo.RoleDO;
-import com.hyzs.tibmas.core.vo.PermTreeVO;
+import com.lzw.wind.tibmas.core.dbo.AppDO;
+import com.lzw.wind.tibmas.core.dbo.DeptDO;
+import com.lzw.wind.tibmas.core.dbo.PermDO;
+import com.lzw.wind.tibmas.core.dbo.RoleDO;
+import com.lzw.wind.tibmas.core.vo.PermTreeVO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 

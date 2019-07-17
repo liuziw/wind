@@ -1,16 +1,15 @@
 package com.lzw.wind.tibmas.webapi.web.controller;
 
-import com.hyzs.gz.common.core.exception.CommonErrorCode;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.core.vo.ResponseVO;
-import com.hyzs.gz.common.core.web.controller.BaseController;
-import com.hyzs.gz.common.dao.dto.IdDTO;
-import com.hyzs.tibmas.core.bo.DeptDetailsBO;
-import com.hyzs.tibmas.core.dto.*;
-import com.hyzs.tibmas.core.service.DeptService;
-import com.hyzs.tibmas.core.vo.*;
-import com.hyzs.tibmas2reids.core.manager.Tibmas2RedisManager;
+import com.lzw.common.core.exception.CommonErrorCode;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.core.vo.ResponseVO;
+import com.lzw.common.core.web.controller.BaseController;
+import com.lzw.common.dao.dto.IdDTO;
+import com.lzw.wind.tibmas.core.bo.DeptDetailsBO;
+import com.lzw.wind.tibmas.core.dto.*;
+import com.lzw.wind.tibmas.core.service.DeptService;
+import com.lzw.wind.tibmas.core.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +30,6 @@ public class DeptController extends BaseController {
 
     @Autowired
     private DeptService deptService;
-
-    @Autowired
-    private Tibmas2RedisManager tibmas2RedisManager;
 
     @ApiOperation("新增部门信息")
     @RequestMapping(value = "/insert", method = RequestMethod.POST)

@@ -2,16 +2,16 @@
 package com.lzw.wind.tibmas.core.manager.impl;
 
 
-import com.hyzs.event.kafka.producer.event.KafkaProducerEvent;
-import com.hyzs.gz.common.core.manager.IdManager;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.tibmas.core.dbo.DeptDO;
-import com.hyzs.tibmas.core.dbo.RoleDO;
-import com.hyzs.tibmas.core.dbo.UserDO;
-import com.hyzs.tibmas.core.dto.DeptDTO;
-import com.hyzs.tibmas.core.dto.RoleDTO;
-import com.hyzs.tibmas.core.dto.UserDTO;
-import com.hyzs.tibmas.core.manager.Info2KafkaManager;
+import com.lzw.common.core.manager.IdManager;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.kafka.producer.event.KafkaProducerEvent;
+import com.lzw.wind.tibmas.core.dbo.DeptDO;
+import com.lzw.wind.tibmas.core.dbo.RoleDO;
+import com.lzw.wind.tibmas.core.dbo.UserDO;
+import com.lzw.wind.tibmas.core.dto.DeptDTO;
+import com.lzw.wind.tibmas.core.dto.RoleDTO;
+import com.lzw.wind.tibmas.core.dto.UserDTO;
+import com.lzw.wind.tibmas.core.manager.Info2KafkaManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -32,8 +32,8 @@ import java.util.concurrent.Executors;
 
 @Component
 @Primary
-@ConditionalOnClass(name="com.hyzs.event.kafka.producer.event.KafkaProducerEvent")
-@ConditionalOnProperty(name="hyzs.tibmas.info2kafka.enabled",havingValue="true",matchIfMissing = false)
+@ConditionalOnClass(name="com.lzw.wind.event.kafka.producer.event.KafkaProducerEvent")
+@ConditionalOnProperty(name="lzw.wind.tibmas.info2kafka.enabled",havingValue="true",matchIfMissing = false)
 public class Info2KafkaManagerImpl implements Info2KafkaManager {
 
 

@@ -1,6 +1,6 @@
 package com.lzw.wind.tibmas.core.service;
 
-import com.hyzs.tibmas.core.vo.TeamTypeVO;
+import com.lzw.wind.tibmas.core.vo.TeamTypeVO;
 
 import java.util.List;
 

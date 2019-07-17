@@ -21,7 +21,7 @@ public class GatewayUtils {
     public static final String AUTH_PASSWORD="http://www.hua-cloud.com.cn";
 
 
-    public static final String MINI_PROGRAM_TOKEN_KEY="hyzs:mini_program_token:";
+    public static final String MINI_PROGRAM_TOKEN_KEY="wind:mini_program_token:";
 
 
     public static String getParam(ServerHttpRequest request,String name){

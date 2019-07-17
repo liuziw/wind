@@ -1,6 +1,6 @@
 package com.lzw.wind.tibmas.core.dto;
 
-import com.hyzs.tibmas.core.vo.UserInfoVo;
+import com.lzw.wind.tibmas.core.vo.UserInfoVo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 

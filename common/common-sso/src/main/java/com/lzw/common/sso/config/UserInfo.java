@@ -1,6 +1,6 @@
 package com.lzw.common.sso.config;
 
-import com.hyzs.common.sso.bo.*;
+import com.lzw.common.sso.bo.*;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 

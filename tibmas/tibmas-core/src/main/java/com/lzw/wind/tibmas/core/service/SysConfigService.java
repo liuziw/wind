@@ -1,10 +1,10 @@
 package com.lzw.wind.tibmas.core.service;
 
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.dao.dto.IdDTO;
-import com.hyzs.tibmas.core.dbo.SysConfigDO;
-import com.hyzs.tibmas.core.dto.SysConfigDTO;
-import com.hyzs.tibmas.core.dto.SysConfigQueryConditionDTO;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.dao.dto.IdDTO;
+import com.lzw.wind.tibmas.core.dbo.SysConfigDO;
+import com.lzw.wind.tibmas.core.dto.SysConfigDTO;
+import com.lzw.wind.tibmas.core.dto.SysConfigQueryConditionDTO;
 
 /**
  * Created by yeyu on 2018/5/15.

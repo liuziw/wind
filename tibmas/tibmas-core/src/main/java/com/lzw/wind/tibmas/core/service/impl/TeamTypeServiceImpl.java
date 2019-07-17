@@ -1,10 +1,10 @@
 package com.lzw.wind.tibmas.core.service.impl;
 
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.tibmas.core.daomanager.TeamTypeDaoManager;
-import com.hyzs.tibmas.core.dbo.TeamTypeDO;
-import com.hyzs.tibmas.core.service.TeamTypeService;
-import com.hyzs.tibmas.core.vo.TeamTypeVO;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.wind.tibmas.core.daomanager.TeamTypeDaoManager;
+import com.lzw.wind.tibmas.core.dbo.TeamTypeDO;
+import com.lzw.wind.tibmas.core.service.TeamTypeService;
+import com.lzw.wind.tibmas.core.vo.TeamTypeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

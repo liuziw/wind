@@ -26,20 +26,20 @@ public interface DOChecker {
 
 
     /**
-     * {@link com.hyzs.gz.common.dao.service.DOService#insert(Object)}调用
+     * {@link com.lzw.common.dao.service.DOService#insert(Object)}调用
      * @param dbo
      */
     public void checkWhenAdd(Object dbo);
 
     /**
-     * {@link com.hyzs.gz.common.dao.service.DOService#updateById(Object)}调用
+     * {@link com.lzw.common.dao.service.DOService#updateById(Object)}调用
      * @param dbo
      */
     public void checkWhenModify(Object dbo);
 
 
     /**
-     * {@link com.hyzs.gz.common.dao.service.DOService#deleteById(Object)}调用
+     * {@link com.lzw.common.dao.service.DOService#deleteById(Object)}调用
      * @param id
      */
     public void checkWhenRemove(Object id);

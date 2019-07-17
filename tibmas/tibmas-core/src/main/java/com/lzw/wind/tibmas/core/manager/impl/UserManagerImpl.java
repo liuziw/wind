@@ -1,16 +1,16 @@
 package com.lzw.wind.tibmas.core.manager.impl;
 
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.dao.dto.QueryItemDTO;
-import com.hyzs.gz.common.dao.enums.QueryTypeEnum2;
-import com.hyzs.gz.common.dao.util.DaoUtils;
-import com.hyzs.tibmas.core.bo.UserBO;
-import com.hyzs.tibmas.core.daomanager.*;
-import com.hyzs.tibmas.core.dbo.*;
-import com.hyzs.tibmas.core.enums.PermTypeEnum;
-import com.hyzs.tibmas.core.manager.UserManager;
-import com.hyzs.tibmas.core.util.ErrorCode;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.dao.dto.QueryItemDTO;
+import com.lzw.common.dao.enums.QueryTypeEnum2;
+import com.lzw.common.dao.util.DaoUtils;
+import com.lzw.wind.tibmas.core.bo.UserBO;
+import com.lzw.wind.tibmas.core.daomanager.*;
+import com.lzw.wind.tibmas.core.dbo.*;
+import com.lzw.wind.tibmas.core.enums.PermTypeEnum;
+import com.lzw.wind.tibmas.core.manager.UserManager;
+import com.lzw.wind.tibmas.core.util.ErrorCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;

@@ -1,6 +1,6 @@
 package com.lzw.common.core.manager;
 
-import com.hyzs.gz.common.core.bo.ExcelPathBO;
+import com.lzw.common.core.bo.ExcelPathBO;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;

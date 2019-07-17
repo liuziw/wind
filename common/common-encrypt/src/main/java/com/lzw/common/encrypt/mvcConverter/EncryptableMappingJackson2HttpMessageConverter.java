@@ -1,9 +1,9 @@
 package com.lzw.common.encrypt.mvcConverter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hyzs.common.encrypt.util.EncryptUtils;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.vo.ResponseVO;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.vo.ResponseVO;
+import com.lzw.common.encrypt.util.EncryptUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.math.RandomUtils;
@@ -34,7 +34,7 @@ import java.util.List;
  * @email chenws@hua-cloud.com.cn
  * @date 2018/4/4
  */
-//@ConditionalOnProperty(name="hyzs.encrypt.enabled",havingValue="true",matchIfMissing = false)
+//@ConditionalOnProperty(name="wind.encrypt.enabled",havingValue="true",matchIfMissing = false)
 //@Component
 
 @Slf4j
@@ -44,7 +44,7 @@ public class EncryptableMappingJackson2HttpMessageConverter extends MappingJacks
 
     private static final String KEY_INDEX_NAME = "_KEY_INDEX_";
 
-    /*@Value("${hyzs.encrypt.enabled}")
+    /*@Value("${wind.encrypt.enabled}")
     private Boolean encrypt;*/
 
     private ObjectMapper objectMapper;

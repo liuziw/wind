@@ -1,9 +1,9 @@
 package com.lzw.wind.gateway.web.controller;
 
 
-import com.hyzs.gateway.manager.StateCodeCreator;
-import com.hyzs.gateway.sso.SsoProperties;
-import com.hyzs.gateway.util.GatewayUtils;
+import com.lzw.wind.gateway.manager.StateCodeCreator;
+import com.lzw.wind.gateway.sso.SsoProperties;
+import com.lzw.wind.gateway.util.GatewayUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

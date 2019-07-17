@@ -1,8 +1,9 @@
 package com.lzw.common.websocket.service;
 
-import com.hyzs.websocket.core.dto.MessageDTO;
-import com.hyzs.websocket.core.dto.MessageToAllDTO;
-import com.hyzs.websocket.core.dto.MessageToUsersDTO;
+
+import com.lzw.common.websocket.dto.MessageDTO;
+import com.lzw.common.websocket.dto.MessageToAllDTO;
+import com.lzw.common.websocket.dto.MessageToUsersDTO;
 
 /**
  * @author liuzw

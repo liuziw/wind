@@ -15,7 +15,7 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 
-hyzs:
+wind:
   event:
     kafka:
       consumer:

@@ -2,13 +2,13 @@ package com.lzw.common.websocket.kafkaListener;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.GsonBuilder;
-import com.hyzs.event.kafka.comsumer.event.KafkaConsumerEvent;
-import com.hyzs.gz.common.core.exception.CommonErrorCode;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.websocket.core.config.WebSocketMessageHandler;
-import com.hyzs.websocket.core.dto.MessageDTO;
-import com.hyzs.websocket.core.dto.MessageToAllDTO;
-import com.hyzs.websocket.core.dto.MessageToUsersDTO;
+import com.lzw.common.core.exception.CommonErrorCode;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.websocket.config.WebSocketMessageHandler;
+import com.lzw.common.websocket.dto.MessageDTO;
+import com.lzw.common.websocket.dto.MessageToAllDTO;
+import com.lzw.common.websocket.dto.MessageToUsersDTO;
+import com.lzw.kafka.comsumer.event.KafkaConsumerEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import java.io.IOException;
  * @date 2018/8/17 15:51
  */
 @Component
-@ConditionalOnClass(name = "com.hyzs.event.kafka.comsumer.event.KafkaConsumerEvent")
+@ConditionalOnClass(name = "lzw.event.kafka.comsumer.event.KafkaConsumerEvent")
 @Slf4j
 public class WebsocketKafkaEventListener implements ApplicationListener<KafkaConsumerEvent>{
 

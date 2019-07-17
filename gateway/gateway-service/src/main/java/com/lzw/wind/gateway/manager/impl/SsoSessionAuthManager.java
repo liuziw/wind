@@ -1,7 +1,7 @@
 package com.lzw.wind.gateway.manager.impl;
 
-import com.hyzs.gateway.enums.AuthInfoEnum;
-import com.hyzs.gateway.util.GatewayUtils;
+import com.lzw.wind.gateway.enums.AuthInfoEnum;
+import com.lzw.wind.gateway.util.GatewayUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Slf4j
 @Component
-@ConditionalOnProperty(value = "hyzs.auth.type",havingValue = "LOGIN")
+@ConditionalOnProperty(value = "lzw.wind.auth.type",havingValue = "LOGIN")
 public class SsoSessionAuthManager extends AbstractAuthManager {
 
 

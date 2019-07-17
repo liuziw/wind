@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 @Configuration
-@ConfigurationProperties(prefix = "hyzs.auth", ignoreUnknownFields = true)
+@ConfigurationProperties(prefix = "wind.auth", ignoreUnknownFields = true)
 @Data
 public class AuthProperties {
     public static enum AuthTypeEnum{

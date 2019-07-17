@@ -1,9 +1,9 @@
 package com.lzw.wind.tibmas.core.daomanager.immutable.impl;
 
-import com.hyzs.gz.common.dao.daomanager.impl.CommonDaoManagerImpl;
-import com.hyzs.tibmas.core.daomanager.immutable.ImmutableUserSecretQuestionDaoManager;
-import com.hyzs.tibmas.core.dbo.UserSecretQuestionDO;
-import com.hyzs.tibmas.core.mapper.UserSecretQuestionMapper;
+import com.lzw.common.dao.daomanager.impl.CommonDaoManagerImpl;
+import com.lzw.wind.tibmas.core.daomanager.immutable.ImmutableUserSecretQuestionDaoManager;
+import com.lzw.wind.tibmas.core.dbo.UserSecretQuestionDO;
+import com.lzw.wind.tibmas.core.mapper.UserSecretQuestionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;

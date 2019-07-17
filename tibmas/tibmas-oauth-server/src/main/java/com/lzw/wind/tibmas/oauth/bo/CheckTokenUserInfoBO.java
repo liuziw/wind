@@ -1,7 +1,7 @@
 package com.lzw.wind.tibmas.oauth.bo;
 
 
-import com.hyzs.tibmas.core.vo.PermTreeVO;
+import com.lzw.wind.tibmas.core.vo.PermTreeVO;
 import lombok.Data;
 
 import java.util.List;

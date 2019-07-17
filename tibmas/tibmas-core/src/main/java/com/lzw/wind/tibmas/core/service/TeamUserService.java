@@ -1,10 +1,10 @@
 package com.lzw.wind.tibmas.core.service;
 
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.tibmas.core.bo.ListTeamInfoByUserIdBO;
-import com.hyzs.tibmas.core.dto.*;
-import com.hyzs.tibmas.core.vo.TeamUserVO;
-import com.hyzs.tibmas.core.vo.UserBasicInfoVO;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.wind.tibmas.core.bo.ListTeamInfoByUserIdBO;
+import com.lzw.wind.tibmas.core.dto.*;
+import com.lzw.wind.tibmas.core.vo.TeamUserVO;
+import com.lzw.wind.tibmas.core.vo.UserBasicInfoVO;
 
 import java.util.List;
 

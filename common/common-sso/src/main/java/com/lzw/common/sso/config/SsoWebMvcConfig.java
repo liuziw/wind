@@ -1,6 +1,6 @@
 package com.lzw.common.sso.config;
 
-import com.hyzs.common.sso.web.interceptor.UserInterceptor;
+import com.lzw.common.sso.web.interceptor.UserInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -21,11 +21,11 @@ public class SsoWebMvcConfig extends WebMvcConfigurerAdapter {
     private UserInterceptor userInterceptor;
 
     //拦截的url
-    @Value("${hyzs.auth.urls:/webapi/**,/api/**}")
+    @Value("${wind.auth.urls:/webapi/**,/api/**}")
     private String [] urls;
 
     //排除的url
-    @Value("${hyzs.auth.excludeUrls:/login,/logout}")
+    @Value("${wind.auth.excludeUrls:/login,/logout}")
     private String [] excludeUrls;
 
     @Value("${spring.profiles.active:/dev}")

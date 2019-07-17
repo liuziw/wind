@@ -1,7 +1,7 @@
 package com.lzw.wind.tibmas.core.bo;
 
-import com.hyzs.tibmas.core.dbo.*;
-import com.hyzs.tibmas.core.vo.PermTreeVO;
+import com.lzw.wind.tibmas.core.dbo.*;
+import com.lzw.wind.tibmas.core.vo.PermTreeVO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

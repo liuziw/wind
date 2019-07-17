@@ -1,6 +1,6 @@
 package com.lzw.wind.tibmas.core.manager;
 
-import com.hyzs.gz.common.dao.manager.DOChecker;
+import com.lzw.common.dao.manager.DOChecker;
 import org.springframework.stereotype.Component;
 
 /**

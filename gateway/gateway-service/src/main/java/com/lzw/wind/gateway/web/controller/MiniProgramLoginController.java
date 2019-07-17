@@ -1,9 +1,10 @@
 package com.lzw.wind.gateway.web.controller;
 
-import com.hyzs.gateway.bo.MiniProgramLoginBO;
-import com.hyzs.gateway.dto.MiniProgramLoginDTO;
-import com.hyzs.gateway.service.MiniProgramService;
-import com.hyzs.gateway.vo.ResponseVO;
+
+import com.lzw.wind.gateway.bo.MiniProgramLoginBO;
+import com.lzw.wind.gateway.dto.MiniProgramLoginDTO;
+import com.lzw.wind.gateway.service.MiniProgramService;
+import com.lzw.wind.gateway.vo.ResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

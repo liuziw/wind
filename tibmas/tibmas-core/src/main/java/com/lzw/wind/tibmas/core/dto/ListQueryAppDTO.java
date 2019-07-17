@@ -1,6 +1,6 @@
 package com.lzw.wind.tibmas.core.dto;
 
-import com.hyzs.gz.common.dao.dto.PageQueryItemDTO;
+import com.lzw.common.dao.dto.PageQueryItemDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

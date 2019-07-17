@@ -1,11 +1,11 @@
 package com.lzw.wind.tibmas.core.manager;
 
-import com.hyzs.tibmas.core.bo.DeptBO;
-import com.hyzs.tibmas.core.dbo.DeptDO;
-import com.hyzs.tibmas.core.dbo.DeptRoleDO;
-import com.hyzs.tibmas.core.dbo.UserDO;
-import com.hyzs.tibmas.core.vo.DeptTreeVO;
-import com.hyzs.tibmas.core.vo.SelectTreeVO;
+import com.lzw.wind.tibmas.core.bo.DeptBO;
+import com.lzw.wind.tibmas.core.dbo.DeptDO;
+import com.lzw.wind.tibmas.core.dbo.DeptRoleDO;
+import com.lzw.wind.tibmas.core.dbo.UserDO;
+import com.lzw.wind.tibmas.core.vo.DeptTreeVO;
+import com.lzw.wind.tibmas.core.vo.SelectTreeVO;
 
 import java.util.Collection;
 import java.util.List;

@@ -1,13 +1,13 @@
 package com.lzw.wind.tibmas.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.core.vo.ResponseVO;
-import com.hyzs.tibmas.core.daomanager.LoginFailDaoManager;
-import com.hyzs.tibmas.core.daomanager.UserDaoManager;
-import com.hyzs.tibmas.core.dbo.LoginFailDO;
-import com.hyzs.tibmas.core.dbo.UserDO;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.core.vo.ResponseVO;
+import com.lzw.wind.tibmas.core.daomanager.LoginFailDaoManager;
+import com.lzw.wind.tibmas.core.daomanager.UserDaoManager;
+import com.lzw.wind.tibmas.core.dbo.LoginFailDO;
+import com.lzw.wind.tibmas.core.dbo.UserDO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

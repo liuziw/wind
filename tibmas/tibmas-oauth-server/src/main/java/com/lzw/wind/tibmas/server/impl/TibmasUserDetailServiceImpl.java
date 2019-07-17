@@ -1,14 +1,14 @@
 package com.lzw.wind.tibmas.server.impl;
 
 import com.google.common.collect.Lists;
-import com.hyzs.tibmas.core.bo.UserDetailsBO;
-import com.hyzs.tibmas.core.dbo.UserDO;
-import com.hyzs.tibmas.core.enums.ExpiredEnum;
-import com.hyzs.tibmas.core.enums.LockedEnum;
-import com.hyzs.tibmas.core.service.AppTokenService;
-import com.hyzs.tibmas.core.service.UserService;
-import com.hyzs.tibmas.core.util.EncryptUtils;
-import com.hyzs.tibmas.manage.PasswordManager;
+import com.lzw.wind.tibmas.core.bo.UserDetailsBO;
+import com.lzw.wind.tibmas.core.dbo.UserDO;
+import com.lzw.wind.tibmas.core.enums.ExpiredEnum;
+import com.lzw.wind.tibmas.core.enums.LockedEnum;
+import com.lzw.wind.tibmas.core.service.AppTokenService;
+import com.lzw.wind.tibmas.core.service.UserService;
+import com.lzw.wind.tibmas.core.util.EncryptUtils;
+import com.lzw.wind.tibmas.manage.PasswordManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

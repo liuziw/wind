@@ -1,7 +1,7 @@
 package com.lzw.wind.tibmas.log.daomanager.immutable;
 
-import com.hyzs.gz.common.dao.daomanager.CommonDaoManager;
-import com.hyzs.tibmas.log.dbo.OptrLogDO;
+import com.lzw.common.dao.daomanager.CommonDaoManager;
+import com.lzw.wind.tibmas.log.dbo.OptrLogDO;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;

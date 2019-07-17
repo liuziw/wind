@@ -1,12 +1,10 @@
 package com.lzw.wind.tibmas.webapi.web.controller;
 
 
-import com.hyzs.gz.common.core.web.controller.BaseController;
-import com.hyzs.tibmas.core.dbo.PermDO;
-import com.hyzs.tibmas.core.manager.TibmasManager;
-import com.hyzs.tibmas.core.vo.PermTreeVO;
-import com.hyzs.tibmas2reids.core.bo.Tibmas2RedisUserInfoBO;
-import com.hyzs.tibmas2reids.core.manager.Tibmas2RedisManager;
+import com.lzw.common.core.web.controller.BaseController;
+import com.lzw.wind.tibmas.core.dbo.PermDO;
+import com.lzw.wind.tibmas.core.manager.TibmasManager;
+import com.lzw.wind.tibmas.core.vo.PermTreeVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,10 +24,6 @@ public class TibmasManagerTestController extends BaseController {
     @Autowired
     private TibmasManager tibmasManager;
 
-
-
-    @Autowired
-    private Tibmas2RedisManager tibmas2RedisManager;
 
     /**
      * 根据部门id获取部门的角色信息
@@ -76,21 +70,5 @@ public class TibmasManagerTestController extends BaseController {
         return this.tibmasManager.listPermTreeByUserIdAndAppId(userId,appId);
     }
 
-
-    @RequestMapping("push2Redis")
-    public void push2Redis(@RequestBody List<Long> userIds){
-        userIds.forEach(id->this.tibmasManager.push2Redis(id));
-    }
-
-
-    @RequestMapping("getUserInfoById")
-    public Tibmas2RedisUserInfoBO getUserInfoById(Long userId){
-        return this.tibmas2RedisManager.getUserInfo(userId);
-    }
-
-    @RequestMapping("getUserInfoByAccount")
-    public Tibmas2RedisUserInfoBO getUserInfoByAccount(String account){
-        return this.tibmas2RedisManager.getUserInfo(account);
-    }
 
 }

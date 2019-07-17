@@ -1,8 +1,8 @@
 package com.lzw.common.sso.web.controller;
 
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.core.vo.ResponseVO;
-import com.hyzs.gz.common.core.web.controller.BaseController;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.core.vo.ResponseVO;
+import com.lzw.common.core.web.controller.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

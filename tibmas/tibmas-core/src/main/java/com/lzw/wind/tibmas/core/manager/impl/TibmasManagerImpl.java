@@ -1,23 +1,18 @@
 package com.lzw.wind.tibmas.core.manager.impl;
 
 import com.google.common.collect.Lists;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.dao.dto.QueryItemDTO;
-import com.hyzs.gz.common.dao.enums.QueryTypeEnum2;
-import com.hyzs.gz.common.dao.util.DaoUtils;
-import com.hyzs.tibmas.core.bo.ListPermInfoByUserIdAndAppIdBO;
-import com.hyzs.tibmas.core.daomanager.*;
-import com.hyzs.tibmas.core.dbo.*;
-import com.hyzs.tibmas.core.enums.IsExtendEnum;
-import com.hyzs.tibmas.core.enums.PermTypeEnum;
-import com.hyzs.tibmas.core.manager.TibmasManager;
-import com.hyzs.tibmas.core.vo.PermTreeVO;
-import com.hyzs.tibmas2reids.core.bo.Tibmas2RedisAreaInfoBO;
-import com.hyzs.tibmas2reids.core.bo.Tibmas2RedisDeptInfoBO;
-import com.hyzs.tibmas2reids.core.bo.Tibmas2RedisTeamInfoBO;
-import com.hyzs.tibmas2reids.core.bo.Tibmas2RedisUserInfoBO;
-import com.hyzs.tibmas2reids.core.manager.Tibmas2RedisManager;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.dao.dto.QueryItemDTO;
+import com.lzw.common.dao.enums.QueryTypeEnum2;
+import com.lzw.common.dao.util.DaoUtils;
+import com.lzw.wind.tibmas.core.bo.ListPermInfoByUserIdAndAppIdBO;
+import com.lzw.wind.tibmas.core.daomanager.*;
+import com.lzw.wind.tibmas.core.dbo.*;
+import com.lzw.wind.tibmas.core.enums.IsExtendEnum;
+import com.lzw.wind.tibmas.core.enums.PermTypeEnum;
+import com.lzw.wind.tibmas.core.manager.TibmasManager;
+import com.lzw.wind.tibmas.core.vo.PermTreeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -383,105 +378,5 @@ public class TibmasManagerImpl implements TibmasManager {
     }
 
 
-    @Override
-    public void push2Redis(Long userId) {
-        UserDO userDO = this.userDaoManager.getById(userId);
-        Tibmas2RedisUserInfoBO tibmas2RedisUserInfoBO = CommonUtils.newInstance(userDO, Tibmas2RedisUserInfoBO.class);
-        tibmas2RedisUserInfoBO.setUserId(userDO.getId());
 
-        //部门
-        List<DeptDO> deptDOS = this.listAllDeptByUserId(userId);
-        List<Tibmas2RedisDeptInfoBO> deptInfoBOS= CommonUtils.collection2List(deptDOS, deptDO -> {
-            Tibmas2RedisDeptInfoBO tibmas2RedisDeptInfoBO = CommonUtils.newInstance(deptDO, Tibmas2RedisDeptInfoBO.class);
-            tibmas2RedisDeptInfoBO.setDeptId(deptDO.getId());
-            return tibmas2RedisDeptInfoBO;
-        });
-        if(CommonUtils.isNotEmpty(deptInfoBOS)){
-            Tibmas2RedisDeptInfoBO tibmas2RedisDeptInfoBO = deptInfoBOS.get(0);
-            tibmas2RedisUserInfoBO.setDeptId(tibmas2RedisDeptInfoBO.getDeptId());
-            tibmas2RedisUserInfoBO.setDeptCode(tibmas2RedisDeptInfoBO.getDeptCode());
-            tibmas2RedisUserInfoBO.setDeptName(tibmas2RedisDeptInfoBO.getDeptName());
-        }
-        tibmas2RedisUserInfoBO.setDeptList(deptInfoBOS);
-
-
-        //角色
-        Set<Long> roleIds = this.listAllRoleIdByUserId(userId);
-        if(CommonUtils.isNotEmpty(roleIds)){
-            List<RoleDO> roleDOS = this.roleDaoManager.listByIds(roleIds);
-            tibmas2RedisUserInfoBO.setRoleList(CommonUtils.collection2List(roleDOS,RoleDO::getRoleCode));
-
-            //权限
-            List<PermDO> permDOS = this.listPermDOByRoleIds(roleIds);
-            tibmas2RedisUserInfoBO.setPermList(CommonUtils.collection2List(permDOS,PermDO::getPermCode));
-        }
-        else{
-            tibmas2RedisUserInfoBO.setRoleList(new ArrayList<>(0));
-            tibmas2RedisUserInfoBO.setPermList(new ArrayList<>(0));
-        }
-
-
-        //地区Long deptId = tibmas2RedisUserInfoBO.getDeptId();
-        if(CommonUtils.isNotEmpty(deptDOS)){
-            DeptDO deptDO = deptDOS.get(0);
-            if(deptDO!=null&&deptDO.getAreaId()!=null){
-                List<AreaDO> areaDOS = this.listAreasById(deptDO.getAreaId());
-                if(CommonUtils.isNotEmpty(areaDOS)){
-                    tibmas2RedisUserInfoBO.setAreaList(CommonUtils.collection2List(areaDOS, areaDO -> {
-                        Tibmas2RedisAreaInfoBO tibmas2RedisAreaInfoBO = CommonUtils.newInstance(areaDO, Tibmas2RedisAreaInfoBO.class);
-                        tibmas2RedisAreaInfoBO.setAreaId(areaDO.getId());
-                        tibmas2RedisAreaInfoBO.setAreaCode(areaDO.getCode().toString());
-                        tibmas2RedisAreaInfoBO.setAreaName(areaDO.getName());
-                        return tibmas2RedisAreaInfoBO;
-                    }));
-                    AreaDO areaDO = areaDOS.get(0);
-                    tibmas2RedisUserInfoBO.setAreaId(areaDO.getId());
-                    tibmas2RedisUserInfoBO.setAreaCode(areaDO.getCode().toString());
-                    tibmas2RedisUserInfoBO.setAreaName(areaDO.getName());
-                }
-                else{
-                    tibmas2RedisUserInfoBO.setAreaList(new ArrayList<>(0));
-                }
-            }
-        }
-
-
-        //团队
-        List<TeamUserDO> teamUserDOList = this.teamUserDaoManager.listByUserId(userId);
-        List<TeamDO> teamDOS = this.teamDaoManager.listByIds(teamUserDOList, TeamUserDO::getTeamId);
-        List<Tibmas2RedisTeamInfoBO> tibmas2RedisTeamInfoBOS=new ArrayList<>();
-        for(TeamDO teamDO:teamDOS){
-            Tibmas2RedisTeamInfoBO tibmas2RedisTeamInfoBO= CommonUtils.newInstance(teamDO,Tibmas2RedisTeamInfoBO.class);
-            tibmas2RedisTeamInfoBO.setTeamId(teamDO.getId());
-            tibmas2RedisTeamInfoBOS.add(tibmas2RedisTeamInfoBO);
-            if("ZF_XCJ".equals(tibmas2RedisTeamInfoBO.getTeamTypeCode())){
-                tibmas2RedisUserInfoBO.setXcjTeamId(tibmas2RedisTeamInfoBO.getTeamId());
-            }
-        }
-        tibmas2RedisUserInfoBO.setTeamList(tibmas2RedisTeamInfoBOS);
-        String userInfoJson = CommonUtils.object2Json(tibmas2RedisUserInfoBO);
-        HashOperations<String, Object, Object> ops = this.stringRedisTemplate.opsForHash();
-        ops.put(Tibmas2RedisManager.USER_ACCOUNT_KEY,userDO.getUserAccount(),userInfoJson);
-        ops.put(Tibmas2RedisManager.USER_ID_KEY,userId.toString(),userInfoJson);
-    }
-
-    @Override
-    public void delete2Redis(Long userId) {
-
-    }
-
-
-    protected List<AreaDO> listAreasById(Long areaId){
-        List<AreaDO> list=new ArrayList<>();
-        AreaDO areaDO = this.areaDaoManager.getById(areaId);
-        while(areaDO!=null){
-            list.add(areaDO);
-            Long pid = areaDO.getPid();
-            if(pid==null || pid.longValue()<=0){
-                break;
-            }
-            areaDO=this.areaDaoManager.getById(pid);
-        }
-        return list;
-    }
 }

@@ -1,9 +1,9 @@
 package com.lzw.common.sso.web.interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hyzs.common.sso.config.OAuth2AuthenticationExt;
-import com.hyzs.gz.common.core.exception.CommonErrorCode;
-import com.hyzs.gz.common.core.vo.ResponseVO;
+import com.lzw.common.core.exception.CommonErrorCode;
+import com.lzw.common.core.vo.ResponseVO;
+import com.lzw.common.sso.config.OAuth2AuthenticationExt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;

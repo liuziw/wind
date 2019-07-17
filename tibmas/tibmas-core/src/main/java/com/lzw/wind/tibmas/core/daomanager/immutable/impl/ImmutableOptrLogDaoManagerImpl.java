@@ -1,9 +1,9 @@
 package com.lzw.wind.tibmas.core.daomanager.immutable.impl;
 
-import com.hyzs.gz.common.dao.daomanager.impl.CommonDaoManagerImpl;
-import com.hyzs.tibmas.core.daomanager.immutable.ImmutableOptrLogDaoManager;
-import com.hyzs.tibmas.core.dbo.OptrLogDO;
-import com.hyzs.tibmas.core.mapper.OptrLogMapper;
+import com.lzw.common.dao.daomanager.impl.CommonDaoManagerImpl;
+import com.lzw.wind.tibmas.core.daomanager.immutable.ImmutableOptrLogDaoManager;
+import com.lzw.wind.tibmas.core.dbo.OptrLogDO;
+import com.lzw.wind.tibmas.core.mapper.OptrLogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;

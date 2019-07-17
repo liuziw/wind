@@ -1,7 +1,7 @@
 package com.lzw.wind.tibmas.core.bo;
 
-import com.hyzs.tibmas.core.dbo.RoleDO;
-import com.hyzs.tibmas.core.dbo.RoleTypeDO;
+import com.lzw.wind.tibmas.core.dbo.RoleDO;
+import com.lzw.wind.tibmas.core.dbo.RoleTypeDO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

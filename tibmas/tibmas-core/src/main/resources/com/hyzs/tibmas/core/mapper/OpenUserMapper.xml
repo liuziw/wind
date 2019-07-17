@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hyzs.tibmas.core.mapper.OpenUserMapper">
+<mapper namespace="com.lzw.wind.tibmas.core.mapper.OpenUserMapper">
 
     <!--
     /**
@@ -28,24 +28,24 @@
     </sql>
 
 
-    <select id="listAll" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+    <select id="listAll" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
         <include refid="selectAsDO" /> where is_deleted=0
     </select>
 
-    <select id="mapAll" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+    <select id="mapAll" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
         <include refid="selectAsDO" /> where is_deleted=0
     </select>
 
 
-    <select id="getById" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+    <select id="getById" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
         <include refid="selectAsDO" /> where id=#{id} and is_deleted=0
     </select>
 
-    <select id="listByIds" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+    <select id="listByIds" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
         <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
     </select>
 
-    <select id="mapByIds" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+    <select id="mapByIds" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
         <include refid="selectAsDO" /> where is_deleted=0 and id in (<foreach collection="ids" index="index" item="item"  separator=",">#{item}</foreach>)
     </select>
 
@@ -188,7 +188,7 @@
 
 
 
-    <select id="listByProperty" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+    <select id="listByProperty" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
         <include refid="selectAsDO" />
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
@@ -198,7 +198,7 @@
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
 
-    <select id="mapByProperty" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+    <select id="mapByProperty" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
         <include refid="selectAsDO" />
             where is_deleted=0 and ${propertyName}=#{value}
     </select>
@@ -241,7 +241,7 @@
          where is_deleted=0 and ${propertyName}=#{value}
     </update>
 
-    <select id="listByProperties" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+    <select id="listByProperties" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="propertyNames" item="propertyName" index="index">
@@ -257,7 +257,7 @@
             </foreach>
     </select>
 
-    <select id="mapByProperties" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+    <select id="mapByProperties" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="propertyNames" item="propertyName" index="index">
@@ -311,7 +311,7 @@
          </foreach>
     </update>
 
-    <select id="_listByQueryItems" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+    <select id="_listByQueryItems" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -331,7 +331,7 @@
             </foreach>
     </select>
 
-    <select id="_mapByQueryItems" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+    <select id="_mapByQueryItems" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -453,7 +453,7 @@
             </foreach>
     </update>
 
-    <select id="_listByPageQuery" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+    <select id="_listByPageQuery" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
         <include refid="selectAsDO" />
             where is_deleted=0
             <foreach collection="items" item="item" index="index">
@@ -500,7 +500,7 @@
 
 
 
-          <select id="listByOpenId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+          <select id="listByOpenId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and open_id=#{openId}
           </select>
@@ -510,7 +510,7 @@
                 where is_deleted=0 and open_id=#{openId}
            </select>
 
-           <select id="mapByOpenId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByOpenId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and open_id=#{openId}
            </select>
@@ -556,7 +556,7 @@
 
             <!--property in -->
 
-         <select id="listByInOpenId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+         <select id="listByInOpenId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and open_id in
                   <foreach collection="openIdList" item="inItem" close=")" open="(" separator=",">
@@ -572,7 +572,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInOpenId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByInOpenId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and open_id in
                         <foreach collection="openIdList" item="inItem" close=")" open="(" separator=",">
@@ -625,7 +625,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByUserId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+          <select id="listByUserId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id=#{userId}
           </select>
@@ -635,7 +635,7 @@
                 where is_deleted=0 and user_id=#{userId}
            </select>
 
-           <select id="mapByUserId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByUserId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and user_id=#{userId}
            </select>
@@ -681,7 +681,7 @@
 
             <!--property in -->
 
-         <select id="listByInUserId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+         <select id="listByInUserId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and user_id in
                   <foreach collection="userIdList" item="inItem" close=")" open="(" separator=",">
@@ -697,7 +697,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInUserId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByInUserId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and user_id in
                         <foreach collection="userIdList" item="inItem" close=")" open="(" separator=",">
@@ -750,7 +750,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByExamineStatus" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+          <select id="listByExamineStatus" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and examine_status=#{examineStatus}
           </select>
@@ -760,7 +760,7 @@
                 where is_deleted=0 and examine_status=#{examineStatus}
            </select>
 
-           <select id="mapByExamineStatus" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByExamineStatus" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and examine_status=#{examineStatus}
            </select>
@@ -806,7 +806,7 @@
 
             <!--property in -->
 
-         <select id="listByInExamineStatus" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+         <select id="listByInExamineStatus" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and examine_status in
                   <foreach collection="examineStatusList" item="inItem" close=")" open="(" separator=",">
@@ -822,7 +822,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInExamineStatus" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByInExamineStatus" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and examine_status in
                         <foreach collection="examineStatusList" item="inItem" close=")" open="(" separator=",">
@@ -875,7 +875,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByWxHeadImg" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+          <select id="listByWxHeadImg" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and wx_head_img=#{wxHeadImg}
           </select>
@@ -885,7 +885,7 @@
                 where is_deleted=0 and wx_head_img=#{wxHeadImg}
            </select>
 
-           <select id="mapByWxHeadImg" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByWxHeadImg" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and wx_head_img=#{wxHeadImg}
            </select>
@@ -931,7 +931,7 @@
 
             <!--property in -->
 
-         <select id="listByInWxHeadImg" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+         <select id="listByInWxHeadImg" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and wx_head_img in
                   <foreach collection="wxHeadImgList" item="inItem" close=")" open="(" separator=",">
@@ -947,7 +947,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInWxHeadImg" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByInWxHeadImg" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and wx_head_img in
                         <foreach collection="wxHeadImgList" item="inItem" close=")" open="(" separator=",">
@@ -1000,7 +1000,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByNickName" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+          <select id="listByNickName" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and nick_name=#{nickName}
           </select>
@@ -1010,7 +1010,7 @@
                 where is_deleted=0 and nick_name=#{nickName}
            </select>
 
-           <select id="mapByNickName" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByNickName" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and nick_name=#{nickName}
            </select>
@@ -1056,7 +1056,7 @@
 
             <!--property in -->
 
-         <select id="listByInNickName" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+         <select id="listByInNickName" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and nick_name in
                   <foreach collection="nickNameList" item="inItem" close=")" open="(" separator=",">
@@ -1072,7 +1072,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInNickName" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByInNickName" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and nick_name in
                         <foreach collection="nickNameList" item="inItem" close=")" open="(" separator=",">
@@ -1125,7 +1125,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByWxPhoneNum" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+          <select id="listByWxPhoneNum" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and wx_phone_num=#{wxPhoneNum}
           </select>
@@ -1135,7 +1135,7 @@
                 where is_deleted=0 and wx_phone_num=#{wxPhoneNum}
            </select>
 
-           <select id="mapByWxPhoneNum" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByWxPhoneNum" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and wx_phone_num=#{wxPhoneNum}
            </select>
@@ -1181,7 +1181,7 @@
 
             <!--property in -->
 
-         <select id="listByInWxPhoneNum" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+         <select id="listByInWxPhoneNum" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and wx_phone_num in
                   <foreach collection="wxPhoneNumList" item="inItem" close=")" open="(" separator=",">
@@ -1197,7 +1197,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInWxPhoneNum" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByInWxPhoneNum" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and wx_phone_num in
                         <foreach collection="wxPhoneNumList" item="inItem" close=")" open="(" separator=",">
@@ -1250,7 +1250,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByWxGender" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+          <select id="listByWxGender" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and wx_gender=#{wxGender}
           </select>
@@ -1260,7 +1260,7 @@
                 where is_deleted=0 and wx_gender=#{wxGender}
            </select>
 
-           <select id="mapByWxGender" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByWxGender" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and wx_gender=#{wxGender}
            </select>
@@ -1306,7 +1306,7 @@
 
             <!--property in -->
 
-         <select id="listByInWxGender" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+         <select id="listByInWxGender" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and wx_gender in
                   <foreach collection="wxGenderList" item="inItem" close=")" open="(" separator=",">
@@ -1322,7 +1322,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInWxGender" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByInWxGender" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and wx_gender in
                         <foreach collection="wxGenderList" item="inItem" close=")" open="(" separator=",">
@@ -1375,7 +1375,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByWxAppId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+          <select id="listByWxAppId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and wx_app_id=#{wxAppId}
           </select>
@@ -1385,7 +1385,7 @@
                 where is_deleted=0 and wx_app_id=#{wxAppId}
            </select>
 
-           <select id="mapByWxAppId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByWxAppId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and wx_app_id=#{wxAppId}
            </select>
@@ -1431,7 +1431,7 @@
 
             <!--property in -->
 
-         <select id="listByInWxAppId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+         <select id="listByInWxAppId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and wx_app_id in
                   <foreach collection="wxAppIdList" item="inItem" close=")" open="(" separator=",">
@@ -1447,7 +1447,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInWxAppId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByInWxAppId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and wx_app_id in
                         <foreach collection="wxAppIdList" item="inItem" close=")" open="(" separator=",">
@@ -1500,7 +1500,7 @@
                             #{inItem}
                         </foreach>
             </update>
-          <select id="listByUnionId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+          <select id="listByUnionId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and union_id=#{unionId}
           </select>
@@ -1510,7 +1510,7 @@
                 where is_deleted=0 and union_id=#{unionId}
            </select>
 
-           <select id="mapByUnionId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByUnionId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                   where is_deleted=0 and union_id=#{unionId}
            </select>
@@ -1556,7 +1556,7 @@
 
             <!--property in -->
 
-         <select id="listByInUnionId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+         <select id="listByInUnionId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
               <include refid="selectAsDO" />
                   where is_deleted=0 and union_id in
                   <foreach collection="unionIdList" item="inItem" close=")" open="(" separator=",">
@@ -1572,7 +1572,7 @@
                       </foreach>
            </select>
 
-           <select id="mapByInUnionId" resultType="com.hyzs.tibmas.core.dbo.OpenUserDO">
+           <select id="mapByInUnionId" resultType="com.lzw.wind.tibmas.core.dbo.OpenUserDO">
                 <include refid="selectAsDO" />
                     where is_deleted=0 and union_id in
                         <foreach collection="unionIdList" item="inItem" close=")" open="(" separator=",">

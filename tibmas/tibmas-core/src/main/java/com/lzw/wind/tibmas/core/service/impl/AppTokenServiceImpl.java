@@ -1,8 +1,8 @@
 package com.lzw.wind.tibmas.core.service.impl;
 
-import com.hyzs.tibmas.core.daomanager.AppTokenInfoDaoManager;
-import com.hyzs.tibmas.core.dbo.AppTokenInfoDO;
-import com.hyzs.tibmas.core.service.AppTokenService;
+import com.lzw.wind.tibmas.core.daomanager.AppTokenInfoDaoManager;
+import com.lzw.wind.tibmas.core.dbo.AppTokenInfoDO;
+import com.lzw.wind.tibmas.core.service.AppTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

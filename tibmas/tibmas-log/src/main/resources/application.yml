@@ -35,7 +35,7 @@ spring:
     database: 4
     host: 172.16.8.18
     port: 6379
-    password: hyzs
+    password: wind
     jedis:
       pool:
         max-active: 11
@@ -68,7 +68,7 @@ mybatis:
   #日志
 logging:
   level:
-    com.hyzs: DEBUG
+    com.wind: DEBUG
     org: INFO
 
 
@@ -90,7 +90,7 @@ security:
       tokenInfoUri: http://172.16.8.20:82/oauth/check_token
 
 
-hyzs:
+wind:
   sso:
     logoutUrl: http://172.16.8.20:82/logout
   auth:

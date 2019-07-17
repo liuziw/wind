@@ -25,7 +25,7 @@
 #### 3.3getaway统一网关配置
 ![tibmas2](img-readmeCron/gateway.jpg)
 ```
-hyzs:
+wind:
   sso:
     accessTokenUri: http://172.16.8.20:82/oauth/token
     userAuthorizationUri: http://172.16.8.20:82/oauth/authorize

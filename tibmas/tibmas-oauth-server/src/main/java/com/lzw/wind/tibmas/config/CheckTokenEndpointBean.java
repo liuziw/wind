@@ -1,14 +1,14 @@
 package com.lzw.wind.tibmas.config;
 
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.tibmas.core.dbo.AppDO;
-import com.hyzs.tibmas.core.dbo.UserDO;
-import com.hyzs.tibmas.core.service.AppService;
-import com.hyzs.tibmas.core.service.UserService;
-import com.hyzs.tibmas.oauth.bo.CheckTokenPermBO;
-import com.hyzs.tibmas.oauth.bo.CheckTokenUserInfoBO;
-import com.hyzs.tibmas.oauth.service.CheckTokenService;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.wind.tibmas.core.dbo.AppDO;
+import com.lzw.wind.tibmas.core.dbo.UserDO;
+import com.lzw.wind.tibmas.core.service.AppService;
+import com.lzw.wind.tibmas.core.service.UserService;
+import com.lzw.wind.tibmas.oauth.bo.CheckTokenPermBO;
+import com.lzw.wind.tibmas.oauth.bo.CheckTokenUserInfoBO;
+import com.lzw.wind.tibmas.oauth.service.CheckTokenService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;

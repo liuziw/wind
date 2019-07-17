@@ -53,7 +53,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot-version}</version>
                 <configuration>
-                    <mainClass>com.hyzs.GatewayApplication</mainClass>
+                    <mainClass>lzw.GatewayApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

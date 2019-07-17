@@ -1,9 +1,9 @@
 package com.lzw.wind.tibmas.core.daomanager.immutable.impl;
 
-import com.hyzs.gz.common.dao.daomanager.impl.CommonDaoManagerImpl;
-import com.hyzs.tibmas.core.daomanager.immutable.ImmutableAreaDaoManager;
-import com.hyzs.tibmas.core.dbo.AreaDO;
-import com.hyzs.tibmas.core.mapper.AreaMapper;
+import com.lzw.common.dao.daomanager.impl.CommonDaoManagerImpl;
+import com.lzw.wind.tibmas.core.daomanager.immutable.ImmutableAreaDaoManager;
+import com.lzw.wind.tibmas.core.dbo.AreaDO;
+import com.lzw.wind.tibmas.core.mapper.AreaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 

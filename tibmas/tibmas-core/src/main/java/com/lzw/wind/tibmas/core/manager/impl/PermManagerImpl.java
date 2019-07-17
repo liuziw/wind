@@ -1,11 +1,11 @@
 package com.lzw.wind.tibmas.core.manager.impl;
 
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.tibmas.core.daomanager.PermDaoManager;
-import com.hyzs.tibmas.core.dbo.PermDO;
-import com.hyzs.tibmas.core.enums.PermTypeEnum;
-import com.hyzs.tibmas.core.manager.PermManager;
-import com.hyzs.tibmas.core.vo.PermTreeVO;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.wind.tibmas.core.daomanager.PermDaoManager;
+import com.lzw.wind.tibmas.core.dbo.PermDO;
+import com.lzw.wind.tibmas.core.enums.PermTypeEnum;
+import com.lzw.wind.tibmas.core.manager.PermManager;
+import com.lzw.wind.tibmas.core.vo.PermTreeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;

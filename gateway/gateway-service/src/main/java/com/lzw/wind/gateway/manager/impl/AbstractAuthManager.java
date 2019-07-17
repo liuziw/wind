@@ -1,8 +1,8 @@
 package com.lzw.wind.gateway.manager.impl;
 
-import com.hyzs.gateway.enums.AuthInfoEnum;
-import com.hyzs.gateway.manager.AuthManager;
-import com.hyzs.gateway.util.GatewayUtils;
+import com.lzw.wind.gateway.enums.AuthInfoEnum;
+import com.lzw.wind.gateway.manager.AuthManager;
+import com.lzw.wind.gateway.util.GatewayUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;

@@ -1,13 +1,13 @@
 package com.lzw.common.websocket.service.impl;
 
-import com.hyzs.event.kafka.producer.event.KafkaProducerEvent;
-import com.hyzs.gz.common.core.exception.CommonErrorCode;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.manager.IdManager;
-import com.hyzs.websocket.core.dto.MessageDTO;
-import com.hyzs.websocket.core.dto.MessageToAllDTO;
-import com.hyzs.websocket.core.dto.MessageToUsersDTO;
-import com.hyzs.websocket.core.service.WebsocketService;
+import com.lzw.common.core.exception.CommonErrorCode;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.manager.IdManager;
+import com.lzw.common.websocket.dto.MessageDTO;
+import com.lzw.common.websocket.dto.MessageToAllDTO;
+import com.lzw.common.websocket.dto.MessageToUsersDTO;
+import com.lzw.common.websocket.service.WebsocketService;
+import com.lzw.kafka.producer.event.KafkaProducerEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -22,7 +22,7 @@ import java.util.Date;
  */
 //创建注解EnableKafkaWebsocket来注入WebsocketKafkaServiceImpl，因此注释了下面的两个注解
 //@Service
-//@ConditionalOnProperty(value = "hyzs.websocket.kafka.enabled",havingValue = "true")
+//@ConditionalOnProperty(value = "lzw.wind.websocket.kafka.enabled",havingValue = "true")
 @Slf4j
 @Primary
 public class WebsocketKafkaServiceImpl implements WebsocketService {

@@ -1,6 +1,7 @@
 package com.lzw.common.dao.dto;
 
-import com.hyzs.gz.common.dao.enums.QueryTypeEnum2;
+
+import com.lzw.common.dao.enums.QueryTypeEnum2;
 
 public class EqualsQueryItemDTO extends QueryItemDTO {
     public EqualsQueryItemDTO(String fieldName, Object value) {

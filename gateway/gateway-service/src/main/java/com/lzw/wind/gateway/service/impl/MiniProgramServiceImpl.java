@@ -2,11 +2,11 @@ package com.lzw.wind.gateway.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hyzs.gateway.bo.MiniProgramLoginBO;
-import com.hyzs.gateway.dto.MiniProgramLoginDTO;
-import com.hyzs.gateway.filter.AuthProperties;
-import com.hyzs.gateway.service.MiniProgramService;
-import com.hyzs.gateway.util.GatewayUtils;
+import com.lzw.wind.gateway.bo.MiniProgramLoginBO;
+import com.lzw.wind.gateway.dto.MiniProgramLoginDTO;
+import com.lzw.wind.gateway.filter.AuthProperties;
+import com.lzw.wind.gateway.service.MiniProgramService;
+import com.lzw.wind.gateway.util.GatewayUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;

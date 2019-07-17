@@ -1,12 +1,12 @@
 package com.lzw.wind.tibmas.core.service;
 
-import com.hyzs.gz.common.core.bo.PageBO;
-import com.hyzs.gz.common.dao.dto.IdDTO;
-import com.hyzs.tibmas.core.bo.*;
-import com.hyzs.tibmas.core.dbo.PermDO;
-import com.hyzs.tibmas.core.dbo.UserDO;
-import com.hyzs.tibmas.core.dto.*;
-import com.hyzs.tibmas.core.vo.*;
+import com.lzw.common.core.bo.PageBO;
+import com.lzw.common.dao.dto.IdDTO;
+import com.lzw.wind.tibmas.core.bo.*;
+import com.lzw.wind.tibmas.core.dbo.PermDO;
+import com.lzw.wind.tibmas.core.dbo.UserDO;
+import com.lzw.wind.tibmas.core.dto.*;
+import com.lzw.wind.tibmas.core.vo.*;
 
 import java.util.List;
 

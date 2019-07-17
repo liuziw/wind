@@ -98,9 +98,9 @@ public class CreateQRcode {
     private static String getLocalPath() {
         String localPath;
         if (isWindowPlatform()) {
-            localPath = "D:\\data\\hyzs\\";
+            localPath = "D:\\data\\wind\\";
         } else {
-            localPath = "/data/hyzs/";
+            localPath = "/data/wind/";
         }
         File file = new File(localPath);
         //不存在路径

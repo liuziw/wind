@@ -1,15 +1,15 @@
 package com.lzw.wind.tibmas.webapi.web.controller;
 
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.core.vo.ResponseVO;
-import com.hyzs.gz.common.core.web.controller.BaseController;
-import com.hyzs.tibmas.core.dbo.AddSecretQuestionDTO;
-import com.hyzs.tibmas.core.dto.ListSecretQuestionDTO;
-import com.hyzs.tibmas.core.dto.SecretQuestionDTO;
-import com.hyzs.tibmas.core.dto.ValidateSecretQuestionDTO;
-import com.hyzs.tibmas.core.service.SecretQuestionService;
-import com.hyzs.tibmas.core.vo.SecretQuestionVO;
-import com.hyzs.tibmas.core.vo.UserSecretQuestionVO;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.core.vo.ResponseVO;
+import com.lzw.common.core.web.controller.BaseController;
+import com.lzw.wind.tibmas.core.dbo.AddSecretQuestionDTO;
+import com.lzw.wind.tibmas.core.dto.ListSecretQuestionDTO;
+import com.lzw.wind.tibmas.core.dto.SecretQuestionDTO;
+import com.lzw.wind.tibmas.core.dto.ValidateSecretQuestionDTO;
+import com.lzw.wind.tibmas.core.service.SecretQuestionService;
+import com.lzw.wind.tibmas.core.vo.SecretQuestionVO;
+import com.lzw.wind.tibmas.core.vo.UserSecretQuestionVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.lzw.kafka.comsumer;
 
-import com.hyzs.event.kafka.comsumer.event.KafkaConsumerEvent;
+import com.lzw.kafka.comsumer.event.KafkaConsumerEvent;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class KafkaEventConsumer {
     private ApplicationContext applicationContext;
 
 
-    @KafkaListener(topicPattern = "${hyzs.event.kafka.consumer.topicPattern}")
+    @KafkaListener(topicPattern = "${wind.event.kafka.consumer.topicPattern}")
     public void receive(ConsumerRecord<Long,String> record, Acknowledgment ack){
         String topic=record.topic();
         Integer partition=record.partition();

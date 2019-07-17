@@ -2,10 +2,10 @@ package com.lzw.common.redis.dao.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hyzs.common.redis.dao.CommonRedisDao;
-import com.hyzs.gz.common.core.exception.CommonErrorCode;
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.gz.common.core.util.CommonUtils;
+import com.lzw.common.core.exception.CommonErrorCode;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.redis.dao.CommonRedisDao;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -32,7 +32,7 @@ public class CommonRedisDaoImpl<D,K> implements CommonRedisDao<D,K> {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    final private String BASE_KEY = "hyzs:table:";
+    final private String BASE_KEY = "wind:table:";
 
     public CommonRedisDaoImpl() {
         this.idGetter=d-> (K)  CommonUtils.getFieldValue(d,"id");

@@ -2,13 +2,13 @@ package com.lzw.wind.tibmas.webapi.web.controller;
 
 
 import com.google.common.collect.Lists;
-import com.hyzs.gz.common.core.util.CommonUtils;
-import com.hyzs.gz.common.core.vo.ResponseVO;
-import com.hyzs.gz.common.core.web.controller.BaseController;
-import com.hyzs.tibmas.core.bo.UserBO;
-import com.hyzs.tibmas.core.dto.*;
-import com.hyzs.tibmas.core.service.UserService;
-import com.hyzs.tibmas.core.vo.UserVO;
+import com.lzw.common.core.util.CommonUtils;
+import com.lzw.common.core.vo.ResponseVO;
+import com.lzw.common.core.web.controller.BaseController;
+import com.lzw.wind.tibmas.core.bo.UserBO;
+import com.lzw.wind.tibmas.core.dto.*;
+import com.lzw.wind.tibmas.core.service.UserService;
+import com.lzw.wind.tibmas.core.vo.UserVO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;

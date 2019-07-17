@@ -1,6 +1,6 @@
 package com.lzw.common.redis.manager;
 
-import com.hyzs.gz.common.core.manager.IdManager;
+import com.lzw.common.core.manager.IdManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;

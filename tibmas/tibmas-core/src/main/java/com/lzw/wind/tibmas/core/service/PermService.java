@@ -1,12 +1,12 @@
 package com.lzw.wind.tibmas.core.service;
 
-import com.hyzs.gz.common.dao.dto.IdDTO;
-import com.hyzs.tibmas.core.bo.PermDetailsBO;
-import com.hyzs.tibmas.core.dbo.PermDO;
-import com.hyzs.tibmas.core.dto.*;
-import com.hyzs.tibmas.core.vo.PermTreeVO;
-import com.hyzs.tibmas.core.vo.TreeVO;
-import com.hyzs.tibmas.core.vo.TreeWithSelectedVO;
+import com.lzw.common.dao.dto.IdDTO;
+import com.lzw.wind.tibmas.core.bo.PermDetailsBO;
+import com.lzw.wind.tibmas.core.dbo.PermDO;
+import com.lzw.wind.tibmas.core.dto.*;
+import com.lzw.wind.tibmas.core.vo.PermTreeVO;
+import com.lzw.wind.tibmas.core.vo.TreeVO;
+import com.lzw.wind.tibmas.core.vo.TreeWithSelectedVO;
 
 import java.util.List;
 

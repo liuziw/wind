@@ -1,2 +1,2 @@
 org.springframework.boot.SpringApplicationRunListener=\
-com.hyzs.gz.common.config.listener.HyzsConfigClientSpringApplicationRunListener
+lzw.gz.common.config.listener.HyzsConfigClientSpringApplicationRunListener

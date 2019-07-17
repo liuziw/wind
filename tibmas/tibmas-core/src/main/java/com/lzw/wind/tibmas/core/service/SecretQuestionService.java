@@ -1,11 +1,11 @@
 package com.lzw.wind.tibmas.core.service;
 
-import com.hyzs.tibmas.core.dbo.AddSecretQuestionDTO;
-import com.hyzs.tibmas.core.dto.ListSecretQuestionDTO;
-import com.hyzs.tibmas.core.dto.SecretQuestionDTO;
-import com.hyzs.tibmas.core.dto.ValidateSecretQuestionDTO;
-import com.hyzs.tibmas.core.vo.SecretQuestionVO;
-import com.hyzs.tibmas.core.vo.UserSecretQuestionVO;
+import com.lzw.wind.tibmas.core.dbo.AddSecretQuestionDTO;
+import com.lzw.wind.tibmas.core.dto.ListSecretQuestionDTO;
+import com.lzw.wind.tibmas.core.dto.SecretQuestionDTO;
+import com.lzw.wind.tibmas.core.dto.ValidateSecretQuestionDTO;
+import com.lzw.wind.tibmas.core.vo.SecretQuestionVO;
+import com.lzw.wind.tibmas.core.vo.UserSecretQuestionVO;
 
 import java.util.List;
 

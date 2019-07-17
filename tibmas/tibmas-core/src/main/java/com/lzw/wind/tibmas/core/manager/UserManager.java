@@ -1,8 +1,8 @@
 package com.lzw.wind.tibmas.core.manager;
 
-import com.hyzs.gz.common.core.exception.CommonException;
-import com.hyzs.tibmas.core.bo.UserBO;
-import com.hyzs.tibmas.core.dbo.*;
+import com.lzw.common.core.exception.CommonException;
+import com.lzw.wind.tibmas.core.bo.UserBO;
+import com.lzw.wind.tibmas.core.dbo.*;
 
 import java.util.List;
 import java.util.Set;

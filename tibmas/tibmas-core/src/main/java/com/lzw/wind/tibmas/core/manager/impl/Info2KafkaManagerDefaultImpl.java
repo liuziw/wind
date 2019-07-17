@@ -1,9 +1,9 @@
 package com.lzw.wind.tibmas.core.manager.impl;
 
-import com.hyzs.tibmas.core.dbo.DeptDO;
-import com.hyzs.tibmas.core.dbo.RoleDO;
-import com.hyzs.tibmas.core.dbo.UserDO;
-import com.hyzs.tibmas.core.manager.Info2KafkaManager;
+import com.lzw.wind.tibmas.core.dbo.DeptDO;
+import com.lzw.wind.tibmas.core.dbo.RoleDO;
+import com.lzw.wind.tibmas.core.dbo.UserDO;
+import com.lzw.wind.tibmas.core.manager.Info2KafkaManager;
 import org.springframework.stereotype.Component;
 
 /**

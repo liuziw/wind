@@ -1,6 +1,6 @@
 package com.lzw.wind.tibmas.config;
 
-import com.hyzs.gz.common.core.util.CommonUtils;
+import com.lzw.common.core.util.CommonUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.*;

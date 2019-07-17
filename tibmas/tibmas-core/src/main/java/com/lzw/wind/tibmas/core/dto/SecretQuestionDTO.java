@@ -1,6 +1,6 @@
 package com.lzw.wind.tibmas.core.dto;
 
-import com.hyzs.tibmas.core.bo.SecretQuestionsBO;
+import com.lzw.wind.tibmas.core.bo.SecretQuestionsBO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
