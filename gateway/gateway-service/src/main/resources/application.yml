@@ -12,7 +12,7 @@ spring:
     database: 3
     host: 172.16.8.18
     port: 6379
-    password: wind
+    password: hyzs
     jedis:
       pool:
         maxActive: 3
@@ -42,21 +42,22 @@ logging:
   level:
     com.wind: DEBUG
 
-wind:
-  sso:
-    accessTokenUri: http://172.16.8.20:82/oauth/token
-    userAuthorizationUri: http://172.16.8.20:82/oauth/authorize
-    clientId: task-admin
-    clientSecret: 12345678
-    logoutUrl: http://172.16.8.20:82/logout
-    tokenInfoUri: http://172.16.8.20:82/oauth/check_token
-  auth:
-    type: MINI_PROGRAM_SIGNATURE
-    excludePaths:
-    miniProgram:
-      appId: wxba6bffebe25e971d
-      appSecret: d6dbb12103dde8b79a3fe3f42e7dcaa4
-    serviceUrlMapping: {szcg-web-all : szcg-web}
+lzw:
+  wind:
+    sso:
+      accessTokenUri: http://172.16.8.20:82/oauth/token
+      userAuthorizationUri: http://172.16.8.20:82/oauth/authorize
+      clientId: task-admin
+      clientSecret: 12345678
+      logoutUrl: http://172.16.8.20:82/logout
+      tokenInfoUri: http://172.16.8.20:82/oauth/check_token
+    auth:
+      type: MINI_PROGRAM_SIGNATURE
+      excludePaths:
+      miniProgram:
+        appId: wxba6bffebe25e971d
+        appSecret: d6dbb12103dde8b79a3fe3f42e7dcaa4
+      serviceUrlMapping: {szcg-web-all : szcg-web}
 eureka:
   client:
     service-url:

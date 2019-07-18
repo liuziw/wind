@@ -36,7 +36,7 @@ spring:
     database: 1
     host: 172.16.8.18
     port: 6379
-    password: wind
+    password: hyzs
     jedis:
       pool:
         max-active: 11

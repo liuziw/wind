@@ -13,7 +13,7 @@
         <module>common</module>
         <module>event-kafka</module>
         <module>gateway</module>
-        <module>eurekaserver</module>
+        <module>eureka-server</module>
         <module>eureka-server</module>
         <module>tibmas</module>
     </modules>
@@ -213,11 +213,6 @@
     </dependencyManagement>
 
     <dependencies>
-
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>

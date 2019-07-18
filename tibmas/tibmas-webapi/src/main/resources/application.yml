@@ -12,9 +12,9 @@ spring:
     name: TIBMAS2-WEBAPI_LOCAL
   datasource:
     druid:
-      url: jdbc:mysql://127.0.0.1:3306/lzw
-      username: root
-      password: root
+      url: jdbc:mysql://172.16.8.18:3306/tibmas2?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      username: user
+      password: admin@1
       driverClassName: com.mysql.jdbc.Driver
       initial-size: 5
       maxActive: 10
@@ -38,7 +38,7 @@ spring:
     database: 0
     host: 172.16.8.18
     port: 6379
-    password: wind
+    password: hyzs
     jedis:
       pool:
         max-active: 11
