@@ -16,6 +16,7 @@
         <module>eureka-server</module>
         <module>eureka-server</module>
         <module>tibmas</module>
+        <module>test2</module>
     </modules>
     <packaging>pom</packaging>
 

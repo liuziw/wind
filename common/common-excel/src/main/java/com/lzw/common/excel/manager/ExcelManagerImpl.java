@@ -8,6 +8,9 @@ import com.lzw.common.excel.bo.BaseExcelBO;
 import com.lzw.common.excel.bo.ResultExcelBO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Row;
@@ -27,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author liuzw
@@ -62,6 +66,26 @@ public class ExcelManagerImpl implements ExcelManager {
 
         //生成excel
         downloadExcel(resultExcelBO,lineIndex,response);
+    }
+
+    @Override
+    public void downloadExcel(List<String> headers, List<List<Object>> dataList, HttpServletResponse response) {
+        String tempPath = null;
+        ResourceLoader loader = new DefaultResourceLoader();
+        Resource tempResource = loader.getResource("classpath:excel/");
+        File file = null;
+        try {
+            file = new File(URLDecoder.decode(tempResource.getURL().getFile(),"UTF-8"));
+            tempPath = file.getPath()+"/"+ UUID.randomUUID()+".xls";
+            File outFile = new File(tempPath);
+            writeExcel(tempPath, headers, dataList);
+            log.info("导出excel");
+            //下载
+            download(tempPath,response);
+        } catch (Exception e) {
+            log.error("e:{}",e);
+            throw CommonException.exception("导出excel失败！");
+        }
     }
 
     /**
@@ -149,6 +173,28 @@ public class ExcelManagerImpl implements ExcelManager {
         Sheet sheet = wb.getSheetAt(0);
         writeContent(filePath, wb, sheet, index, contentList);
 
+    }
+
+    /**
+     * 自定义表头的导出
+     * @param filePath
+     * @param headers 表头
+     * @param contentList
+     * @throws Exception
+     */
+    public void writeExcel(String filePath, List<String> headers, List<List<Object>> contentList) throws Exception {
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet();
+
+        HSSFRow row1 = sheet.createRow(0);
+        //设置表头
+        for(int i = 0 ; i < headers.size() ; i++)
+        {
+            HSSFCell cell = row1.createCell(i);
+            //设置表头值
+            cell.setCellValue(headers.get(i));
+        }
+        writeContent(filePath, workbook, sheet, 1, contentList);
     }
 
     /**

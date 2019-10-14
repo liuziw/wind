@@ -29,4 +29,12 @@ public interface ExcelManager {
      * @param response
      */
     void downloadExcel(List<?> dataList, ExcelPathBO excelPathBO, HttpServletResponse response);
+
+    /**
+     * 自定义表头的导出
+     * @param headers 表头
+     * @param dataList 数据
+     * @param response
+     */
+    void downloadExcel(List<String> headers, List<List<Object>> dataList, HttpServletResponse response);
 }
