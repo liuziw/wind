@@ -12,9 +12,9 @@ spring:
     name: TIBMAS2-LOG
   datasource:
     druid:
-      url: jdbc:mysql://172.16.8.18:3306/tibmas?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
-      username: user
-      password: admin@1
+      url: jdbc:mysql://127.0.0.1:3306/tibmas?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: root
       driverClassName: com.mysql.jdbc.Driver
       initial-size: 5
       maxActive: 10
@@ -33,9 +33,9 @@ spring:
   #Redis连接
   redis:
     database: 4
-    host: 172.16.8.18
+    host: 127.0.0.1
     port: 6379
-    password: wind
+    password:
     jedis:
       pool:
         max-active: 11
@@ -71,27 +71,25 @@ logging:
     com.wind: DEBUG
     org: INFO
 
+  #注册中心地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 60000
+        readTimeout: 60000
+        loggerLevel: basic
 
-  #分布助手配置
-  pagehelper:
-    helper-dialect: mysql
-    reasonable: true
-    support-methods-arguments: true
-    params: count=countSql
-
-security:
-  oauth2:
-    client:
-      accessTokenUri: http://172.16.8.20:82/oauth/token
-      userAuthorizationUri: http://172.16.8.20:82/oauth/authorize
-      clientId: tibmas-web-api
-      clientSecret: 12345678
-    resource:
-      tokenInfoUri: http://172.16.8.20:82/oauth/check_token
-
-
-wind:
-  sso:
-    logoutUrl: http://172.16.8.20:82/logout
-  auth:
-    urls: /api/**,/swagger/**
+#添加 分布式事物
+## tx-manager 配置
+tx-lcn:
+  client:
+    manager-address: 127.0.0.1:8070

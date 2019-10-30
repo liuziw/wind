@@ -1,5 +1,6 @@
 package com.lzw.wind.tibmas.log.service.impl;
 
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.lzw.common.core.exception.CommonErrorCode;
 import com.lzw.common.core.exception.CommonException;
 import com.lzw.common.core.util.CommonUtils;
@@ -10,6 +11,7 @@ import com.lzw.wind.tibmas.log.service.OptrLogService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
@@ -21,11 +23,14 @@ public class OptrLogServiceImpl implements OptrLogService {
     @Autowired
     private OptrLogDaoManager optrLogDaoManager;
 
+    @LcnTransaction
+    @Transactional
     @Override
     public void insertOptrLog(InsertOptrLogDTO insertOptrLogDTO) {
         this.check(insertOptrLogDTO);
         OptrLogDO optrLogDO = CommonUtils.newInstance(insertOptrLogDTO, OptrLogDO.class);
         this.optrLogDaoManager.insertNotNullProperties(optrLogDO);
+//        int i = 100/0;
     }
 
     @Override

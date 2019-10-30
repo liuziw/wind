@@ -1,0 +1,45 @@
+#Web服务器相关配置
+server:
+  port: 11150
+  servlet:
+    context-path:
+
+#数据连接配置
+spring:
+  profiles:
+    active:
+  application:
+    name: TX-MANAGER
+  datasource:
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/tx-manager?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+      initial-size: 5
+      maxActive: 10
+      minIdle:  10
+      validation-query: SELECT 'x' from dual
+      test-while-idle: true
+      time-between-eviction-runs-millis: 10000
+      min-evictable-idle-time-millis: 300000
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,slf4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=1000
+      useGlobalDataSourceStat: true
+      # 支持火星文emoji表情
+      connectionInitSqls: set names utf8mb4;
+      # 确保链接可用
+      keep-alive: true
+
+  #注册中心地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+

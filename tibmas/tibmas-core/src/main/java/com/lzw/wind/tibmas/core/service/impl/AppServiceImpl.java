@@ -1,5 +1,6 @@
 package com.lzw.wind.tibmas.core.service.impl;
 
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.lzw.common.core.bo.PageBO;
 import com.lzw.common.core.exception.CommonErrorCode;
 import com.lzw.common.core.exception.CommonException;
@@ -14,6 +15,7 @@ import com.lzw.wind.tibmas.core.dto.AddAppDTO;
 import com.lzw.wind.tibmas.core.dto.ListQueryAppDTO;
 import com.lzw.wind.tibmas.core.dto.UpdateAppDTO;
 import com.lzw.wind.tibmas.core.service.AppService;
+import com.lzw.wind.tibmas.core.service.feign.UserLogServiceFeign;
 import com.lzw.wind.tibmas.core.util.EncryptUtils;
 import com.lzw.wind.tibmas.core.vo.ClientVO;
 import com.lzw.wind.tibmas.core.vo.SelectTreeVO;
@@ -40,7 +42,11 @@ public class AppServiceImpl implements AppService {
     @Autowired
     private PermDaoManager permDaoManager;
 
+    @Autowired
+    private UserLogServiceFeign userLogServiceFeign;
+
     @Transactional
+    @LcnTransaction
     @Override
     public Integer insert(AddAppDTO dto) {
         //验证应用信息
@@ -54,8 +60,10 @@ public class AppServiceImpl implements AppService {
             throw CommonException.exception(CommonErrorCode.PARAM_ERROR_CODE,"该应用编码已经存在");
         AppDO appDO = CommonUtils.newInstance(dto,AppDO.class);
         appDO.setAccessKey(EncryptUtils.encryptBySha256(appDO.getAccessKeyPlain()));
-
-        return appDaoManager.insertNotNullProperties(appDO);
+        Integer result = appDaoManager.insertNotNullProperties(appDO);
+        //测试分布式事务
+        userLogServiceFeign.testLog();
+        return result;
     }
 
     @Transactional

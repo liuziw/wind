@@ -2,7 +2,6 @@ package com.lzw.wind.tibmas.log.web.controller;
 
 import com.lzw.common.core.util.CommonUtils;
 import com.lzw.common.core.vo.ResponseVO;
-import com.lzw.common.core.web.controller.BaseController;
 import com.lzw.wind.tibmas.log.dto.InsertOptrLogDTO;
 import com.lzw.wind.tibmas.log.service.OptrLogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/webapi/optrlog",method = RequestMethod.POST)
-public class OptrLogController extends BaseController {
+public class OptrLogController /*extends BaseController*/ {
 
     @Autowired
     private OptrLogService optrLogService;
@@ -31,6 +30,22 @@ public class OptrLogController extends BaseController {
     @RequestMapping("insertOptrLogList")
     public ResponseVO<Boolean> insertOptrLogList(@RequestBody List<InsertOptrLogDTO> list){
         this.optrLogService.insertOptrLogList(list);
+        return _SUCCESS_VO;
+    }
+
+    //测试分布式事务
+    @RequestMapping("testLog")
+    public ResponseVO<Boolean> testLog() {
+        InsertOptrLogDTO dto = new InsertOptrLogDTO();
+        dto.setAppId(1L);
+        dto.setDeptId(1L);
+        dto.setMainModel("asdf");
+        dto.setOptrDesc("asdfa");
+        dto.setOptrTarget("asdfa");
+        dto.setSubModel("sdf");
+        dto.setUserId(1L);
+//        dto.setOptrTime(new Date());
+        optrLogService.insertOptrLog(dto);
         return _SUCCESS_VO;
     }
 
