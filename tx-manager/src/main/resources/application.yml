@@ -1,6 +1,6 @@
 #Web服务器相关配置
 server:
-  port: 11150
+  port: 8069
   servlet:
     context-path:
 
@@ -32,6 +32,15 @@ spring:
       connectionInitSqls: set names utf8mb4;
       # 确保链接可用
       keep-alive: true
+  jpa:
+    # 数据库方言
+    database-platform=org:
+      hibernate:
+        dialect:
+          MySQL5InnoDBDialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    # 第一次运行可以设置为: create, 为TM创建持久化数据库表
+    hibernate:
+      ddl-auto=validate: validate
 
   #注册中心地址
 eureka:

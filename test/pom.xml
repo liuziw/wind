@@ -61,6 +61,12 @@
             <artifactId>commons-io</artifactId>
             <version>1.4</version>
         </dependency>
+        <!-- ikf分词器包 -->
+        <dependency>
+            <groupId>com.janeluo</groupId>
+            <artifactId>ikanalyzer</artifactId>
+            <version>2012_u6</version>
+        </dependency>
     </dependencies>
 
 </project>
