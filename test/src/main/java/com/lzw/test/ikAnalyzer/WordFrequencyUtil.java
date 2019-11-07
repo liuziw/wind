@@ -15,7 +15,7 @@ import java.util.*;
  * @author liuziw
  * @date 2019/11/7 14:18
  */
-public class WordFrequency {
+public class WordFrequencyUtil {
 
     /**
      * 对内容进行词频统计并排序，次数多的在前
@@ -24,7 +24,7 @@ public class WordFrequency {
      * @throws IOException
      */
     public static List<Map.Entry<String, Integer>> wordFrequencyCountAndOrder(String content) throws IOException {
-        return WordFrequency.orderWordFrequency(WordFrequency.countWordFrequency(new HashMap<String, Integer>(), content));
+        return WordFrequencyUtil.orderWordFrequency(WordFrequencyUtil.countWordFrequency(new HashMap<String, Integer>(), content));
     }
 
     /**
@@ -34,7 +34,7 @@ public class WordFrequency {
      * @throws IOException
      */
     public static List<Map.Entry<String, Integer>> wordFrequency(String content) throws IOException {
-        return WordFrequency.wordFrequency(WordFrequency.countWordFrequency(new HashMap<String, Integer>(), content));
+        return WordFrequencyUtil.wordFrequency(WordFrequencyUtil.countWordFrequency(new HashMap<String, Integer>(), content));
     }
 
     /**
