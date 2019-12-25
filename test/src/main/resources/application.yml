@@ -5,10 +5,30 @@ server:
 
 # redis
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/iqc?characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT
+    username: root
+    password: root
+    initialSize: 10
+    maxActive: 30
+    minIdle: 5
+    maxWait: 5000
+    validationQuery: SELECT 'x' FROM DUAL
+    validationQueryTimeout: 10000
+    testOnBorrow: true
+    testOnReturn: false
+    testWhileIdle: true
+    connectionErrorRetryAttempts: 3
+    notFullTimeoutRetryCount: 3
+    timeBetweenEvictionRunsMillis: 30000
+    minEvictableIdleTimeMillis: 300000
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 100
   redis:
     host: 127.0.0.1
     port: 6379
-    password: wind
+    password:
     jedis:
       pool:
         max-idle: 8
