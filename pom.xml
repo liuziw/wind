@@ -18,6 +18,7 @@
         <module>tibmas</module>
         <module>sharding</module>
         <module>tx-manager</module>
+        <module>mongo</module>
     </modules>
     <packaging>pom</packaging>
 

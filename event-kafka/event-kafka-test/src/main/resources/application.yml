@@ -4,7 +4,7 @@ spring:
   application:
     name: EVENT_KAFKA_TEST
   kafka:
-    bootstrap-servers: 172.16.8.19:9092
+    bootstrap-servers: 47.107.159.29:9092
     consumer:
       group-id: EVENT_KAFKA_TEST_GROUP
       key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
