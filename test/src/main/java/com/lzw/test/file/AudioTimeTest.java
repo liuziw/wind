@@ -1,4 +1,4 @@
-package com.lzw.test;
+package com.lzw.test.file;
 
 import it.sauronsoftware.jave.AudioAttributes;
 import it.sauronsoftware.jave.Encoder;
@@ -54,10 +54,11 @@ public class AudioTimeTest {
 
 
     public static void main(String[] args) throws Exception {
-        /*Long start = new Date().getTime();
+        Long start = new Date().getTime();
 //        File source = new File("E:\\work\\智能质检\\录音文件\\非标准采样率 - 副本\\测试录音3.wav");
 //        File source = new File("E:\\work\\智能质检\\录音文件\\王旭伟\\王旭伟\\213201900024968.WAV");
-        File source = new File("C:\\\\Users\\\\Administrator\\\\Desktop\\\\9.wav");
+        File source = new File("C:\\\\Users\\\\Administrator\\\\Desktop\\\\a92e5c6a-b404-4c52-a3a6-533eae559162.mp3");
+//        File source = new File("C:\\\\Users\\\\Administrator\\\\Desktop\\\\test1.mp3");
         Encoder encoder = new Encoder();
         try {
             MultimediaInfo m = encoder.getInfo(source);
@@ -73,12 +74,12 @@ public class AudioTimeTest {
             System.out.println("此视频编码为:" + m.getAudio().getDecoder());
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
 
-        /*testCompressMp3Samll("C:\\\\Users\\\\Administrator\\\\Desktop\\\\9.wav",
-                "E:\\work\\智能质检", 16000);*/
+        /*testCompressMp3Samll("C:\\\\Users\\\\Administrator\\\\Desktop\\\\test1.mp3",
+                "E:\\work\\智能质检", 8000);*/
 
-        convertBit("C:\\Users\\Administrator\\Desktop\\9.wav", "C:\\Users\\Administrator\\Desktop\\9_bak.wav");
+//        convertBit("C:\\Users\\Administrator\\Desktop\\9.wav", "C:\\Users\\Administrator\\Desktop\\9_bak.wav");
     }
 
     /**
@@ -91,7 +92,7 @@ public class AudioTimeTest {
     public static void testCompressMp3Samll(String inputFilePath, String outputDirPath, Integer samplingRate) throws Exception{
         Long t1 = System.currentTimeMillis();
         AudioAttributes audio = new AudioAttributes();
-        audio.setCodec("libmp3lame");
+        audio.setCodec("pcm_s16le");
         audio.setSamplingRate(samplingRate);//设置采样率
         audio.setChannels(1); //设置声道
         EncodingAttributes attrs = new EncodingAttributes();

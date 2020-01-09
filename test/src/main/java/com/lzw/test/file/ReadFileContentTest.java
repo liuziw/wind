@@ -1,9 +1,6 @@
-package com.lzw.test;
+package com.lzw.test.file;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class ReadFileContentTest {
 
@@ -49,9 +46,32 @@ public class ReadFileContentTest {
         return result.toString();
     }
 
+    public static String txt2StringUTF8(String filePath){
+        String s = null;
+        StringBuilder result = new StringBuilder();
+        try {
+            File file = new File(filePath);
+            InputStreamReader read = new InputStreamReader(new FileInputStream(file), "GBK");
+            //构造一个BufferedReader类来读取文件
+            BufferedReader br = new BufferedReader(read);
+            while((s = br.readLine())!=null){//使用readLine方法，一次读一行
+                result.append(System.lineSeparator()+s);
+            }
+            if (br != null) {
+                br.close();
+            }
+        } catch (Exception e) {
+            try {
+                throw new IOException();
+            } catch (Exception ex) {
+            }
+        }
+        return result.toString();
+    }
+
     public static void main(String[] args) {
-        String filePath = "C:\\Users\\Administrator\\Desktop\\crm_visit20191220.del";
-        String content = txt2String(filePath);
+        String filePath = "C:\\Users\\Administrator\\Desktop\\crm_visit20200107.del";
+        String content = txt2StringUTF8(filePath);
         //根据换行符分割
         String [] arr = content.split(System.lineSeparator());
         System.out.println(content);
