@@ -57,8 +57,8 @@ public class AudioTimeTest {
         Long start = new Date().getTime();
 //        File source = new File("E:\\work\\智能质检\\录音文件\\非标准采样率 - 副本\\测试录音3.wav");
 //        File source = new File("E:\\work\\智能质检\\录音文件\\王旭伟\\王旭伟\\213201900024968.WAV");
-        File source = new File("C:\\\\Users\\\\Administrator\\\\Desktop\\\\a92e5c6a-b404-4c52-a3a6-533eae559162.mp3");
-//        File source = new File("C:\\\\Users\\\\Administrator\\\\Desktop\\\\test1.mp3");
+//        File source = new File("C:\\\\Users\\\\Administrator\\\\Desktop\\\\4303_13625756715_20191206_151541.mp3");
+        File source = new File("C:\\\\Users\\\\Administrator\\\\Desktop\\\\test1.mp3");
         Encoder encoder = new Encoder();
         try {
             MultimediaInfo m = encoder.getInfo(source);
@@ -104,6 +104,7 @@ public class AudioTimeTest {
         encoder.encode(inputFile, outFile, attrs);
         FileUtils.copyFile(outFile, inputFile);
         Long t2= System.currentTimeMillis();
+        outFile.delete();
         System.out.println("消耗："+(t2-t1)+"ms");
     }
 
