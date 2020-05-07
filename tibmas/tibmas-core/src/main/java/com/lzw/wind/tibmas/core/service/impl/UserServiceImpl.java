@@ -19,6 +19,7 @@ import com.lzw.wind.tibmas.core.manager.*;
 import com.lzw.wind.tibmas.core.service.TeamAndUserService;
 import com.lzw.wind.tibmas.core.service.TeamUserService;
 import com.lzw.wind.tibmas.core.service.UserService;
+import com.lzw.wind.tibmas.core.service.feign.UserServiceFeign;
 import com.lzw.wind.tibmas.core.util.EncryptUtils;
 import com.lzw.wind.tibmas.core.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,7 +86,7 @@ public class UserServiceImpl implements UserService {
     private OpenUserDaoManager openUserDaoManager;
 
     @Autowired
-    private UserService userServiceFeign;
+    private UserServiceFeign userServiceFeign;
 
     @Autowired
     private TeamUserDaoManager teamUserDaoManager;
