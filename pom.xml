@@ -19,7 +19,7 @@
         <module>sharding</module>
         <module>tx-manager</module>
         <module>mongo</module>
-        <module>es6.2.4</module>
+        <module>es624</module>
     </modules>
     <packaging>pom</packaging>
 
