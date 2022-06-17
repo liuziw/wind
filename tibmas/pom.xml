@@ -22,7 +22,7 @@
     <properties>
         <spring-session-data-redis.version>2.0.6.RELEASE</spring-session-data-redis.version>
         <gz-common.version>3.0.0-SNAPSHOT</gz-common.version>
-        <com.alibaba.fastjson.version>1.2.47</com.alibaba.fastjson.version>
+        <com.alibaba.fastjson.version>1.2.83</com.alibaba.fastjson.version>
         <com.alibaba.druid-spring-boot-starter.versoin>1.1.10</com.alibaba.druid-spring-boot-starter.versoin>
     </properties>
 
