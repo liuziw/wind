@@ -44,7 +44,7 @@
         <commons-io-version>2.5</commons-io-version>
         <commons-codec-version>1.11</commons-codec-version>
         <commons-configuration-version>1.10</commons-configuration-version>
-        <commons-configuration2-version>2.3</commons-configuration2-version>
+        <commons-configuration2-version>2.7</commons-configuration2-version>
         <mysql-version>5.1.38</mysql-version>
         <swagger-version>2.7.0</swagger-version>
         <lombok-version>1.18.2</lombok-version>
